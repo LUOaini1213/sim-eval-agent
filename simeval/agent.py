@@ -30,11 +30,11 @@ DEFAULT_TOL = {
 
 @dataclass
 class AgentConfig:
-    budget: int = 240                          # max number of simulation runs
-    seeds: tuple[int, ...] = (1, 2, 3)         # paired SUMO seeds for OAT and probing
+    budget: int = 400                          # max number of simulation runs
+    seeds: tuple[int, ...] = (1, 2, 3, 4, 5)   # paired SUMO seeds for OAT and probing
     controllers: tuple[str, ...] = ("fixed", "alinea")
     reference_controller: str | None = "none"  # evaluated at nominal only, for context
-    screen_n: int = 16                         # Latin-hypercube points (x controllers, seed[0])
+    screen_n: int = 24                         # Latin-hypercube points (x controllers, seed[0])
     agent_seed: int = 20260926                 # RNG seed for the screening sample
     max_probes: int = 3                        # max parameters to bisect
     tol: dict = field(default_factory=lambda: dict(DEFAULT_TOL))

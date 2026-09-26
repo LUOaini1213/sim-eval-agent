@@ -50,7 +50,8 @@ def build_claims(result: dict) -> list[dict]:
         vals["verdicts"] = [r["eval"]["verdict"] for r in rs]
         add(f"Nominal scenario, controller '{c}': mean over {len(rs)} seeds.", vals, [r["id"] for r in rs])
 
-    for c, rows in result["oat"].items():
+    for c in result["config"]["controllers"]:  # config order, not dict order (JSON is written sorted)
+        rows = result["oat"].get(c)
         if not rows:
             continue
         top = rows[0]
@@ -91,13 +92,19 @@ def build_claims(result: dict) -> list[dict]:
                  and s["fail_rate_low"] is not None and s["fail_rate_high"] is not None]
         if not strat:
             continue
-        s = max(strat, key=lambda x: (abs(x["fail_rate_high"] - x["fail_rate_low"]), x["param"]))
+        def contrast(x: dict) -> float:
+            return round(abs(x["fail_rate_high"] - x["fail_rate_low"]), 3)
+
+        best = max(contrast(x) for x in strat)
+        tied = sorted(x["param"] for x in strat if contrast(x) == best)
+        ids = strat[0]["run_ids"]
+        bad = sum(1 for r in runs if r["id"] in set(ids) and r["eval"]["verdict"] != PASS)
         add(
-            f"Screening (Latin hypercube, seed {seeds[0]}), controller '{c}': the largest stratified contrast is "
-            f"'{s['param']}': not-PASS rate {s['fail_rate_low']} below {s['split_at']} (n={s['n_low']}) vs "
-            f"{s['fail_rate_high']} at/above (n={s['n_high']}).",
-            {k: s[k] for k in ("param", "split_at", "n_low", "fail_rate_low", "n_high", "fail_rate_high")},
-            s["run_ids"],
+            f"Screening (Latin hypercube over the full ranges, seed {seeds[0]}), controller '{c}': "
+            f"{bad} of {len(ids)} runs are not-PASS; the largest lower-half vs upper-half difference in "
+            f"not-PASS rate is {best}, shared by {', '.join(tied)}.",
+            {"not_pass": bad, "runs": len(ids), "largest_contrast": best, "params_with_largest_contrast": tied},
+            ids,
         )
 
     by_crit = {c.kpi: [r["id"] for r in runs if c.kpi in r["eval"]["failed"]] for c in CRITERIA}
@@ -108,7 +115,9 @@ def build_claims(result: dict) -> list[dict]:
         {"invalid_runs": len(inv), "runs": len(runs),
          "teleports": sum(r["kpis"]["teleports"] for r in runs),
          "collisions": sum(r["kpis"]["collisions"] for r in runs),
-         "collision_lanes": dict(sorted(Counter(l for r in runs for l in r["kpis"].get("collision_lanes", [])).items()))},
+         "collision_lanes": dict(sorted(Counter(l for r in runs for l in r["kpis"].get("collision_lanes", [])).items())),
+         "invalid_by_phase": dict(sorted(Counter(r["phase"] for r in inv).items())),
+         "invalid_with_incident": sum(1 for r in inv if r["scenario"]["incident_duration"] > 0)},
         [r["id"] for r in inv])
     return claims
 
@@ -133,6 +142,18 @@ def write_all(result: dict, meta: dict, out_dir: Path) -> dict:
     (out / "report.json").write_text(json.dumps(rep, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     (out / "REPORT.md").write_text(render_markdown(rep), encoding="utf-8", newline="\n")
     return rep
+
+
+RESULT_KEYS = ("config", "nominal", "policy", "stop_reason", "runs_executed", "batches", "actions",
+               "screen", "oat", "boundaries")
+
+
+def rebuild(results_dir: Path) -> dict:
+    """Re-render report.json / REPORT.md from runs.jsonl + the stored agent trace (no SUMO)."""
+    d = Path(results_dir)
+    rep = json.loads((d / "report.json").read_text(encoding="utf-8"))
+    result = {k: rep[k] for k in RESULT_KEYS} | {"runs": load_runs(d / "runs.jsonl")}
+    return write_all(result, rep["meta"], d)
 
 
 def load_runs(path: Path) -> list[dict]:
@@ -209,7 +230,8 @@ def render_markdown(rep: dict) -> str:
         L.append("| - | - | - | - | - | - | - | - | - |")
 
     L += ["", "## One-at-a-time sensitivity (paired seeds; delta of run margin vs nominal)", ""]
-    for c, rows in rep["oat"].items():
+    for c in rep["config"]["controllers"]:
+        rows = rep["oat"].get(c, [])
         L += [f"### controller `{c}`", "",
               "| parameter | lo value | mean delta (lo) | verdicts (lo) | hi value | mean delta (hi) | verdicts (hi) | influence | flip |",
               "|---|---|---|---|---|---|---|---|---|"]

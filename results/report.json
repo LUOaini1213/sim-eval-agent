@@ -1,0 +1,2509 @@
+{
+ "actions": [
+  {
+   "action": "probe:ramp_demand",
+   "policy": "deterministic",
+   "runs_so_far": 173,
+   "why": "largest paired mean-delta-margin magnitude among unprobed params with a verdict flip (ramp_demand)"
+  },
+  {
+   "action": "probe:incident_duration",
+   "policy": "deterministic",
+   "runs_so_far": 198,
+   "why": "largest paired mean-delta-margin magnitude among unprobed params with a verdict flip (incident_duration)"
+  },
+  {
+   "action": "probe:main_demand",
+   "policy": "deterministic",
+   "runs_so_far": 248,
+   "why": "largest paired mean-delta-margin magnitude among unprobed params with a verdict flip (main_demand)"
+  }
+ ],
+ "batches": [
+  {
+   "new_runs": 48,
+   "phase": "screen",
+   "size": 48
+  },
+  {
+   "new_runs": 125,
+   "phase": "oat",
+   "size": 135
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand",
+   "size": 5
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand",
+   "size": 5
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand",
+   "size": 5
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand",
+   "size": 5
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand",
+   "size": 5
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand",
+   "size": 10
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand",
+   "size": 10
+  }
+ ],
+ "boundaries": [
+  {
+   "controller": "fixed",
+   "converged": true,
+   "first_fail": 806,
+   "last_pass": 788,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      300,
+      false
+     ],
+     [
+      600,
+      false
+     ],
+     [
+      750,
+      false
+     ],
+     [
+      788,
+      false
+     ],
+     [
+      806,
+      true
+     ],
+     [
+      825,
+      true
+     ],
+     [
+      900,
+      true
+     ],
+     [
+      1200,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "ramp_demand",
+   "steps": [
+    {
+     "failed": true,
+     "run_ids": [
+      "cb3b606025db",
+      "192204924fec",
+      "230ddfaac8a6",
+      "6eeb71e440d6",
+      "79cebad1278e"
+     ],
+     "value": 900,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "50e1432e6cae",
+      "dfe9491cb231",
+      "a161372b4ebc",
+      "aa5b6f81f3ac",
+      "5de2457bd04c"
+     ],
+     "value": 750,
+     "verdicts": [
+      "FAIL",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "39adcd61a61c",
+      "56374720a12f",
+      "6822053e1e54",
+      "d2d9c619c07f",
+      "e6721ddebeb9"
+     ],
+     "value": 825,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "PASS",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "c863b6f279ca",
+      "aa0a5b54f6b1",
+      "26857bdc104e",
+      "b6db6ce7dc87",
+      "e99d0e2eb872"
+     ],
+     "value": 788,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "8f8c45969a37",
+      "1fd401bcc3eb",
+      "c381a31dae9f",
+      "999513ac4970",
+      "26f74ebf780f"
+     ],
+     "value": 806,
+     "verdicts": [
+      "FAIL",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    }
+   ],
+   "tol": 25,
+   "width": 18
+  },
+  {
+   "controller": "fixed",
+   "converged": true,
+   "first_fail": 282,
+   "last_pass": 254,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      0,
+      false
+     ],
+     [
+      225,
+      false
+     ],
+     [
+      254,
+      false
+     ],
+     [
+      282,
+      true
+     ],
+     [
+      338,
+      true
+     ],
+     [
+      450,
+      true
+     ],
+     [
+      900,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "incident_duration",
+   "steps": [
+    {
+     "failed": true,
+     "run_ids": [
+      "896e3c944088",
+      "51e443b33936",
+      "4659e0704e4b",
+      "0f6aa5f69187",
+      "61eb04f1e0a1"
+     ],
+     "value": 450,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "7a80b2c6e822",
+      "a56d08b00c29",
+      "b177c9de0bc6",
+      "20bc5dfb77c5",
+      "05da049a6203"
+     ],
+     "value": 225,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "7d14be8071c9",
+      "a4a547d84615",
+      "0e9ba335746d",
+      "29a0679bddd3",
+      "87eb4dab79a8"
+     ],
+     "value": 338,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "de325166dc1f",
+      "f2be735e0f3c",
+      "99f8e3c4260a",
+      "f391acfca4a6",
+      "e81ec4374788"
+     ],
+     "value": 282,
+     "verdicts": [
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "6ceb47f37d45",
+      "200fa7eabea0",
+      "1a9fe3581d59",
+      "3cd0c106d771",
+      "e7332f22383d"
+     ],
+     "value": 254,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS"
+     ]
+    }
+   ],
+   "tol": 30,
+   "width": 28
+  },
+  {
+   "controller": "alinea",
+   "converged": true,
+   "first_fail": 310,
+   "last_pass": 282,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      0,
+      false
+     ],
+     [
+      225,
+      false
+     ],
+     [
+      282,
+      false
+     ],
+     [
+      310,
+      true
+     ],
+     [
+      338,
+      true
+     ],
+     [
+      450,
+      true
+     ],
+     [
+      900,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "incident_duration",
+   "steps": [
+    {
+     "failed": true,
+     "run_ids": [
+      "a18cc4fa1d08",
+      "afb86c7922a0",
+      "063058d8c2b0",
+      "8ba1e5f6362c",
+      "f9edcbfb0c77"
+     ],
+     "value": 450,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "498a9c62e32b",
+      "d7f3c185f20c",
+      "796b15404388",
+      "bee2fe6e2ac5",
+      "8cf7269f2da4"
+     ],
+     "value": 225,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "bc2209d92829",
+      "3260f90aae07",
+      "4ea5b88fc993",
+      "a61756d69688",
+      "3333fc9b622f"
+     ],
+     "value": 338,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "85cb25cadb00",
+      "68ceefb1a25b",
+      "14c43b0a6902",
+      "131d5b33c1b1",
+      "25c9164520c9"
+     ],
+     "value": 282,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "22bdc8f3b129",
+      "471a72d7353d",
+      "44c5ddf879a6",
+      "0629af1bc877",
+      "90733823a710"
+     ],
+     "value": 310,
+     "verdicts": [
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    }
+   ],
+   "tol": 30,
+   "width": 28
+  },
+  {
+   "controller": "fixed",
+   "converged": true,
+   "first_fail": 4138,
+   "last_pass": 4106,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      2400,
+      false
+     ],
+     [
+      3200,
+      false
+     ],
+     [
+      3700,
+      false
+     ],
+     [
+      3950,
+      false
+     ],
+     [
+      4075,
+      false
+     ],
+     [
+      4106,
+      false
+     ],
+     [
+      4138,
+      true
+     ],
+     [
+      4200,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "main_demand",
+   "steps": [
+    {
+     "failed": false,
+     "run_ids": [
+      "299ffd1b099d",
+      "d62867fefa2a",
+      "9333599fd202",
+      "90b406cc833a",
+      "43beb326f4fb"
+     ],
+     "value": 3700,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "94afa60b1f4d",
+      "66d4c6ff3e3c",
+      "8501615bcabf",
+      "9959eb2dbb9e",
+      "abe3ef0c8651"
+     ],
+     "value": 3950,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "22c4c180b92a",
+      "adaccb634de5",
+      "4a6721522e6d",
+      "dfe0cac3d9fb",
+      "5727f57c6b03"
+     ],
+     "value": 4075,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "48ceb7093147",
+      "954df461b2a7",
+      "c3224d23d1d9",
+      "cb1b7ff578ea",
+      "f30140a3f7f5"
+     ],
+     "value": 4138,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "79066918bcaa",
+      "18f4b1f1807f",
+      "f35f594c3880",
+      "1f10b344dfc9",
+      "93b52022b45e"
+     ],
+     "value": 4106,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    }
+   ],
+   "tol": 50,
+   "width": 32
+  },
+  {
+   "controller": "alinea",
+   "converged": true,
+   "first_fail": 4075,
+   "last_pass": 4044,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      2400,
+      false
+     ],
+     [
+      3200,
+      false
+     ],
+     [
+      3700,
+      false
+     ],
+     [
+      3950,
+      false
+     ],
+     [
+      4012,
+      false
+     ],
+     [
+      4044,
+      false
+     ],
+     [
+      4075,
+      true
+     ],
+     [
+      4200,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "main_demand",
+   "steps": [
+    {
+     "failed": false,
+     "run_ids": [
+      "620212116390",
+      "d65ed62c59ad",
+      "145ca1b692b7",
+      "d8d504165916",
+      "2af46fa18f45"
+     ],
+     "value": 3700,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "81ca524238b4",
+      "a942224184a8",
+      "16c2f3457f58",
+      "8747b6fd4be7",
+      "722710a6e381"
+     ],
+     "value": 3950,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "42156a89a688",
+      "04498198b89b",
+      "62cd4a0567bc",
+      "ae7b578fad66",
+      "0ffbe6a5278b"
+     ],
+     "value": 4075,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "37a79becc6e2",
+      "6a6feec9dccf",
+      "84ddc8cd69d3",
+      "9e7fe8ade3c3",
+      "241e2f39565b"
+     ],
+     "value": 4012,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "4fb5d9502efe",
+      "0e90fa89f39c",
+      "cd76d11cd57c",
+      "9015246c364c",
+      "684cf981d116"
+     ],
+     "value": 4044,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    }
+   ],
+   "tol": 50,
+   "width": 31
+  }
+ ],
+ "claims": [
+  {
+   "evidence": [
+    "09de1b65ac99",
+    "4224d1e7fafd",
+    "6dccacdae032",
+    "8107cc25c975",
+    "dbec7f1de5b6"
+   ],
+   "id": "C1",
+   "text": "Nominal scenario, controller 'fixed': mean over 5 seeds.",
+   "values": {
+    "collisions": 0,
+    "mean_delay_s": 15.32,
+    "merge_speed_kmh": 97.27,
+    "ramp_p95_delay_s": 48.85,
+    "ramp_queue_max_veh": 12.2,
+    "teleports": 0,
+    "throughput_veh": 1695.8,
+    "ttc_per_1000veh": 0.0,
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "162fa6351870",
+    "1cab0918e077",
+    "51dd7aabb8cb",
+    "576fab337e71",
+    "5da8cb55bbb9"
+   ],
+   "id": "C2",
+   "text": "Nominal scenario, controller 'alinea': mean over 5 seeds.",
+   "values": {
+    "collisions": 0,
+    "mean_delay_s": 13.62,
+    "merge_speed_kmh": 96.67,
+    "ramp_p95_delay_s": 25.72,
+    "ramp_queue_max_veh": 8.8,
+    "teleports": 0,
+    "throughput_veh": 1695.8,
+    "ttc_per_1000veh": 0.0,
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "00e8f793a37e",
+    "49405911a80a",
+    "68f9ed45e187",
+    "80c052907d12",
+    "e75e7c8bac3f"
+   ],
+   "id": "C3",
+   "text": "Nominal scenario, controller 'none': mean over 5 seeds.",
+   "values": {
+    "collisions": 0,
+    "mean_delay_s": 13.54,
+    "merge_speed_kmh": 96.79,
+    "ramp_p95_delay_s": 25.47,
+    "ramp_queue_max_veh": 8.8,
+    "teleports": 0,
+    "throughput_veh": 1695.8,
+    "ttc_per_1000veh": 0.0,
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "09de1b65ac99",
+    "4224d1e7fafd",
+    "560af3bd5974",
+    "5b69e0a7a7c3",
+    "6dccacdae032",
+    "8107cc25c975",
+    "8f292be11ec7",
+    "c945aff5b69e",
+    "d02047fc7541",
+    "dbec7f1de5b6"
+   ],
+   "id": "C4",
+   "text": "One-at-a-time (paired seeds), controller 'fixed': the most influential parameter is 'ramp_demand'; moving it to hi=1200 changes the run margin by -5.3051 on average (per-seed range -5.619..-4.8627).",
+   "values": {
+    "level": "hi",
+    "max_delta_margin": -4.8627,
+    "mean_delta_margin": -5.3051,
+    "min_delta_margin": -5.619,
+    "param": "ramp_demand",
+    "value": 1200,
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "162fa6351870",
+    "1cab0918e077",
+    "51dd7aabb8cb",
+    "5224ba9c9247",
+    "576fab337e71",
+    "5da8cb55bbb9",
+    "633dc142a9c6",
+    "7a2625efd310",
+    "8983b24c47f5",
+    "a9f8909b7436"
+   ],
+   "id": "C5",
+   "text": "One-at-a-time (paired seeds), controller 'alinea': the most influential parameter is 'incident_duration'; moving it to hi=900 changes the run margin by -2.3056 on average (per-seed range -2.3958..-2.1959).",
+   "values": {
+    "level": "hi",
+    "max_delta_margin": -2.1959,
+    "mean_delta_margin": -2.3056,
+    "min_delta_margin": -2.3958,
+    "param": "incident_duration",
+    "value": 900,
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "1fd401bcc3eb",
+    "26857bdc104e",
+    "26f74ebf780f",
+    "8f8c45969a37",
+    "999513ac4970",
+    "aa0a5b54f6b1",
+    "b6db6ce7dc87",
+    "c381a31dae9f",
+    "c863b6f279ca",
+    "e99d0e2eb872"
+   ],
+   "id": "C6",
+   "text": "Boundary, controller 'fixed' along 'ramp_demand' (veh/h), other parameters nominal: majority PASS at 788, majority not-PASS at 806 (bisection width 18, tolerance 25, monotone over 8 evaluated points).",
+   "values": {
+    "controller": "fixed",
+    "criteria_violated_at_fail": [
+     "ramp_p95_delay_s"
+    ],
+    "fail_verdicts": [
+     "FAIL",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 806,
+    "last_pass": 788,
+    "param": "ramp_demand",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "1a9fe3581d59",
+    "200fa7eabea0",
+    "3cd0c106d771",
+    "6ceb47f37d45",
+    "99f8e3c4260a",
+    "de325166dc1f",
+    "e7332f22383d",
+    "e81ec4374788",
+    "f2be735e0f3c",
+    "f391acfca4a6"
+   ],
+   "id": "C7",
+   "text": "Boundary, controller 'fixed' along 'incident_duration' (s), other parameters nominal: majority PASS at 254, majority not-PASS at 282 (bisection width 28, tolerance 30, monotone over 7 evaluated points).",
+   "values": {
+    "controller": "fixed",
+    "criteria_violated_at_fail": [
+     "mean_delay_s"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ],
+    "first_fail": 282,
+    "last_pass": 254,
+    "param": "incident_duration",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "0629af1bc877",
+    "131d5b33c1b1",
+    "14c43b0a6902",
+    "22bdc8f3b129",
+    "25c9164520c9",
+    "44c5ddf879a6",
+    "471a72d7353d",
+    "68ceefb1a25b",
+    "85cb25cadb00",
+    "90733823a710"
+   ],
+   "id": "C8",
+   "text": "Boundary, controller 'alinea' along 'incident_duration' (s), other parameters nominal: majority PASS at 282, majority not-PASS at 310 (bisection width 28, tolerance 30, monotone over 7 evaluated points).",
+   "values": {
+    "controller": "alinea",
+    "criteria_violated_at_fail": [
+     "mean_delay_s"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ],
+    "first_fail": 310,
+    "last_pass": 282,
+    "param": "incident_duration",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "18f4b1f1807f",
+    "1f10b344dfc9",
+    "48ceb7093147",
+    "79066918bcaa",
+    "93b52022b45e",
+    "954df461b2a7",
+    "c3224d23d1d9",
+    "cb1b7ff578ea",
+    "f30140a3f7f5",
+    "f35f594c3880"
+   ],
+   "id": "C9",
+   "text": "Boundary, controller 'fixed' along 'main_demand' (veh/h), other parameters nominal: majority PASS at 4106, majority not-PASS at 4138 (bisection width 32, tolerance 50, monotone over 8 evaluated points).",
+   "values": {
+    "controller": "fixed",
+    "criteria_violated_at_fail": [
+     "mean_delay_s"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 4138,
+    "last_pass": 4106,
+    "param": "main_demand",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "04498198b89b",
+    "0e90fa89f39c",
+    "0ffbe6a5278b",
+    "42156a89a688",
+    "4fb5d9502efe",
+    "62cd4a0567bc",
+    "684cf981d116",
+    "9015246c364c",
+    "ae7b578fad66",
+    "cd76d11cd57c"
+   ],
+   "id": "C10",
+   "text": "Boundary, controller 'alinea' along 'main_demand' (veh/h), other parameters nominal: majority PASS at 4044, majority not-PASS at 4075 (bisection width 31, tolerance 50, monotone over 8 evaluated points).",
+   "values": {
+    "controller": "alinea",
+    "criteria_violated_at_fail": [
+     "mean_delay_s"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 4075,
+    "last_pass": 4044,
+    "param": "main_demand",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "00a15a52e3cf",
+    "38a2a14fca29",
+    "405073b69216",
+    "4d60be8eebb1",
+    "4f79b434110a",
+    "5626225a7495",
+    "56cc2502d344",
+    "60235d869384",
+    "6d30a934cf4b",
+    "92aee55e52cc",
+    "9ea58b366b18",
+    "a1737a034381",
+    "ab0e54932ed1",
+    "b6c52f3cfa19",
+    "b80f7ca0ae7e",
+    "bce74dccebda",
+    "bcf331d3aec3",
+    "dd485189defa",
+    "e9172a99f7ed",
+    "f3982b85a032",
+    "f632db1a6851",
+    "f8820900efd3",
+    "fc9c2eec98cc",
+    "fd64c27a3811"
+   ],
+   "id": "C11",
+   "text": "Screening (Latin hypercube over the full ranges, seed 1), controller 'fixed': 22 of 24 runs are not-PASS; the largest lower-half vs upper-half difference in not-PASS rate is 0.167, shared by incident_start, main_demand, ramp_demand, sigma.",
+   "values": {
+    "largest_contrast": 0.167,
+    "not_pass": 22,
+    "params_with_largest_contrast": [
+     "incident_start",
+     "main_demand",
+     "ramp_demand",
+     "sigma"
+    ],
+    "runs": 24
+   }
+  },
+  {
+   "evidence": [
+    "024edca07011",
+    "15601102cdd3",
+    "1ca079456f75",
+    "296abcd640fe",
+    "2a68b5bb29d7",
+    "2ea744e6b9cd",
+    "33b6acc5dae6",
+    "3a8ee5ad6b4b",
+    "4e262c361f92",
+    "673627902069",
+    "6ca08c21d18d",
+    "7325d508ff17",
+    "8c13ad84eeec",
+    "904e11481efa",
+    "93ef9eec5d4f",
+    "a659de71414f",
+    "a7b8757a39bd",
+    "aad49532489a",
+    "d23578292308",
+    "dc231c194cee",
+    "dfc3dc5c5a68",
+    "ecf9261e853c",
+    "efe8e9fbc1f2",
+    "feab4d7ac822"
+   ],
+   "id": "C12",
+   "text": "Screening (Latin hypercube over the full ranges, seed 1), controller 'alinea': 22 of 24 runs are not-PASS; the largest lower-half vs upper-half difference in not-PASS rate is 0.167, shared by incident_duration, incident_start, sigma.",
+   "values": {
+    "largest_contrast": 0.167,
+    "not_pass": 22,
+    "params_with_largest_contrast": [
+     "incident_duration",
+     "incident_start",
+     "sigma"
+    ],
+    "runs": 24
+   }
+  },
+  {
+   "evidence": [
+    "00a15a52e3cf",
+    "0629af1bc877",
+    "063058d8c2b0",
+    "0e9ba335746d",
+    "0f6aa5f69187",
+    "0ffbe6a5278b",
+    "131d5b33c1b1",
+    "14c43b0a6902",
+    "16c5625e4aeb",
+    "192204924fec",
+    "1f10b344dfc9",
+    "230ddfaac8a6",
+    "26857bdc104e",
+    "26f74ebf780f",
+    "29a0679bddd3",
+    "2a425a563b64",
+    "2a68b5bb29d7",
+    "2c8b05042f40",
+    "2ea744e6b9cd",
+    "3260f90aae07",
+    "3333fc9b622f",
+    "33b6acc5dae6",
+    "38a2a14fca29",
+    "39adcd61a61c",
+    "3a8ee5ad6b4b",
+    "3cd0c106d771",
+    "405073b69216",
+    "44c5ddf879a6",
+    "4659e0704e4b",
+    "471a72d7353d",
+    "4e262c361f92",
+    "4ea5b88fc993",
+    "4f79b434110a",
+    "50e1432e6cae",
+    "51e443b33936",
+    "5224ba9c9247",
+    "560af3bd5974",
+    "56374720a12f",
+    "56cc2502d344",
+    "5727f57c6b03",
+    "5b69e0a7a7c3",
+    "60235d869384",
+    "61eb04f1e0a1",
+    "62cd4a0567bc",
+    "633dc142a9c6",
+    "673627902069",
+    "6822053e1e54",
+    "6991a9a5eb98",
+    "6ca08c21d18d",
+    "6eeb71e440d6",
+    "7325d508ff17",
+    "79cebad1278e",
+    "7a2625efd310",
+    "7c4f24e15c52",
+    "7d14be8071c9",
+    "84ddc8cd69d3",
+    "8501615bcabf",
+    "87eb4dab79a8",
+    "896e3c944088",
+    "8983b24c47f5",
+    "8ba1e5f6362c",
+    "8c13ad84eeec",
+    "8f292be11ec7",
+    "8f8c45969a37",
+    "9015246c364c",
+    "904e11481efa",
+    "92aee55e52cc",
+    "93ef9eec5d4f",
+    "949bbe14e0ce",
+    "999513ac4970",
+    "99f8e3c4260a",
+    "9ea58b366b18",
+    "a161372b4ebc",
+    "a1737a034381",
+    "a18cc4fa1d08",
+    "a4a547d84615",
+    "a61756d69688",
+    "a659de71414f",
+    "a7b8757a39bd",
+    "a9f8909b7436",
+    "aad49532489a",
+    "ab0e54932ed1",
+    "ae7b578fad66",
+    "af7a9d7088ed",
+    "afb86c7922a0",
+    "b4bd80767782",
+    "b6c52f3cfa19",
+    "b6db6ce7dc87",
+    "b80f7ca0ae7e",
+    "bc2209d92829",
+    "bce74dccebda",
+    "bcf331d3aec3",
+    "c3224d23d1d9",
+    "c381a31dae9f",
+    "c945aff5b69e",
+    "cb1b7ff578ea",
+    "cb3b606025db",
+    "cd76d11cd57c",
+    "d02047fc7541",
+    "d23578292308",
+    "dc231c194cee",
+    "dd485189defa",
+    "de9ef97739c9",
+    "dfc3dc5c5a68",
+    "dfe0cac3d9fb",
+    "e6721ddebeb9",
+    "e9172a99f7ed",
+    "efe8e9fbc1f2",
+    "f0e8621cda58",
+    "f11e89990a06",
+    "f2be735e0f3c",
+    "f30140a3f7f5",
+    "f35f594c3880",
+    "f391acfca4a6",
+    "f3982b85a032",
+    "f632db1a6851",
+    "f8820900efd3",
+    "f9edcbfb0c77",
+    "fc9c2eec98cc",
+    "fd64c27a3811",
+    "feab4d7ac822",
+    "fefc51d3a0fe"
+   ],
+   "id": "C13",
+   "text": "Failure modes over all runs: number of runs violating each criterion.",
+   "values": {
+    "mean_delay_s": 102,
+    "merge_speed_kmh": 14,
+    "ramp_p95_delay_s": 35,
+    "runs": 298,
+    "ttc_per_1000veh": 15
+   }
+  },
+  {
+   "evidence": [
+    "024edca07011",
+    "1ca079456f75",
+    "673627902069",
+    "6d30a934cf4b",
+    "ab75afb1c2c1",
+    "b80f7ca0ae7e",
+    "bce74dccebda",
+    "dfc3dc5c5a68",
+    "ecf9261e853c"
+   ],
+   "id": "C14",
+   "text": "Validity: runs with teleports or collisions (excluded from PASS/FAIL, counted as not-PASS).",
+   "values": {
+    "collision_lanes": {
+     "incident_0": 1,
+     "main_mid_0": 7,
+     "ramp_in_0": 1
+    },
+    "collisions": 9,
+    "invalid_by_phase": {
+     "oat": 1,
+     "screen": 8
+    },
+    "invalid_runs": 9,
+    "invalid_with_incident": 8,
+    "runs": 298,
+    "teleports": 0
+   }
+  }
+ ],
+ "config": {
+  "agent_seed": 20260926,
+  "budget": 400,
+  "controllers": [
+   "fixed",
+   "alinea"
+  ],
+  "max_probes": 3,
+  "reference_controller": "none",
+  "screen_n": 24,
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "tol": {
+   "incident_duration": 30,
+   "incident_start": 30,
+   "main_demand": 50,
+   "ramp_demand": 25,
+   "sigma": 0.05,
+   "truck_share": 0.0125
+  }
+ },
+ "criteria": [
+  {
+   "kpi": "mean_delay_s",
+   "limit": 60.0,
+   "op": "<=",
+   "why": "network-wide mean delay per vehicle (timeLoss + departDelay)"
+  },
+  {
+   "kpi": "ramp_p95_delay_s",
+   "limit": 120.0,
+   "op": "<=",
+   "why": "95th-percentile delay of ramp vehicles (queue / spillback)"
+  },
+  {
+   "kpi": "merge_speed_kmh",
+   "limit": 75.0,
+   "op": ">=",
+   "why": "flow-weighted mainline spot speed in the merge area"
+  },
+  {
+   "kpi": "ttc_per_1000veh",
+   "limit": 10.0,
+   "op": "<=",
+   "why": "SSM conflicts with min TTC < 1.5 s per 1000 vehicles"
+  }
+ ],
+ "meta": {
+  "cpu_count": 8,
+  "date": "2026-09-26",
+  "jobs": 7,
+  "net_sha256": "9b93309afcb0d3b5ff95bcee832130bc3ddcc49dbe0f01d4abd95e7229f5f1eb",
+  "platform": "Windows-10",
+  "python": "3.11.5",
+  "sim_wall_s_sum": 2865.9,
+  "sumo_version": "1.24.0",
+  "wall_time_s": 482.2
+ },
+ "nominal": {
+  "controller": "alinea",
+  "incident_duration": 0,
+  "incident_start": 600,
+  "main_demand": 3200,
+  "ramp_demand": 600,
+  "seed": 1,
+  "sigma": 0.5,
+  "truck_share": 0.1
+ },
+ "oat": {
+  "alinea": [
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 2.3056,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -2.1959,
+      "mean_delta_margin": -2.3056,
+      "min_delta_margin": -2.3958,
+      "run_ids": [
+       "5224ba9c9247",
+       "633dc142a9c6",
+       "a9f8909b7436",
+       "8983b24c47f5",
+       "7a2625efd310"
+      ],
+      "value": 900,
+      "verdicts": [
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "5da8cb55bbb9",
+       "51dd7aabb8cb",
+       "162fa6351870",
+       "576fab337e71",
+       "1cab0918e077"
+      ],
+      "value": 0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_duration"
+   },
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 0.5364,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -0.1259,
+      "mean_delta_margin": -0.5364,
+      "min_delta_margin": -1.0994,
+      "run_ids": [
+       "e19e03b4204d",
+       "8e58417b68da",
+       "de9ef97739c9",
+       "2c8b05042f40",
+       "16c5625e4aeb"
+      ],
+      "value": 4200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0928,
+      "mean_delta_margin": 0.081,
+      "min_delta_margin": 0.0708,
+      "run_ids": [
+       "9d79762db403",
+       "f8e8efc5624c",
+       "9af66bffa496",
+       "ca4ae7d04bf9",
+       "7337629ef504"
+      ],
+      "value": 2400,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "main_demand"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.1268,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0851,
+      "mean_delta_margin": -0.102,
+      "min_delta_margin": -0.1191,
+      "run_ids": [
+       "12600a9b7524",
+       "53025f3b0168",
+       "2fa38e6c0b00",
+       "f53baf106b7a",
+       "47b68549c85a"
+      ],
+      "value": 0.25,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.1369,
+      "mean_delta_margin": 0.1268,
+      "min_delta_margin": 0.1165,
+      "run_ids": [
+       "d32ac8782022",
+       "1513f6803f48",
+       "41ee09b7802d",
+       "f955e646a623",
+       "2fbe79cec683"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "truck_share"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.1183,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0704,
+      "mean_delta_margin": -0.1183,
+      "min_delta_margin": -0.1554,
+      "run_ids": [
+       "80864229863b",
+       "b2c42e1ab264",
+       "634d0df3bb94",
+       "04e8fa203b41",
+       "2e8d3c51ad05"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0489,
+      "mean_delta_margin": 0.0319,
+      "min_delta_margin": 0.0181,
+      "run_ids": [
+       "ecfd97c12e1f",
+       "ef097623e6f5",
+       "31bd3bf94367",
+       "360c818132f0",
+       "2fda88f878b4"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "ramp_demand"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0455,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0043,
+      "mean_delta_margin": -0.0455,
+      "min_delta_margin": -0.1447,
+      "run_ids": [
+       "b4769eb538f1",
+       "fef2eed91be3",
+       "c6f6b8d26b5e",
+       "7a2f7d891be0",
+       "3ab2c10f05a0"
+      ],
+      "value": 0.9,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0317,
+      "mean_delta_margin": 0.0231,
+      "min_delta_margin": 0.0155,
+      "run_ids": [
+       "95d02054362c",
+       "10a2ede0e448",
+       "767e223f24ee",
+       "1855457ba650",
+       "4f85e975a2f6"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "sigma"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "9b9763fe2b7a",
+       "a04ed130f089",
+       "5e1bebca018b",
+       "7bb952886ec1",
+       "3cfaf0ec3fe3"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "1e512225eb0b",
+       "f5129a3244f0",
+       "54dabb84f14e",
+       "c62eb39dce42",
+       "76ab2f5a083f"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_start"
+   }
+  ],
+  "fixed": [
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 5.3051,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -4.8627,
+      "mean_delta_margin": -5.3051,
+      "min_delta_margin": -5.619,
+      "run_ids": [
+       "d02047fc7541",
+       "5b69e0a7a7c3",
+       "c945aff5b69e",
+       "8f292be11ec7",
+       "560af3bd5974"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.041,
+      "mean_delta_margin": 0.0248,
+      "min_delta_margin": -0.0022,
+      "run_ids": [
+       "2c43e08b27cf",
+       "10273b301df4",
+       "f18a44651ccc",
+       "c276b03b4e71",
+       "e66e34f37d8f"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "ramp_demand"
+   },
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 2.3365,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -2.1964,
+      "mean_delta_margin": -2.3365,
+      "min_delta_margin": -2.4376,
+      "run_ids": [
+       "b4bd80767782",
+       "f11e89990a06",
+       "6991a9a5eb98",
+       "7c4f24e15c52",
+       "949bbe14e0ce"
+      ],
+      "value": 900,
+      "verdicts": [
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "09de1b65ac99",
+       "4224d1e7fafd",
+       "dbec7f1de5b6",
+       "8107cc25c975",
+       "6dccacdae032"
+      ],
+      "value": 0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_duration"
+   },
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 0.6053,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -0.1302,
+      "mean_delta_margin": -0.6053,
+      "min_delta_margin": -1.1549,
+      "run_ids": [
+       "4f520fefae87",
+       "5f861b2fd074",
+       "f0e8621cda58",
+       "af7a9d7088ed",
+       "fefc51d3a0fe"
+      ],
+      "value": 4200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0865,
+      "mean_delta_margin": 0.0772,
+      "min_delta_margin": 0.0694,
+      "run_ids": [
+       "e706e12601ec",
+       "f2644fdf1541",
+       "a704bb47deb8",
+       "e9f8746263cd",
+       "938cd6fcd9a9"
+      ],
+      "value": 2400,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "main_demand"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.1281,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0868,
+      "mean_delta_margin": -0.1038,
+      "min_delta_margin": -0.1303,
+      "run_ids": [
+       "ab75afb1c2c1",
+       "3147cf1684ee",
+       "7672daec2edf",
+       "f0bb2f1856af",
+       "e55b722ee976"
+      ],
+      "value": 0.25,
+      "verdicts": [
+       "INVALID",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.1402,
+      "mean_delta_margin": 0.1281,
+      "min_delta_margin": 0.121,
+      "run_ids": [
+       "e75063862fb7",
+       "c88f050bd977",
+       "3d6eaa696c0e",
+       "d946b7af51b8",
+       "c693e40790f4"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "truck_share"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.1008,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.036,
+      "mean_delta_margin": -0.1008,
+      "min_delta_margin": -0.3079,
+      "run_ids": [
+       "986c27f9280a",
+       "510796519367",
+       "e10efdd5a5f9",
+       "2a425a563b64",
+       "7f987ea33b0e"
+      ],
+      "value": 0.9,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "FAIL",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0297,
+      "mean_delta_margin": 0.0224,
+      "min_delta_margin": 0.0189,
+      "run_ids": [
+       "225d4cd8923b",
+       "f0c2d5964a70",
+       "01353ba80d3b",
+       "c80582e2bd70",
+       "617c8112c500"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "sigma"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "af56013a98df",
+       "5b37c6df739d",
+       "c960bb3fdab8",
+       "7f215f66e4cc",
+       "1c17246a94dd"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "d773c8548996",
+       "26635aa80495",
+       "efdfff81fa40",
+       "525affe439b6",
+       "0d4e1314a48c"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_start"
+   }
+  ]
+ },
+ "policy": "deterministic",
+ "runs_executed": 298,
+ "screen": {
+  "stratified": [
+   {
+    "controller": "alinea",
+    "fail_rate_high": 0.917,
+    "fail_rate_low": 0.917,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "main_demand",
+    "run_ids": [
+     "024edca07011",
+     "15601102cdd3",
+     "1ca079456f75",
+     "296abcd640fe",
+     "2a68b5bb29d7",
+     "2ea744e6b9cd",
+     "33b6acc5dae6",
+     "3a8ee5ad6b4b",
+     "4e262c361f92",
+     "673627902069",
+     "6ca08c21d18d",
+     "7325d508ff17",
+     "8c13ad84eeec",
+     "904e11481efa",
+     "93ef9eec5d4f",
+     "a659de71414f",
+     "a7b8757a39bd",
+     "aad49532489a",
+     "d23578292308",
+     "dc231c194cee",
+     "dfc3dc5c5a68",
+     "ecf9261e853c",
+     "efe8e9fbc1f2",
+     "feab4d7ac822"
+    ],
+    "split_at": 3300.0
+   },
+   {
+    "controller": "alinea",
+    "fail_rate_high": 0.917,
+    "fail_rate_low": 0.917,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "ramp_demand",
+    "run_ids": [
+     "024edca07011",
+     "15601102cdd3",
+     "1ca079456f75",
+     "296abcd640fe",
+     "2a68b5bb29d7",
+     "2ea744e6b9cd",
+     "33b6acc5dae6",
+     "3a8ee5ad6b4b",
+     "4e262c361f92",
+     "673627902069",
+     "6ca08c21d18d",
+     "7325d508ff17",
+     "8c13ad84eeec",
+     "904e11481efa",
+     "93ef9eec5d4f",
+     "a659de71414f",
+     "a7b8757a39bd",
+     "aad49532489a",
+     "d23578292308",
+     "dc231c194cee",
+     "dfc3dc5c5a68",
+     "ecf9261e853c",
+     "efe8e9fbc1f2",
+     "feab4d7ac822"
+    ],
+    "split_at": 750.0
+   },
+   {
+    "controller": "alinea",
+    "fail_rate_high": 0.917,
+    "fail_rate_low": 0.917,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "truck_share",
+    "run_ids": [
+     "024edca07011",
+     "15601102cdd3",
+     "1ca079456f75",
+     "296abcd640fe",
+     "2a68b5bb29d7",
+     "2ea744e6b9cd",
+     "33b6acc5dae6",
+     "3a8ee5ad6b4b",
+     "4e262c361f92",
+     "673627902069",
+     "6ca08c21d18d",
+     "7325d508ff17",
+     "8c13ad84eeec",
+     "904e11481efa",
+     "93ef9eec5d4f",
+     "a659de71414f",
+     "a7b8757a39bd",
+     "aad49532489a",
+     "d23578292308",
+     "dc231c194cee",
+     "dfc3dc5c5a68",
+     "ecf9261e853c",
+     "efe8e9fbc1f2",
+     "feab4d7ac822"
+    ],
+    "split_at": 0.125
+   },
+   {
+    "controller": "alinea",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "incident_start",
+    "run_ids": [
+     "024edca07011",
+     "15601102cdd3",
+     "1ca079456f75",
+     "296abcd640fe",
+     "2a68b5bb29d7",
+     "2ea744e6b9cd",
+     "33b6acc5dae6",
+     "3a8ee5ad6b4b",
+     "4e262c361f92",
+     "673627902069",
+     "6ca08c21d18d",
+     "7325d508ff17",
+     "8c13ad84eeec",
+     "904e11481efa",
+     "93ef9eec5d4f",
+     "a659de71414f",
+     "a7b8757a39bd",
+     "aad49532489a",
+     "d23578292308",
+     "dc231c194cee",
+     "dfc3dc5c5a68",
+     "ecf9261e853c",
+     "efe8e9fbc1f2",
+     "feab4d7ac822"
+    ],
+    "split_at": 750.0
+   },
+   {
+    "controller": "alinea",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "incident_duration",
+    "run_ids": [
+     "024edca07011",
+     "15601102cdd3",
+     "1ca079456f75",
+     "296abcd640fe",
+     "2a68b5bb29d7",
+     "2ea744e6b9cd",
+     "33b6acc5dae6",
+     "3a8ee5ad6b4b",
+     "4e262c361f92",
+     "673627902069",
+     "6ca08c21d18d",
+     "7325d508ff17",
+     "8c13ad84eeec",
+     "904e11481efa",
+     "93ef9eec5d4f",
+     "a659de71414f",
+     "a7b8757a39bd",
+     "aad49532489a",
+     "d23578292308",
+     "dc231c194cee",
+     "dfc3dc5c5a68",
+     "ecf9261e853c",
+     "efe8e9fbc1f2",
+     "feab4d7ac822"
+    ],
+    "split_at": 450.0
+   },
+   {
+    "controller": "alinea",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "sigma",
+    "run_ids": [
+     "024edca07011",
+     "15601102cdd3",
+     "1ca079456f75",
+     "296abcd640fe",
+     "2a68b5bb29d7",
+     "2ea744e6b9cd",
+     "33b6acc5dae6",
+     "3a8ee5ad6b4b",
+     "4e262c361f92",
+     "673627902069",
+     "6ca08c21d18d",
+     "7325d508ff17",
+     "8c13ad84eeec",
+     "904e11481efa",
+     "93ef9eec5d4f",
+     "a659de71414f",
+     "a7b8757a39bd",
+     "aad49532489a",
+     "d23578292308",
+     "dc231c194cee",
+     "dfc3dc5c5a68",
+     "ecf9261e853c",
+     "efe8e9fbc1f2",
+     "feab4d7ac822"
+    ],
+    "split_at": 0.45
+   },
+   {
+    "controller": "fixed",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "main_demand",
+    "run_ids": [
+     "00a15a52e3cf",
+     "38a2a14fca29",
+     "405073b69216",
+     "4d60be8eebb1",
+     "4f79b434110a",
+     "5626225a7495",
+     "56cc2502d344",
+     "60235d869384",
+     "6d30a934cf4b",
+     "92aee55e52cc",
+     "9ea58b366b18",
+     "a1737a034381",
+     "ab0e54932ed1",
+     "b6c52f3cfa19",
+     "b80f7ca0ae7e",
+     "bce74dccebda",
+     "bcf331d3aec3",
+     "dd485189defa",
+     "e9172a99f7ed",
+     "f3982b85a032",
+     "f632db1a6851",
+     "f8820900efd3",
+     "fc9c2eec98cc",
+     "fd64c27a3811"
+    ],
+    "split_at": 3300.0
+   },
+   {
+    "controller": "fixed",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "ramp_demand",
+    "run_ids": [
+     "00a15a52e3cf",
+     "38a2a14fca29",
+     "405073b69216",
+     "4d60be8eebb1",
+     "4f79b434110a",
+     "5626225a7495",
+     "56cc2502d344",
+     "60235d869384",
+     "6d30a934cf4b",
+     "92aee55e52cc",
+     "9ea58b366b18",
+     "a1737a034381",
+     "ab0e54932ed1",
+     "b6c52f3cfa19",
+     "b80f7ca0ae7e",
+     "bce74dccebda",
+     "bcf331d3aec3",
+     "dd485189defa",
+     "e9172a99f7ed",
+     "f3982b85a032",
+     "f632db1a6851",
+     "f8820900efd3",
+     "fc9c2eec98cc",
+     "fd64c27a3811"
+    ],
+    "split_at": 750.0
+   },
+   {
+    "controller": "fixed",
+    "fail_rate_high": 0.917,
+    "fail_rate_low": 0.917,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "truck_share",
+    "run_ids": [
+     "00a15a52e3cf",
+     "38a2a14fca29",
+     "405073b69216",
+     "4d60be8eebb1",
+     "4f79b434110a",
+     "5626225a7495",
+     "56cc2502d344",
+     "60235d869384",
+     "6d30a934cf4b",
+     "92aee55e52cc",
+     "9ea58b366b18",
+     "a1737a034381",
+     "ab0e54932ed1",
+     "b6c52f3cfa19",
+     "b80f7ca0ae7e",
+     "bce74dccebda",
+     "bcf331d3aec3",
+     "dd485189defa",
+     "e9172a99f7ed",
+     "f3982b85a032",
+     "f632db1a6851",
+     "f8820900efd3",
+     "fc9c2eec98cc",
+     "fd64c27a3811"
+    ],
+    "split_at": 0.125
+   },
+   {
+    "controller": "fixed",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "incident_start",
+    "run_ids": [
+     "00a15a52e3cf",
+     "38a2a14fca29",
+     "405073b69216",
+     "4d60be8eebb1",
+     "4f79b434110a",
+     "5626225a7495",
+     "56cc2502d344",
+     "60235d869384",
+     "6d30a934cf4b",
+     "92aee55e52cc",
+     "9ea58b366b18",
+     "a1737a034381",
+     "ab0e54932ed1",
+     "b6c52f3cfa19",
+     "b80f7ca0ae7e",
+     "bce74dccebda",
+     "bcf331d3aec3",
+     "dd485189defa",
+     "e9172a99f7ed",
+     "f3982b85a032",
+     "f632db1a6851",
+     "f8820900efd3",
+     "fc9c2eec98cc",
+     "fd64c27a3811"
+    ],
+    "split_at": 750.0
+   },
+   {
+    "controller": "fixed",
+    "fail_rate_high": 0.917,
+    "fail_rate_low": 0.917,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "incident_duration",
+    "run_ids": [
+     "00a15a52e3cf",
+     "38a2a14fca29",
+     "405073b69216",
+     "4d60be8eebb1",
+     "4f79b434110a",
+     "5626225a7495",
+     "56cc2502d344",
+     "60235d869384",
+     "6d30a934cf4b",
+     "92aee55e52cc",
+     "9ea58b366b18",
+     "a1737a034381",
+     "ab0e54932ed1",
+     "b6c52f3cfa19",
+     "b80f7ca0ae7e",
+     "bce74dccebda",
+     "bcf331d3aec3",
+     "dd485189defa",
+     "e9172a99f7ed",
+     "f3982b85a032",
+     "f632db1a6851",
+     "f8820900efd3",
+     "fc9c2eec98cc",
+     "fd64c27a3811"
+    ],
+    "split_at": 450.0
+   },
+   {
+    "controller": "fixed",
+    "fail_rate_high": 1.0,
+    "fail_rate_low": 0.833,
+    "n_high": 12,
+    "n_low": 12,
+    "param": "sigma",
+    "run_ids": [
+     "00a15a52e3cf",
+     "38a2a14fca29",
+     "405073b69216",
+     "4d60be8eebb1",
+     "4f79b434110a",
+     "5626225a7495",
+     "56cc2502d344",
+     "60235d869384",
+     "6d30a934cf4b",
+     "92aee55e52cc",
+     "9ea58b366b18",
+     "a1737a034381",
+     "ab0e54932ed1",
+     "b6c52f3cfa19",
+     "b80f7ca0ae7e",
+     "bce74dccebda",
+     "bcf331d3aec3",
+     "dd485189defa",
+     "e9172a99f7ed",
+     "f3982b85a032",
+     "f632db1a6851",
+     "f8820900efd3",
+     "fc9c2eec98cc",
+     "fd64c27a3811"
+    ],
+    "split_at": 0.45
+   }
+  ]
+ },
+ "stop_reason": "max_probes=3 reached",
+ "verdict_counts": {
+  "FAIL": 118,
+  "INVALID": 9,
+  "PASS": 171
+ }
+}
