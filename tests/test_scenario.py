@@ -16,6 +16,8 @@ def test_nominal_id_is_stable():
 
 def test_id_ignores_float_noise_but_not_real_changes():
     assert NOMINAL.with_(sigma=0.5000000001).id == NOMINAL.id
+    # the constructor path does not go through with_(), so canonical() must do the rounding
+    assert Scenario(sigma=0.5000000001, truck_share=0.1 + 1e-12).id == NOMINAL.id
     assert NOMINAL.with_(sigma=0.51).id != NOMINAL.id
     assert NOMINAL.with_(seed=2).id != NOMINAL.id
 

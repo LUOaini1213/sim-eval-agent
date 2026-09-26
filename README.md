@@ -27,7 +27,14 @@ python -m pytest -q                      # 单元 + 集成测试（无 SUMO 时�
 python scripts/run_agent.py              # 实跑并写 results/；随后 python scripts/render_readme.py 刷新下表
 ```
 
-辅助脚本：`scripts/verify_results.py`（从 runs.jsonl 重算每条结论并比对 report.json）、`scripts/render_readme.py --check`（README 数字与 results 不一致就失败）、`scripts/mutation_check.py`（变异测试，见 [MUTATION.md](MUTATION.md)）、`scripts/build_network.py --check`。
+辅助脚本：
+
+- `scripts/verify_results.py`：从 `runs.jsonl` 重算每条结论和每个 run 的判定，与 `report.json` 比对；
+- `scripts/render_readme.py --check`：README 结果块与 `results/report.json` 不一致就失败（CI 里跑）；
+- `scripts/rerun_check.py --n 6`：按固定间隔抽取已提交的 run 重新仿真，比对 KPI 与 tripinfo 哈希（本机抽样重跑与提交结果完全一致；跨平台不保证）；
+- `scripts/mutation_check.py`：变异测试，逐个故意改坏代码、确认对应测试会失败再还原，结果写入 [MUTATION.md](MUTATION.md)（首轮有一个变异存活，暴露了一个测试缺口，已补上并记录在该文件里）；
+- `scripts/build_network.py --check`：重新生成路网并与提交的 `network/merge.net.xml` 逐字节比对；
+- `scripts/rebuild_report.py`：只改报告格式时，从 `runs.jsonl` 重新渲染报告，不重跑仿真。
 
 ## 结果（本机实跑，脚本生成）
 

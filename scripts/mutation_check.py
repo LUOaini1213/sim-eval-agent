@@ -52,6 +52,17 @@ MUTATIONS = [
 ]
 
 
+HISTORY = """
+## History
+
+- 2026-09-26, first pass: 14/15 caught. **M12 survived**: `test_id_ignores_float_noise_but_not_real_changes`
+  only built scenarios through `Scenario.with_()`, which already rounds floats, so removing the rounding in
+  `canonical()` went unnoticed. Scenarios built with the constructor (as `Scenario.from_dict` does when
+  reading results) would have got a different id for the same parameters. The test now also builds one through
+  the constructor; second pass: 15/15 caught.
+"""
+
+
 def pytest(selector: str) -> tuple[int, str]:
     p = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", *selector.split()],
                        cwd=ROOT, capture_output=True, text=True)
