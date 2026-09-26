@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SSMLog>
+    <conflict begin="1.00" end="2.00" ego="a" foe="b">
+        <minTTC time="1.50" position="0,0" type="2" value="1.49" speed="3.00"/>
+    </conflict>
+    <conflict begin="3.00" end="4.00" ego="c" foe="d">
+        <minTTC time="3.50" position="0,0" type="2" value="1.50" speed="3.00"/>
+    </conflict>
+    <conflict begin="5.00" end="6.00" ego="e" foe="f">
+        <minTTC time="NA" position="NA" type="NA" value="NA" speed="NA"/>
+    </conflict>
+    <conflict begin="7.00" end="8.00" ego="g" foe="h">
+        <minTTC time="7.50" position="0,0" type="3" value="0.20" speed="0.00"/>
+    </conflict>
+    <conflict begin="9.00" end="9.50" ego="i" foe="j">
+        <minTTC time="9.20" position="0,0" type="2" value="2.90" speed="4.00"/>
+    </conflict>
+</SSMLog>

@@ -1,0 +1,10 @@
+<nodes>
+    <node id="n_start" x="0.00" y="0.00" type="priority"/>
+    <node id="n_merge" x="1000.00" y="0.00" type="priority"/>
+    <node id="n_accend" x="1250.00" y="0.00" type="priority"/>
+    <node id="n_inc" x="1600.00" y="0.00" type="priority"/>
+    <node id="n_inc_end" x="1800.00" y="0.00" type="priority"/>
+    <node id="n_end" x="2500.00" y="0.00" type="priority"/>
+    <node id="r_start" x="520.00" y="-120.00" type="priority"/>
+    <node id="r_meter" x="810.00" y="-14.00" type="traffic_light"/>
+</nodes>

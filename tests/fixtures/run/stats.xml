@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statistics>
+    <vehicles loaded="5" inserted="4" running="1" waiting="1"/>
+    <teleports total="2" jam="1" yield="1" wrongLane="0"/>
+    <safety collisions="1" emergencyStops="0" emergencyBraking="3"/>
+</statistics>

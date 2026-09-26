@@ -1,0 +1,9 @@
+<edges>
+    <edge id="main_in" from="n_start" to="n_merge" numLanes="2" speed="33.33" priority="3"/>
+    <edge id="merge" from="n_merge" to="n_accend" numLanes="3" speed="33.33" priority="3"/>
+    <edge id="main_mid" from="n_accend" to="n_inc" numLanes="2" speed="33.33" priority="3"/>
+    <edge id="incident" from="n_inc" to="n_inc_end" numLanes="2" speed="33.33" priority="3"/>
+    <edge id="main_out" from="n_inc_end" to="n_end" numLanes="2" speed="33.33" priority="3"/>
+    <edge id="ramp_in" from="r_start" to="r_meter" numLanes="1" speed="16.67" priority="1"/>
+    <edge id="ramp" from="r_meter" to="n_merge" numLanes="1" speed="22.22" priority="1"/>
+</edges>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,-120.00,2500.00,0.00" origBoundary="0.00,-120.00,2500.00,0.00" projParameter="!"/>
+
+    <edge id=":n_accend_0" function="internal">
+        <lane id=":n_accend_0_0" index="0" speed="33.33" length="8.00" shape="1246.00,-4.80 1254.00,-4.80"/>
+        <lane id=":n_accend_0_1" index="1" speed="33.33" length="8.00" shape="1246.00,-1.60 1254.00,-1.60"/>
+    </edge>
+    <edge id=":n_inc_0" function="internal">
+        <lane id=":n_inc_0_0" index="0" speed="33.33" length="0.10" shape="1600.00,-4.80 1600.00,-4.80"/>
+        <lane id=":n_inc_0_1" index="1" speed="33.33" length="0.10" shape="1600.00,-1.60 1600.00,-1.60"/>
+    </edge>
+    <edge id=":n_inc_end_0" function="internal">
+        <lane id=":n_inc_end_0_0" index="0" speed="33.33" length="0.10" shape="1800.00,-4.80 1800.00,-4.80"/>
+        <lane id=":n_inc_end_0_1" index="1" speed="33.33" length="0.10" shape="1800.00,-1.60 1800.00,-1.60"/>
+    </edge>
+    <edge id=":n_merge_0" function="internal">
+        <lane id=":n_merge_0_0" index="0" speed="27.77" length="3.12" shape="911.65,-8.11 914.76,-8.00"/>
+    </edge>
+    <edge id=":n_merge_1" function="internal">
+        <lane id=":n_merge_1_0" index="0" speed="33.33" length="3.12" shape="911.64,-4.80 914.76,-4.80"/>
+        <lane id=":n_merge_1_1" index="1" speed="33.33" length="3.12" shape="911.64,-1.60 914.76,-1.60"/>
+    </edge>
+    <edge id=":r_meter_0" function="internal">
+        <lane id=":r_meter_0_0" index="0" speed="19.45" length="0.44" shape="810.13,-15.66 810.25,-15.61 810.34,-15.59 810.43,-15.57 810.56,-15.56"/>
+    </edge>
+
+    <edge id="incident" from="n_inc" to="n_inc_end" priority="3">
+        <lane id="incident_0" index="0" speed="33.33" length="200.00" shape="1600.00,-4.80 1800.00,-4.80"/>
+        <lane id="incident_1" index="1" speed="33.33" length="200.00" shape="1600.00,-1.60 1800.00,-1.60"/>
+    </edge>
+    <edge id="main_in" from="n_start" to="n_merge" priority="3">
+        <lane id="main_in_0" index="0" speed="33.33" length="911.64" shape="0.00,-4.80 911.64,-4.80"/>
+        <lane id="main_in_1" index="1" speed="33.33" length="911.64" shape="0.00,-1.60 911.64,-1.60"/>
+    </edge>
+    <edge id="main_mid" from="n_accend" to="n_inc" priority="3">
+        <lane id="main_mid_0" index="0" speed="33.33" length="346.00" shape="1254.00,-4.80 1600.00,-4.80"/>
+        <lane id="main_mid_1" index="1" speed="33.33" length="346.00" shape="1254.00,-1.60 1600.00,-1.60"/>
+    </edge>
+    <edge id="main_out" from="n_inc_end" to="n_end" priority="3">
+        <lane id="main_out_0" index="0" speed="33.33" length="700.00" shape="1800.00,-4.80 2500.00,-4.80"/>
+        <lane id="main_out_1" index="1" speed="33.33" length="700.00" shape="1800.00,-1.60 2500.00,-1.60"/>
+    </edge>
+    <edge id="merge" from="n_merge" to="n_accend" priority="3">
+        <lane id="merge_0" index="0" speed="33.33" length="331.24" acceleration="1" shape="914.76,-8.00 1246.00,-8.00"/>
+        <lane id="merge_1" index="1" speed="33.33" length="331.24" shape="914.76,-4.80 1246.00,-4.80"/>
+        <lane id="merge_2" index="2" speed="33.33" length="331.24" shape="914.76,-1.60 1246.00,-1.60"/>
+    </edge>
+    <edge id="ramp" from="r_meter" to="n_merge" priority="1">
+        <lane id="ramp_0" index="0" speed="22.22" length="101.36" shape="810.56,-15.56 911.65,-8.11"/>
+    </edge>
+    <edge id="ramp_in" from="r_start" to="r_meter" priority="1">
+        <lane id="ramp_in_0" index="0" speed="16.67" length="308.32" shape="520.55,-121.50 810.13,-15.66"/>
+    </edge>
+
+    <tlLogic id="r_meter" type="static" programID="0" offset="0">
+        <phase duration="81" state="G"/>
+        <phase duration="4"  state="y"/>
+        <phase duration="5"  state="r"/>
+    </tlLogic>
+
+    <junction id="n_accend" type="priority" x="1250.00" y="0.00" incLanes="merge_0 merge_1 merge_2" intLanes=":n_accend_0_0 :n_accend_0_1" shape="1254.00,0.00 1254.00,-6.40 1250.97,-7.23 1249.03,-8.77 1247.79,-9.36 1246.00,-9.60 1246.00,0.00">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="n_end" type="dead_end" x="2500.00" y="0.00" incLanes="main_out_0 main_out_1" intLanes="" shape="2500.00,-6.40 2500.00,0.00"/>
+    <junction id="n_inc" type="priority" x="1600.00" y="0.00" incLanes="main_mid_0 main_mid_1" intLanes=":n_inc_0_0 :n_inc_0_1" shape="1600.00,0.00 1600.00,-6.40 1600.00,0.00">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="n_inc_end" type="priority" x="1800.00" y="0.00" incLanes="incident_0 incident_1" intLanes=":n_inc_end_0_0 :n_inc_end_0_1" shape="1800.00,0.00 1800.00,-6.40 1800.00,0.00">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="n_merge" type="priority" x="1000.00" y="0.00" incLanes="ramp_0 main_in_0 main_in_1" intLanes=":n_merge_0_0 :n_merge_1_0 :n_merge_1_1" shape="914.76,0.00 914.76,-9.60 911.76,-9.71 911.53,-6.52 911.64,-6.40 911.64,0.00">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="000" foes="000" cont="0"/>
+    </junction>
+    <junction id="n_start" type="dead_end" x="0.00" y="0.00" incLanes="" intLanes="" shape="0.00,0.00 0.00,-6.40"/>
+    <junction id="r_meter" type="traffic_light" x="810.00" y="-14.00" incLanes="ramp_in_0" intLanes=":r_meter_0_0" shape="810.44,-13.97 810.68,-17.16 809.58,-14.15 809.89,-14.04 810.00,-14.02 810.12,-14.00 810.26,-13.98">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="r_start" type="dead_end" x="520.00" y="-120.00" incLanes="" intLanes="" shape="520.00,-120.00 521.10,-123.01"/>
+
+    <connection from="incident" to="main_out" fromLane="0" toLane="0" via=":n_inc_end_0_0" dir="s" state="M"/>
+    <connection from="incident" to="main_out" fromLane="1" toLane="1" via=":n_inc_end_0_1" dir="s" state="M"/>
+    <connection from="main_in" to="merge" fromLane="0" toLane="1" via=":n_merge_1_0" dir="s" state="M"/>
+    <connection from="main_in" to="merge" fromLane="1" toLane="2" via=":n_merge_1_1" dir="s" state="M"/>
+    <connection from="main_mid" to="incident" fromLane="0" toLane="0" via=":n_inc_0_0" dir="s" state="M"/>
+    <connection from="main_mid" to="incident" fromLane="1" toLane="1" via=":n_inc_0_1" dir="s" state="M"/>
+    <connection from="merge" to="main_mid" fromLane="1" toLane="0" via=":n_accend_0_0" dir="s" state="M"/>
+    <connection from="merge" to="main_mid" fromLane="2" toLane="1" via=":n_accend_0_1" dir="s" state="M"/>
+    <connection from="ramp" to="merge" fromLane="0" toLane="0" via=":n_merge_0_0" dir="s" state="M"/>
+    <connection from="ramp_in" to="ramp" fromLane="0" toLane="0" via=":r_meter_0_0" tl="r_meter" linkIndex="0" dir="s" state="O"/>
+
+    <connection from=":n_accend_0" to="main_mid" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":n_accend_0" to="main_mid" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":n_inc_0" to="incident" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":n_inc_0" to="incident" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":n_inc_end_0" to="main_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":n_inc_end_0" to="main_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":n_merge_0" to="merge" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":n_merge_1" to="merge" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":n_merge_1" to="merge" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":r_meter_0" to="ramp" fromLane="0" toLane="0" dir="s" state="M"/>
+
+</net>

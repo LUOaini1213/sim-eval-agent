@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<detector>
+   <interval begin="0.00" end="60.00" id="e2_ramp" maxJamLengthInMeters="12.00" maxVehicleNumber="7"/>
+   <interval begin="60.00" end="120.00" id="e2_ramp" maxJamLengthInMeters="5.00" maxVehicleNumber="31"/>
+   <interval begin="120.00" end="180.00" id="e2_ramp" maxJamLengthInMeters="0.00" maxVehicleNumber="4"/>
+</detector>

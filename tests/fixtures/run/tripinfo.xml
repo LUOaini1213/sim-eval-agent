@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- hand-written fixture: 4 trips, one unfinished -->
+<tripinfos>
+    <tripinfo id="main_0.0" depart="10.00" departDelay="2.00" arrival="100.00" timeLoss="8.00"/>
+    <tripinfo id="main_0.1" depart="12.00" departDelay="0.00" arrival="110.00" timeLoss="30.00"/>
+    <tripinfo id="ramp_0.0" depart="15.00" departDelay="50.00" arrival="200.00" timeLoss="10.00"/>
+    <tripinfo id="ramp_0.1" depart="20.00" departDelay="0.00" arrival="-1" timeLoss="5.00"/>
+</tripinfos>

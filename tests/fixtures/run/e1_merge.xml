@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<detector>
+   <interval begin="0.00" end="60.00" id="loop_merge_1" nVehContrib="10" flow="600.00" occupancy="5.0" speed="20.00" length="5.00" nVehEntered="10"/>
+   <interval begin="0.00" end="60.00" id="loop_merge_2" nVehContrib="30" flow="1800.00" occupancy="9.0" speed="30.00" length="5.00" nVehEntered="30"/>
+   <interval begin="60.00" end="120.00" id="loop_merge_1" nVehContrib="0" flow="0.00" occupancy="0.0" speed="-1.00" length="-1.00" nVehEntered="0"/>
+   <interval begin="60.00" end="120.00" id="loop_down_0" nVehContrib="50" flow="3000.00" occupancy="20.0" speed="5.00" length="5.00" nVehEntered="50"/>
+   <interval begin="1800.00" end="1860.00" id="loop_merge_2" nVehContrib="40" flow="2400.00" occupancy="30.0" speed="2.00" length="5.00" nVehEntered="40"/>
+</detector>

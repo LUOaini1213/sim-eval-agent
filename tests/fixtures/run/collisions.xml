@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collisions>
+    <collision time="1139.00" type="collision" lane="ramp_in_0" pos="294.11" collider="x" victim="y"/>
+</collisions>
