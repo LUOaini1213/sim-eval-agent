@@ -9,13 +9,22 @@ FIX = Path(__file__).parent / "fixtures" / "run"
 
 
 def test_tripinfo_counts_timeloss_plus_departdelay():
-    t = kpi.parse_tripinfo(FIX / "tripinfo.xml")
+    t = kpi.parse_tripinfo(FIX / "tripinfo.xml", exclude=frozenset({"main_1.7"}))
     # delays: 2+8, 0+30, 50+10, 0+5  -> 10, 30, 60, 5
     assert t["vehicles"] == 4
     assert t["arrived"] == 3          # arrival="-1" is an unfinished trip
     assert t["total_delay_s"] == pytest.approx(105.0)
     assert t["ramp_vehicles"] == 2
     assert t["ramp_p95_delay_s"] == pytest.approx(60.0)  # nearest rank of [5, 60]
+
+
+def test_incident_vehicle_is_found_in_stop_output_and_excluded_from_kpis():
+    assert kpi.parse_incident(FIX / "stops.xml") == ("main_1.7", 613.5)
+    assert kpi.parse_incident(FIX / "does_not_exist.xml") == (None, None)
+    everyone = kpi.parse_tripinfo(FIX / "tripinfo.xml")        # default excludes only the parked blocker id
+    assert everyone["vehicles"] == 5 and everyone["total_delay_s"] == pytest.approx(505.0)
+    k = kpi.compute_kpis(FIX)                                   # compute_kpis drops the stalled vehicle
+    assert k["vehicles"] == 4 and k["incident_onset_s"] == 613.5
 
 
 def test_p95_is_nearest_rank():
@@ -42,7 +51,7 @@ def test_ssm_threshold_is_strict_and_ignores_na():
 
 def test_stats_and_collisions():
     s = kpi.parse_stats(FIX / "stats.xml")
-    assert (s["teleports"], s["collisions"], s["not_inserted"], s["emergency_braking"]) == (2, 1, 1, 3)
+    assert (s["teleports"], s["collisions"], s["not_inserted"], s["emergency_braking"], s["emergency_stops"]) == (2, 1, 1, 3, 2)
     assert kpi.parse_collisions(FIX / "collisions.xml") == ["ramp_in_0"]
     assert kpi.parse_collisions(FIX / "does_not_exist.xml") == []
 
@@ -63,5 +72,7 @@ def test_compute_kpis_end_to_end():
         "collisions": 1,
         "not_inserted": 1,
         "emergency_braking": 3,
+        "emergency_stops": 2,
         "collision_lanes": ["ramp_in_0"],
+        "incident_onset_s": 613.5,
     }

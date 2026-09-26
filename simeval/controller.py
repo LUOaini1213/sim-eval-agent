@@ -10,6 +10,12 @@ from dataclasses import dataclass
 
 CONTROL_INTERVAL_S = 30.0
 GREEN_S = 2.0          # one-car-per-green
+# Amber after each green. Without it the meter switches green -> red instantly and a vehicle
+# already too close to stop is forced into a physically impossible stop (SUMO warns "Missing
+# yellow phase" and logs "emergency stop ... because of a red traffic light"). 2.5 s covers the
+# worst case on the 60 km/h approach: v/(2 b) with v = 1.1 * 16.67 m/s (truck speedFactor cap)
+# and b = 4.0 m/s^2 (truck decel) is 2.3 s; cars (v <= 20 m/s, b = 4.5) need 2.2 s.
+AMBER_S = 2.5
 R_MIN = 240.0          # veh/h, lowest metering rate ALINEA may command
 R_MAX = 1800.0         # veh/h; at/above this the meter rests in green (no metering)
 
@@ -21,12 +27,12 @@ class Measurement:
     ramp_queue_veh: int      # vehicles currently on the metered approach (E2 detector)
 
 
-def red_time_for_rate(rate_veh_h: float) -> float | None:
-    """Red duration for a one-car-per-green cycle; None means rest in green."""
+def red_time_for_rate(rate_veh_h: float, amber_s: float = AMBER_S) -> float | None:
+    """Red duration for a one-car-per-green cycle (green, amber, red); None means rest in green."""
     if rate_veh_h >= R_MAX:
         return None
     cycle = 3600.0 / max(rate_veh_h, 1e-6)
-    return max(cycle - GREEN_S, 0.5)
+    return max(cycle - GREEN_S - amber_s, 0.5)
 
 
 class NoControl:

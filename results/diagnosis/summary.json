@@ -1,0 +1,400 @@
+{
+ "compare_ids": [
+  "b80f7ca0ae7e",
+  "296abcd640fe",
+  "fd64c27a3811",
+  "33b6acc5dae6",
+  "6d30a934cf4b",
+  "024edca07011",
+  "00a15a52e3cf",
+  "a7b8757a39bd",
+  "60235d869384",
+  "8c13ad84eeec",
+  "a1737a034381",
+  "4e262c361f92",
+  "fc9c2eec98cc",
+  "dc231c194cee",
+  "dd485189defa",
+  "2ea744e6b9cd",
+  "f8820900efd3",
+  "1ca079456f75",
+  "405073b69216",
+  "aad49532489a",
+  "f632db1a6851",
+  "93ef9eec5d4f",
+  "b6c52f3cfa19",
+  "7325d508ff17",
+  "9ea58b366b18",
+  "a659de71414f",
+  "f3982b85a032",
+  "feab4d7ac822",
+  "e9172a99f7ed",
+  "6ca08c21d18d"
+ ],
+ "comparison": {
+  "blocker": {
+   "collisions": 0,
+   "emergency_stops": {
+    "red_light": 62
+   },
+   "incident_onset_delay_s": {
+    "max": 143.0,
+    "median": 9.5,
+    "min": 1.5,
+    "n": 30
+   },
+   "mean_delay_s_avg": 159.76,
+   "runs": 30,
+   "runs_with_collision": 0,
+   "teleports": 0
+  },
+  "blocker_insert": {
+   "collisions": 0,
+   "emergency_stops": {
+    "red_light": 60
+   },
+   "incident_onset_delay_s": {
+    "max": 389.0,
+    "median": 34.25,
+    "min": 1.5,
+    "n": 30
+   },
+   "mean_delay_s_avg": 142.48,
+   "runs": 30,
+   "runs_with_collision": 0,
+   "teleports": 0
+  },
+  "default": {
+   "collisions": 0,
+   "emergency_stops": {},
+   "incident_onset_delay_s": {
+    "max": 11.5,
+    "median": 7.0,
+    "min": 6.0,
+    "n": 30
+   },
+   "mean_delay_s_avg": 162.6,
+   "runs": 30,
+   "runs_with_collision": 0,
+   "teleports": 0
+  },
+  "legacy": {
+   "collisions": 4,
+   "emergency_stops": {
+    "no_connection": 37,
+    "red_light": 57
+   },
+   "incident_onset_delay_s": null,
+   "mean_delay_s_avg": 141.96,
+   "runs": 30,
+   "runs_with_collision": 4,
+   "teleports": 0
+  },
+  "stall": {
+   "collisions": 0,
+   "emergency_stops": {
+    "red_light": 60
+   },
+   "incident_onset_delay_s": {
+    "max": 13.5,
+    "median": 7.0,
+    "min": 6.0,
+    "n": 30
+   },
+   "mean_delay_s_avg": 163.66,
+   "runs": 30,
+   "runs_with_collision": 0,
+   "teleports": 0
+  },
+  "vss_disallow": {
+   "collisions": 0,
+   "emergency_stops": {
+    "no_connection": 19,
+    "red_light": 61
+   },
+   "incident_onset_delay_s": null,
+   "mean_delay_s_avg": 151.0,
+   "runs": 30,
+   "runs_with_collision": 0,
+   "teleports": 0
+  }
+ },
+ "fixed_invalid": 0,
+ "invalid_cause_counts": {
+  "no_connection:at_closure": 8,
+  "red_light": 1
+ },
+ "invalid_ids": [
+  "b80f7ca0ae7e",
+  "6d30a934cf4b",
+  "024edca07011",
+  "1ca079456f75",
+  "bce74dccebda",
+  "673627902069",
+  "ecf9261e853c",
+  "dfc3dc5c5a68",
+  "ab75afb1c2c1"
+ ],
+ "invalid_runs": [
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "incident_0",
+     "stop_at_closure_instant": true,
+     "time": 507.5,
+     "victim_stop_decel": -29.6,
+     "victim_stop_time": 506.0
+    }
+   ],
+   "controller": "fixed",
+   "fixed_collisions": 0,
+   "fixed_verdict": "FAIL",
+   "id": "b80f7ca0ae7e",
+   "incident": [
+    506,
+    131
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "incident_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 808.0,
+     "victim_stop_decel": -29.99,
+     "victim_stop_time": 806.0
+    }
+   ],
+   "controller": "fixed",
+   "fixed_collisions": 0,
+   "fixed_verdict": "PASS",
+   "id": "6d30a934cf4b",
+   "incident": [
+    806,
+    206
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 808.0,
+     "victim_stop_decel": -31.88,
+     "victim_stop_time": 806.0
+    }
+   ],
+   "controller": "alinea",
+   "fixed_collisions": 0,
+   "fixed_verdict": "PASS",
+   "id": "024edca07011",
+   "incident": [
+    806,
+    206
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 920.5,
+     "victim_stop_decel": -31.25,
+     "victim_stop_time": 919.0
+    }
+   ],
+   "controller": "alinea",
+   "fixed_collisions": 0,
+   "fixed_verdict": "PASS",
+   "id": "1ca079456f75",
+   "incident": [
+    919,
+    19
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 957.5,
+     "victim_stop_decel": -29.33,
+     "victim_stop_time": 956.0
+    }
+   ],
+   "controller": "fixed",
+   "fixed_collisions": 0,
+   "fixed_verdict": "FAIL",
+   "id": "bce74dccebda",
+   "incident": [
+    956,
+    656
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 732.5,
+     "victim_stop_decel": -28.11,
+     "victim_stop_time": 731.0
+    }
+   ],
+   "controller": "alinea",
+   "fixed_collisions": 0,
+   "fixed_verdict": "FAIL",
+   "id": "673627902069",
+   "incident": [
+    731,
+    319
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 470.5,
+     "victim_stop_decel": -34.29,
+     "victim_stop_time": 469.0
+    }
+   ],
+   "controller": "alinea",
+   "fixed_collisions": 0,
+   "fixed_verdict": "PASS",
+   "id": "ecf9261e853c",
+   "incident": [
+    469,
+    469
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "no_connection",
+     "lane": "main_mid_0",
+     "stop_at_closure_instant": true,
+     "time": 1107.5,
+     "victim_stop_decel": -27.99,
+     "victim_stop_time": 1106.0
+    }
+   ],
+   "controller": "alinea",
+   "fixed_collisions": 0,
+   "fixed_verdict": "FAIL",
+   "id": "dfc3dc5c5a68",
+   "incident": [
+    1106,
+    506
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "main_mid_0"
+   ]
+  },
+  {
+   "causes": [
+    {
+     "cause": "red_light",
+     "lane": "ramp_in_0",
+     "stop_at_closure_instant": false,
+     "time": 1139.0,
+     "victim_stop_decel": -19.36,
+     "victim_stop_time": 1137.0
+    }
+   ],
+   "controller": "fixed",
+   "fixed_collisions": 0,
+   "fixed_verdict": "PASS",
+   "id": "ab75afb1c2c1",
+   "incident": [
+    600,
+    0
+   ],
+   "legacy_identical": true,
+   "v1_collision_lanes": [
+    "ramp_in_0"
+   ]
+  }
+ ],
+ "legacy_identical": 9,
+ "legacy_identical_all": 35,
+ "legacy_runs": 35,
+ "meta": {
+  "configs": {
+   "blocker": [
+    "blocker",
+    0.0
+   ],
+   "blocker_insert": [
+    "blocker_insert",
+    0.0
+   ],
+   "default": [
+    "stall",
+    2.5
+   ],
+   "legacy": [
+    "traci_disallow",
+    0.0
+   ],
+   "stall": [
+    "stall",
+    0.0
+   ],
+   "vss_disallow": [
+    "vss_disallow",
+    0.0
+   ]
+  },
+  "date": "2026-09-26",
+  "jobs": 7,
+  "runs": 190,
+  "sumo_version": "1.24.0",
+  "wall_s_by_config": {
+   "blocker": 202.4,
+   "blocker_insert": 167.9,
+   "default": 222.5,
+   "legacy": 104.6,
+   "stall": 219.4,
+   "vss_disallow": 105.0
+  },
+  "wall_time_s": 1022.2
+ }
+}

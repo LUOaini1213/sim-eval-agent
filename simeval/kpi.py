@@ -8,7 +8,7 @@ from __future__ import annotations
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from .scenario import DEMAND_END
+from .scenario import BLOCKER_ID, DEMAND_END
 
 TTC_COUNT_THRESHOLD = 1.5  # s; a conflict counts if its minimum TTC is strictly below this
 MERGE_LOOPS = ("loop_merge_1", "loop_merge_2")
@@ -29,12 +29,12 @@ def _p95(xs: list[float]) -> float:
     return xs[k]
 
 
-def parse_tripinfo(path: Path) -> dict:
+def parse_tripinfo(path: Path, exclude: frozenset[str] = frozenset({BLOCKER_ID})) -> dict:
     n = arrived = 0
     delay = 0.0
     ramp_delays: list[float] = []
     for ev, el in ET.iterparse(path):
-        if el.tag != "tripinfo":
+        if el.tag != "tripinfo" or el.get("id") in exclude:  # the incident vehicle is not a traveller
             continue
         n += 1
         # timeLoss: loss while driving; departDelay: waiting before insertion (queue spilled
@@ -62,6 +62,7 @@ def parse_stats(path: Path) -> dict:
         "teleports": int(tel.get("total")),
         "collisions": int(saf.get("collisions")),
         "emergency_braking": int(saf.get("emergencyBraking", 0)),
+        "emergency_stops": int(saf.get("emergencyStops", 0)),
     }
 
 
@@ -105,9 +106,24 @@ def parse_collisions(path: Path) -> list[str]:
     return [el.get("lane") for el in ET.parse(path).getroot().iter("collision")]
 
 
+def parse_incident(path: Path) -> tuple[str | None, float | None]:
+    """(vehicle id, time it stood still) of the incident vehicle, from SUMO's stop output.
+
+    The incident vehicle is the only one with a stop on incident_0 (the parked blocker or a
+    stalled vehicle, depending on the method); lane-closure methods have none.
+    """
+    if not Path(path).exists():
+        return None, None
+    for el in ET.parse(path).getroot().iter("stopinfo"):
+        if el.get("id") == BLOCKER_ID or el.get("lane") == "incident_0":
+            return el.get("id"), float(el.get("started"))
+    return None, None
+
+
 def compute_kpis(run_dir: Path) -> dict:
     d = Path(run_dir)
-    trip = parse_tripinfo(d / "tripinfo.xml")
+    inc_id, inc_onset = parse_incident(d / "stops.xml")
+    trip = parse_tripinfo(d / "tripinfo.xml", frozenset({BLOCKER_ID} | ({inc_id} if inc_id else set())))
     stats = parse_stats(d / "stats.xml")
     ttc = parse_ssm(d / "ssm.xml")
     n = max(trip["vehicles"], 1)
@@ -126,5 +142,7 @@ def compute_kpis(run_dir: Path) -> dict:
         "collisions": stats["collisions"],
         "not_inserted": stats["not_inserted"],
         "emergency_braking": stats["emergency_braking"],
+        "emergency_stops": stats["emergency_stops"],
         "collision_lanes": parse_collisions(d / "collisions.xml"),
+        "incident_onset_s": inc_onset,
     }

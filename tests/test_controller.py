@@ -25,9 +25,18 @@ def test_alinea_clips_and_queue_override():
 
 
 def test_red_time_for_rate():
-    assert ctl.red_time_for_rate(720.0) == pytest.approx(5.0 - ctl.GREEN_S)
+    # the cycle (green + amber + red) keeps the commanded rate: 720 veh/h -> 5 s
+    assert ctl.red_time_for_rate(600.0) == pytest.approx(6.0 - ctl.GREEN_S - ctl.AMBER_S)
+    assert ctl.red_time_for_rate(600.0, amber_s=0.0) == pytest.approx(6.0 - ctl.GREEN_S)
     assert ctl.red_time_for_rate(ctl.R_MAX) is None
     assert ctl.red_time_for_rate(1790.0) == pytest.approx(0.5)  # floor on red
+
+
+def test_amber_covers_the_stopping_time_on_the_ramp_approach():
+    # a vehicle that cannot stop when amber starts must clear the line before red:
+    # its distance to the line is < v^2/(2b), so it needs < v/(2b) seconds
+    for v_max, decel in ((1.2 * 16.67, 4.5), (1.1 * 16.67, 4.0)):   # car, truck (speedFactor caps)
+        assert ctl.AMBER_S >= v_max / (2 * decel)
 
 
 def test_fixed_and_none_ignore_measurements():

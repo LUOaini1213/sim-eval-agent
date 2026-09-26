@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- hand-written fixture: a stop elsewhere, then the incident vehicle's stop on incident_0 -->
+<stops>
+    <stopinfo id="main_0.0" type="car" lane="main_out_1" pos="50.00" started="40.00" ended="45.00"/>
+    <stopinfo id="main_1.7" type="car" lane="incident_0" pos="99.99" started="613.50" ended="800.00"/>
+</stops>
