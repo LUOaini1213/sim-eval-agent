@@ -100,8 +100,8 @@ HISTORY = """
   reading results) would have got a different id for the same parameters. The test now also builds one through
   the constructor; second pass: 15/15 caught.
 - 2026-09-26, round 2: M13's pattern was rewritten with the new policy code; M16-M30 cover the code added
-  for the INVALID fix, the 20-seed refinement, Morris screening and the LLM comparison. See the table for
-  the outcome of this pass.
+  for the INVALID fix, the 20-seed refinement, Morris screening and the LLM comparison. Run on 2026-09-27
+  against commit 352a838: 30/30 caught on the first pass (no test had to be added).
 """
 
 

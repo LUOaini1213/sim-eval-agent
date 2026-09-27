@@ -196,9 +196,12 @@ def render_llm(s: dict) -> list[str]:
 
 
 def render_linux(x: dict) -> list[str]:
+    rr = [ln for ln in x["rerun_check_lines"] if ln.endswith("identical") and "/" in ln.split()[0]]
     return ["", f"**Linux 复现 / Linux check** (`results/linux_check.json`, {x['platform']}, Python {x['python']}, "
-            f"pip `eclipse-sumo` {x['sumo_version']}, fresh clone of commit `{x['commit']}`): tests `{x['pytest']}`; "
-            f"`build_network.py --check`: {x['network_check']}; {x['network_note']}"]
+            f"pip `eclipse-sumo` {x['sumo_version']}, fresh clone of commit `{x['commit']}`, {x['date']}): tests "
+            f"`{x['pytest']}`; `build_network.py --check`: {x['network_check']}; `rerun_check.py --n 6` "
+            f"(re-simulating committed Windows runs on Linux, KPIs + tripinfo hash): "
+            f"{rr[0] if rr else x['rerun_check_lines'][-1]}."]
 
 
 def render(root: Path) -> str:

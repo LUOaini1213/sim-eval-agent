@@ -175,6 +175,8 @@ Deterministic: `probe:ramp_demand:hi` -> `probe:incident_duration:hi` -> `probe:
 | llm_t07_s3 | 0.7, 3 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
 | llm_t07_s4 | 0.7, 4 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
 
+**Linux 复现 / Linux check** (`results/linux_check.json`, Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64), Python 3.12.3, pip `eclipse-sumo` 1.24.0, fresh clone of commit `352a838`, 2026-09-27): tests `74 passed in 44.96s`; `build_network.py --check`: byte-identical to the committed network/merge.net.xml; `rerun_check.py --n 6` (re-simulating committed Windows runs on Linux, KPIs + tripinfo hash): 6/6 identical.
+
 <!-- RESULTS:END -->
 
 ### 怎么读这些数

@@ -1,0 +1,23 @@
+{
+ "commit": "352a838",
+ "date": "2026-09-27",
+ "network_check": "byte-identical to the committed network/merge.net.xml",
+ "network_check_output": "fresh 9b93309afcb0d3b5ff95bcee832130bc3ddcc49dbe0f01d4abd95e7229f5f1eb committed 9b93309afcb0d3b5ff95bcee832130bc3ddcc49dbe0f01d4abd95e7229f5f1eb SUMO 1.24.0 -> OK",
+ "platform": "Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64)",
+ "pytest": "74 passed in 44.96s",
+ "python": "3.12.3",
+ "rerun_check_lines": [
+  "09de1b65ac99 oat                      PASS     identical",
+  "51e443b33936 probe:incident_duration:hi FAIL     identical",
+  "74e1941e9378 refine:fixed:ramp_demand FAIL     identical",
+  "97c0dab3eba2 refine:alinea:incident_duration PASS     identical",
+  "92452ff0ab67 refine:fixed:main_demand PASS     identical",
+  "99933d9761a0 morris                   PASS     identical",
+  "6/6 identical"
+ ],
+ "sumo_version": "1.24.0",
+ "wall_s": {
+  "network+rerun": 109,
+  "pytest": 46
+ }
+}
