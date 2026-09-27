@@ -45,9 +45,9 @@ def test_out_of_range_rejected():
 
 def test_screening_sample_deterministic_and_seed_dependent():
     ev = FunctionEvaluator(lambda s: {})
-    a = Agent(ev, AgentConfig(agent_seed=1)).screening_sample()
-    b = Agent(ev, AgentConfig(agent_seed=1)).screening_sample()
-    c = Agent(ev, AgentConfig(agent_seed=2)).screening_sample()
+    a = Agent(ev, AgentConfig(agent_seed=1, screen_n=24)).screening_sample()
+    b = Agent(ev, AgentConfig(agent_seed=1, screen_n=24)).screening_sample()
+    c = Agent(ev, AgentConfig(agent_seed=2, screen_n=24)).screening_sample()
     assert a == b and a != c
     # Latin hypercube: each parameter hits each of the n strata exactly once
     n = len(a)

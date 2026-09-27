@@ -3,4 +3,4 @@ eclipse-sumo==1.24.0
 traci==1.24.0
 sumolib==1.24.0
 pytest>=7
-# optional, only for --policy llm:  anthropic
+# --policy llm talks to a local Ollama server over HTTP (urllib); no extra package needed

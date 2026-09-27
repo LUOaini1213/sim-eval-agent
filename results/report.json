@@ -1,0 +1,5132 @@
+{
+ "actions": [
+  {
+   "action": "probe:ramp_demand:hi",
+   "policy": "deterministic",
+   "runs_so_far": 125,
+   "why": "largest paired |mean delta margin| among unprobed directions with a verdict flip (probe:ramp_demand:hi)"
+  },
+  {
+   "action": "probe:incident_duration:hi",
+   "policy": "deterministic",
+   "runs_so_far": 150,
+   "why": "largest paired |mean delta margin| among unprobed directions with a verdict flip (probe:incident_duration:hi)"
+  },
+  {
+   "action": "probe:main_demand:hi",
+   "policy": "deterministic",
+   "runs_so_far": 200,
+   "why": "largest paired |mean delta margin| among unprobed directions with a verdict flip (probe:main_demand:hi)"
+  }
+ ],
+ "batches": [
+  {
+   "new_runs": 125,
+   "phase": "oat",
+   "size": 135,
+   "wall_s": 380.7
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand:hi",
+   "size": 5,
+   "wall_s": 12.8
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand:hi",
+   "size": 5,
+   "wall_s": 13.7
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand:hi",
+   "size": 5,
+   "wall_s": 13.0
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand:hi",
+   "size": 5,
+   "wall_s": 13.9
+  },
+  {
+   "new_runs": 5,
+   "phase": "probe:ramp_demand:hi",
+   "size": 5,
+   "wall_s": 15.7
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration:hi",
+   "size": 10,
+   "wall_s": 81.0
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration:hi",
+   "size": 10,
+   "wall_s": 42.6
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration:hi",
+   "size": 10,
+   "wall_s": 44.4
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration:hi",
+   "size": 10,
+   "wall_s": 38.2
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:incident_duration:hi",
+   "size": 10,
+   "wall_s": 39.3
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand:hi",
+   "size": 10,
+   "wall_s": 29.0
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand:hi",
+   "size": 10,
+   "wall_s": 35.9
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand:hi",
+   "size": 10,
+   "wall_s": 38.3
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand:hi",
+   "size": 10,
+   "wall_s": 36.5
+  },
+  {
+   "new_runs": 10,
+   "phase": "probe:main_demand:hi",
+   "size": 10,
+   "wall_s": 30.4
+  },
+  {
+   "new_runs": 100,
+   "phase": "refine:fixed:ramp_demand",
+   "size": 100,
+   "wall_s": 178.2
+  },
+  {
+   "new_runs": 100,
+   "phase": "refine:fixed:incident_duration",
+   "size": 100,
+   "wall_s": 324.3
+  },
+  {
+   "new_runs": 100,
+   "phase": "refine:alinea:incident_duration",
+   "size": 100,
+   "wall_s": 286.6
+  },
+  {
+   "new_runs": 95,
+   "phase": "refine:fixed:main_demand",
+   "size": 100,
+   "wall_s": 240.9
+  },
+  {
+   "new_runs": 95,
+   "phase": "refine:alinea:main_demand",
+   "size": 100,
+   "wall_s": 231.5
+  },
+  {
+   "new_runs": 168,
+   "phase": "morris",
+   "size": 168,
+   "wall_s": 406.1
+  }
+ ],
+ "boundaries": [
+  {
+   "controller": "fixed",
+   "converged": true,
+   "first_fail": 806,
+   "last_pass": 788,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      300,
+      false
+     ],
+     [
+      600,
+      false
+     ],
+     [
+      750,
+      false
+     ],
+     [
+      788,
+      false
+     ],
+     [
+      806,
+      true
+     ],
+     [
+      825,
+      true
+     ],
+     [
+      900,
+      true
+     ],
+     [
+      1200,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "ramp_demand",
+   "steps": [
+    {
+     "failed": true,
+     "run_ids": [
+      "cb3b606025db",
+      "192204924fec",
+      "230ddfaac8a6",
+      "6eeb71e440d6",
+      "79cebad1278e"
+     ],
+     "value": 900,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "50e1432e6cae",
+      "dfe9491cb231",
+      "a161372b4ebc",
+      "aa5b6f81f3ac",
+      "5de2457bd04c"
+     ],
+     "value": 750,
+     "verdicts": [
+      "FAIL",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "39adcd61a61c",
+      "56374720a12f",
+      "6822053e1e54",
+      "d2d9c619c07f",
+      "e6721ddebeb9"
+     ],
+     "value": 825,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "PASS",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "c863b6f279ca",
+      "aa0a5b54f6b1",
+      "26857bdc104e",
+      "b6db6ce7dc87",
+      "e99d0e2eb872"
+     ],
+     "value": 788,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "8f8c45969a37",
+      "1fd401bcc3eb",
+      "c381a31dae9f",
+      "999513ac4970",
+      "26f74ebf780f"
+     ],
+     "value": 806,
+     "verdicts": [
+      "FAIL",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    }
+   ],
+   "tol": 25,
+   "width": 18
+  },
+  {
+   "controller": "fixed",
+   "converged": true,
+   "first_fail": 254,
+   "last_pass": 225,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      0,
+      false
+     ],
+     [
+      225,
+      false
+     ],
+     [
+      254,
+      true
+     ],
+     [
+      282,
+      true
+     ],
+     [
+      338,
+      true
+     ],
+     [
+      450,
+      true
+     ],
+     [
+      900,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "incident_duration",
+   "steps": [
+    {
+     "failed": true,
+     "run_ids": [
+      "896e3c944088",
+      "51e443b33936",
+      "4659e0704e4b",
+      "0f6aa5f69187",
+      "61eb04f1e0a1"
+     ],
+     "value": 450,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "7a80b2c6e822",
+      "a56d08b00c29",
+      "b177c9de0bc6",
+      "20bc5dfb77c5",
+      "05da049a6203"
+     ],
+     "value": 225,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "7d14be8071c9",
+      "a4a547d84615",
+      "0e9ba335746d",
+      "29a0679bddd3",
+      "87eb4dab79a8"
+     ],
+     "value": 338,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "de325166dc1f",
+      "f2be735e0f3c",
+      "99f8e3c4260a",
+      "f391acfca4a6",
+      "e81ec4374788"
+     ],
+     "value": 282,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "6ceb47f37d45",
+      "200fa7eabea0",
+      "1a9fe3581d59",
+      "3cd0c106d771",
+      "e7332f22383d"
+     ],
+     "value": 254,
+     "verdicts": [
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS",
+      "FAIL"
+     ]
+    }
+   ],
+   "tol": 30,
+   "width": 29
+  },
+  {
+   "controller": "alinea",
+   "converged": true,
+   "first_fail": 225,
+   "last_pass": 196,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      0,
+      false
+     ],
+     [
+      112,
+      false
+     ],
+     [
+      168,
+      false
+     ],
+     [
+      196,
+      false
+     ],
+     [
+      225,
+      true
+     ],
+     [
+      450,
+      true
+     ],
+     [
+      900,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "incident_duration",
+   "steps": [
+    {
+     "failed": true,
+     "run_ids": [
+      "a18cc4fa1d08",
+      "afb86c7922a0",
+      "063058d8c2b0",
+      "8ba1e5f6362c",
+      "f9edcbfb0c77"
+     ],
+     "value": 450,
+     "verdicts": [
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "498a9c62e32b",
+      "d7f3c185f20c",
+      "796b15404388",
+      "bee2fe6e2ac5",
+      "8cf7269f2da4"
+     ],
+     "value": 225,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "1da2d3700e1b",
+      "4c51fc98be8a",
+      "56e181ed16c5",
+      "89f07b42bdcb",
+      "d7141c76c8d6"
+     ],
+     "value": 112,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "b6b5a3b8d380",
+      "73a6726575da",
+      "203217f31684",
+      "107a0180766a",
+      "4cad7daed17a"
+     ],
+     "value": 168,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "6898b7c9e721",
+      "6e35a6bf8b3a",
+      "983cc4ce5740",
+      "2f14207208c4",
+      "672fd7385dfe"
+     ],
+     "value": 196,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "FAIL"
+     ]
+    }
+   ],
+   "tol": 30,
+   "width": 29
+  },
+  {
+   "controller": "fixed",
+   "converged": true,
+   "first_fail": 4075,
+   "last_pass": 4044,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      2400,
+      false
+     ],
+     [
+      3200,
+      false
+     ],
+     [
+      3700,
+      false
+     ],
+     [
+      3950,
+      false
+     ],
+     [
+      4012,
+      false
+     ],
+     [
+      4044,
+      false
+     ],
+     [
+      4075,
+      true
+     ],
+     [
+      4200,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "main_demand",
+   "steps": [
+    {
+     "failed": false,
+     "run_ids": [
+      "299ffd1b099d",
+      "d62867fefa2a",
+      "9333599fd202",
+      "90b406cc833a",
+      "43beb326f4fb"
+     ],
+     "value": 3700,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "94afa60b1f4d",
+      "66d4c6ff3e3c",
+      "8501615bcabf",
+      "9959eb2dbb9e",
+      "abe3ef0c8651"
+     ],
+     "value": 3950,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "22c4c180b92a",
+      "adaccb634de5",
+      "4a6721522e6d",
+      "dfe0cac3d9fb",
+      "5727f57c6b03"
+     ],
+     "value": 4075,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "4b93866bb9e2",
+      "62a2cbaf790c",
+      "e19b7749e861",
+      "f2d7eff7cf46",
+      "5f1a87bf649d"
+     ],
+     "value": 4012,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "5735e19acc46",
+      "35a427f672d3",
+      "dee507fd2fb3",
+      "085fcd30041a",
+      "720c8fd2cd5d"
+     ],
+     "value": 4044,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    }
+   ],
+   "tol": 50,
+   "width": 31
+  },
+  {
+   "controller": "alinea",
+   "converged": true,
+   "first_fail": 4075,
+   "last_pass": 4044,
+   "monotonicity": {
+    "monotone": true,
+    "points": [
+     [
+      2400,
+      false
+     ],
+     [
+      3200,
+      false
+     ],
+     [
+      3700,
+      false
+     ],
+     [
+      3950,
+      false
+     ],
+     [
+      4012,
+      false
+     ],
+     [
+      4044,
+      false
+     ],
+     [
+      4075,
+      true
+     ],
+     [
+      4200,
+      true
+     ]
+    ],
+    "switches": 1
+   },
+   "param": "main_demand",
+   "steps": [
+    {
+     "failed": false,
+     "run_ids": [
+      "620212116390",
+      "d65ed62c59ad",
+      "145ca1b692b7",
+      "d8d504165916",
+      "2af46fa18f45"
+     ],
+     "value": 3700,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "81ca524238b4",
+      "a942224184a8",
+      "16c2f3457f58",
+      "8747b6fd4be7",
+      "722710a6e381"
+     ],
+     "value": 3950,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": true,
+     "run_ids": [
+      "42156a89a688",
+      "04498198b89b",
+      "62cd4a0567bc",
+      "ae7b578fad66",
+      "0ffbe6a5278b"
+     ],
+     "value": 4075,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "FAIL"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "37a79becc6e2",
+      "6a6feec9dccf",
+      "84ddc8cd69d3",
+      "9e7fe8ade3c3",
+      "241e2f39565b"
+     ],
+     "value": 4012,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "failed": false,
+     "run_ids": [
+      "4fb5d9502efe",
+      "0e90fa89f39c",
+      "cd76d11cd57c",
+      "9015246c364c",
+      "684cf981d116"
+     ],
+     "value": 4044,
+     "verdicts": [
+      "PASS",
+      "PASS",
+      "FAIL",
+      "FAIL",
+      "PASS"
+     ]
+    }
+   ],
+   "tol": 50,
+   "width": 31
+  }
+ ],
+ "claims": [
+  {
+   "evidence": [
+    "09de1b65ac99",
+    "4224d1e7fafd",
+    "6dccacdae032",
+    "8107cc25c975",
+    "dbec7f1de5b6"
+   ],
+   "id": "C1",
+   "text": "Nominal scenario, controller 'fixed': mean over 5 seeds.",
+   "values": {
+    "collisions": 0,
+    "mean_delay_s": 14.8,
+    "merge_speed_kmh": 97.16,
+    "ramp_p95_delay_s": 46.91,
+    "ramp_queue_max_veh": 11.8,
+    "teleports": 0,
+    "throughput_veh": 1695.8,
+    "ttc_per_1000veh": 0.0,
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "162fa6351870",
+    "1cab0918e077",
+    "51dd7aabb8cb",
+    "576fab337e71",
+    "5da8cb55bbb9"
+   ],
+   "id": "C2",
+   "text": "Nominal scenario, controller 'alinea': mean over 5 seeds.",
+   "values": {
+    "collisions": 0,
+    "mean_delay_s": 13.65,
+    "merge_speed_kmh": 96.67,
+    "ramp_p95_delay_s": 25.65,
+    "ramp_queue_max_veh": 8.8,
+    "teleports": 0,
+    "throughput_veh": 1695.8,
+    "ttc_per_1000veh": 0.0,
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "00e8f793a37e",
+    "49405911a80a",
+    "68f9ed45e187",
+    "80c052907d12",
+    "e75e7c8bac3f"
+   ],
+   "id": "C3",
+   "text": "Nominal scenario, controller 'none': mean over 5 seeds.",
+   "values": {
+    "collisions": 0,
+    "mean_delay_s": 13.54,
+    "merge_speed_kmh": 96.79,
+    "ramp_p95_delay_s": 25.47,
+    "ramp_queue_max_veh": 8.8,
+    "teleports": 0,
+    "throughput_veh": 1695.8,
+    "ttc_per_1000veh": 0.0,
+    "verdicts": [
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "09de1b65ac99",
+    "4224d1e7fafd",
+    "560af3bd5974",
+    "5b69e0a7a7c3",
+    "6dccacdae032",
+    "8107cc25c975",
+    "8f292be11ec7",
+    "c945aff5b69e",
+    "d02047fc7541",
+    "dbec7f1de5b6"
+   ],
+   "id": "C4",
+   "text": "One-at-a-time (paired seeds), controller 'fixed': the most influential parameter is 'ramp_demand'; moving it to hi=1200 changes the run margin by -5.2563 on average (per-seed range -5.5804..-4.8591).",
+   "values": {
+    "level": "hi",
+    "max_delta_margin": -4.8591,
+    "mean_delta_margin": -5.2563,
+    "min_delta_margin": -5.5804,
+    "param": "ramp_demand",
+    "value": 1200,
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "162fa6351870",
+    "1cab0918e077",
+    "51dd7aabb8cb",
+    "5224ba9c9247",
+    "576fab337e71",
+    "5da8cb55bbb9",
+    "633dc142a9c6",
+    "7a2625efd310",
+    "8983b24c47f5",
+    "a9f8909b7436"
+   ],
+   "id": "C5",
+   "text": "One-at-a-time (paired seeds), controller 'alinea': the most influential parameter is 'incident_duration'; moving it to hi=900 changes the run margin by -4.2648 on average (per-seed range -5.2067..-3.4112).",
+   "values": {
+    "level": "hi",
+    "max_delta_margin": -3.4112,
+    "mean_delta_margin": -4.2648,
+    "min_delta_margin": -5.2067,
+    "param": "incident_duration",
+    "value": 900,
+    "verdicts": [
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "1fd401bcc3eb",
+    "26857bdc104e",
+    "26f74ebf780f",
+    "8f8c45969a37",
+    "999513ac4970",
+    "aa0a5b54f6b1",
+    "b6db6ce7dc87",
+    "c381a31dae9f",
+    "c863b6f279ca",
+    "e99d0e2eb872"
+   ],
+   "id": "C6",
+   "text": "Boundary, controller 'fixed' along 'ramp_demand' (veh/h), other parameters nominal: majority PASS at 788, majority not-PASS at 806 (bisection width 18, tolerance 25, monotone over 8 evaluated points).",
+   "values": {
+    "controller": "fixed",
+    "criteria_violated_at_fail": [
+     "ramp_p95_delay_s"
+    ],
+    "fail_verdicts": [
+     "FAIL",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 806,
+    "last_pass": 788,
+    "param": "ramp_demand",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "05da049a6203",
+    "1a9fe3581d59",
+    "200fa7eabea0",
+    "20bc5dfb77c5",
+    "3cd0c106d771",
+    "6ceb47f37d45",
+    "7a80b2c6e822",
+    "a56d08b00c29",
+    "b177c9de0bc6",
+    "e7332f22383d"
+   ],
+   "id": "C7",
+   "text": "Boundary, controller 'fixed' along 'incident_duration' (s), other parameters nominal: majority PASS at 225, majority not-PASS at 254 (bisection width 29, tolerance 30, monotone over 7 evaluated points).",
+   "values": {
+    "controller": "fixed",
+    "criteria_violated_at_fail": [
+     "ramp_p95_delay_s",
+     "ttc_per_1000veh"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS",
+     "FAIL"
+    ],
+    "first_fail": 254,
+    "last_pass": 225,
+    "param": "incident_duration",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "PASS",
+     "FAIL"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "2f14207208c4",
+    "498a9c62e32b",
+    "672fd7385dfe",
+    "6898b7c9e721",
+    "6e35a6bf8b3a",
+    "796b15404388",
+    "8cf7269f2da4",
+    "983cc4ce5740",
+    "bee2fe6e2ac5",
+    "d7f3c185f20c"
+   ],
+   "id": "C8",
+   "text": "Boundary, controller 'alinea' along 'incident_duration' (s), other parameters nominal: majority PASS at 196, majority not-PASS at 225 (bisection width 29, tolerance 30, monotone over 7 evaluated points).",
+   "values": {
+    "controller": "alinea",
+    "criteria_violated_at_fail": [
+     "ramp_p95_delay_s",
+     "ttc_per_1000veh"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 225,
+    "last_pass": 196,
+    "param": "incident_duration",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "PASS",
+     "FAIL"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "085fcd30041a",
+    "22c4c180b92a",
+    "35a427f672d3",
+    "4a6721522e6d",
+    "5727f57c6b03",
+    "5735e19acc46",
+    "720c8fd2cd5d",
+    "adaccb634de5",
+    "dee507fd2fb3",
+    "dfe0cac3d9fb"
+   ],
+   "id": "C9",
+   "text": "Boundary, controller 'fixed' along 'main_demand' (veh/h), other parameters nominal: majority PASS at 4044, majority not-PASS at 4075 (bisection width 31, tolerance 50, monotone over 8 evaluated points).",
+   "values": {
+    "controller": "fixed",
+    "criteria_violated_at_fail": [
+     "mean_delay_s"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 4075,
+    "last_pass": 4044,
+    "param": "main_demand",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "04498198b89b",
+    "0e90fa89f39c",
+    "0ffbe6a5278b",
+    "42156a89a688",
+    "4fb5d9502efe",
+    "62cd4a0567bc",
+    "684cf981d116",
+    "9015246c364c",
+    "ae7b578fad66",
+    "cd76d11cd57c"
+   ],
+   "id": "C10",
+   "text": "Boundary, controller 'alinea' along 'main_demand' (veh/h), other parameters nominal: majority PASS at 4044, majority not-PASS at 4075 (bisection width 31, tolerance 50, monotone over 8 evaluated points).",
+   "values": {
+    "controller": "alinea",
+    "criteria_violated_at_fail": [
+     "mean_delay_s"
+    ],
+    "fail_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "FAIL"
+    ],
+    "first_fail": 4075,
+    "last_pass": 4044,
+    "param": "main_demand",
+    "pass_verdicts": [
+     "PASS",
+     "PASS",
+     "FAIL",
+     "FAIL",
+     "PASS"
+    ]
+   }
+  },
+  {
+   "evidence": [
+    "0190e68f226b",
+    "020ea211e3a4",
+    "031387f2f8d9",
+    "03b290f8d5ab",
+    "0504866a07c2",
+    "0861ab65fdd7",
+    "0c8c9964c985",
+    "13a3a6b1029d",
+    "1ccb74a33053",
+    "22a698475d82",
+    "256501e718bc",
+    "2636d4833bc5",
+    "2e0794f6f8aa",
+    "301f3f9ac19e",
+    "308f56f5e24c",
+    "3210fbb7ce28",
+    "329cec033456",
+    "3a6bdfc5e3e2",
+    "3ac32ff099ca",
+    "3f0ea2b791d2",
+    "3f3c209ab544",
+    "4200ef96bfc3",
+    "42a5533ea692",
+    "445dc1b9ad5d",
+    "485f8b3bb452",
+    "4a52d150ebab",
+    "4cbf8c8797a3",
+    "4d59c9a4ac0e",
+    "50f1e93c731c",
+    "594468b07985",
+    "599665933f70",
+    "5bc4890f91c8",
+    "64523c1b6d06",
+    "68ace1b39ae6",
+    "6d7dbfce80be",
+    "6e24b00dc167",
+    "700bbb06c123",
+    "72c954054826",
+    "7311ca1ac4eb",
+    "74e1941e9378",
+    "75e860616040",
+    "77f3876ff51c",
+    "7cfc51f22465",
+    "7e00da477fee",
+    "80f4136ced05",
+    "817711bf78c3",
+    "83f9f46abb57",
+    "85bf198bf9ac",
+    "881e36b841ed",
+    "8bf740eedb81",
+    "8d5102640e2e",
+    "8d8189401d3b",
+    "8da794d54383",
+    "91089dc2152f",
+    "9439895cd008",
+    "9621bfa9c6bc",
+    "9892c769233d",
+    "9dcdd71a5b08",
+    "9e3a9634989b",
+    "a354ba805f99",
+    "a726a710d9e2",
+    "a9064fdbbdf1",
+    "ae7b7122ec2b",
+    "af3f301fd8dc",
+    "b42104f47742",
+    "b559cbf7b07c",
+    "c0459d7d79da",
+    "c48f90d21945",
+    "c4bd131b6df6",
+    "c5f099e2a165",
+    "cb72e90c61f1",
+    "ccb77a797243",
+    "d14684d76307",
+    "d16566fefbc8",
+    "d3cb0827dd58",
+    "d54db0133f27",
+    "d698268e6976",
+    "d87d5e927eac",
+    "dc486d132c2e",
+    "dd766d16a2e8",
+    "de473cfc25ba",
+    "df91f8e13f82",
+    "e0fe6c2b86cb",
+    "e257ee92d4e0",
+    "e25ec39e89ba",
+    "e32255281b96",
+    "e8b2e2e34676",
+    "e9928b75294c",
+    "ea753622f443",
+    "ecaedc42e0cc",
+    "efabe626f302",
+    "f3980495b21a",
+    "f442ae42dbb0",
+    "f603594f3280",
+    "f65971ed3583",
+    "f8988b1227e2",
+    "fb25df3cad3f",
+    "fc474f035f9b",
+    "fd7b9a4652c7",
+    "ff3e39a2d9e5"
+   ],
+   "id": "C11",
+   "text": "Refined boundary, controller 'fixed' along 'ramp_demand' (veh/h): pass rate over 20 paired seeds at 5 values; Wilson 95% band [697, 847], 50% crossing of the isotonic fit x50=772.0 (5-seed bisection gave [788, 806]).",
+   "values": {
+    "band": [
+     697,
+     847
+    ],
+    "band_closed": true,
+    "bisection": [
+     788,
+     806
+    ],
+    "controller": "fixed",
+    "monotone_within_ci": true,
+    "param": "ramp_demand",
+    "points": [
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 19,
+      "rate": 0.95,
+      "wilson95": [
+       0.7639,
+       0.9911
+      ],
+      "x": 697
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 13,
+      "rate": 0.65,
+      "wilson95": [
+       0.4329,
+       0.8188
+      ],
+      "x": 747
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 7,
+      "rate": 0.35,
+      "wilson95": [
+       0.1812,
+       0.5671
+      ],
+      "x": 797
+     },
+     {
+      "class": "fail",
+      "n": 20,
+      "passes": 0,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.1611
+      ],
+      "x": 847
+     },
+     {
+      "class": "fail",
+      "n": 20,
+      "passes": 0,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.1611
+      ],
+      "x": 897
+     }
+    ],
+    "x50": 772.0
+   }
+  },
+  {
+   "evidence": [
+    "01a29a43155b",
+    "0206dd36cf13",
+    "05407e887f7b",
+    "05540a1408a0",
+    "0915594e5889",
+    "0a1bea2eb62f",
+    "0b2c5211b6b3",
+    "0b3fc4ea2681",
+    "148e62efa0f1",
+    "1b2e134518f0",
+    "1b6be5a2f657",
+    "21430c342f35",
+    "2624e9399ba7",
+    "2835ec0bd372",
+    "2c225e7ba2e0",
+    "2c9ece6240ac",
+    "2ef0c8f82e77",
+    "3506e456ec24",
+    "38d6e1a8e173",
+    "3a861716aac7",
+    "3cde6a732877",
+    "416fe1c37135",
+    "41c5f2fb040d",
+    "44e1954c152e",
+    "4aa87fc5be31",
+    "4de7c08ff742",
+    "4eb159f716be",
+    "4eb3bb94b488",
+    "52a85e647c85",
+    "54b498f0357d",
+    "54ff005707e7",
+    "56e462e088f0",
+    "58dfe3e3b57c",
+    "5c45be01422b",
+    "5c8b44d0fba1",
+    "639fd3f3cdec",
+    "6af2e63a0113",
+    "6d3e4c73d9d0",
+    "6fc470330808",
+    "734c4cb26bb6",
+    "73b31c59fe88",
+    "774e613dcf95",
+    "7e14a2eca91f",
+    "7eb4b0a2ad00",
+    "82a3376d55cb",
+    "83020de7edcb",
+    "832969d7439a",
+    "86e2af6f040c",
+    "8852c7f0e6e4",
+    "8fc515fffe77",
+    "967ad4c90eaa",
+    "9803cc4c31ba",
+    "9a9112500789",
+    "9da128aaa47f",
+    "9f04c0333c37",
+    "a137839f4a11",
+    "a6e8270990c1",
+    "a884132ebc6a",
+    "ad8a4ad45b1f",
+    "b19d2e5d57a4",
+    "b1e051ca5b03",
+    "b2c655eebddc",
+    "b43dae664a5e",
+    "b7c7c6a17ee6",
+    "b8313038bdcc",
+    "baf98a025b89",
+    "be3b34692fde",
+    "bf5b87760a02",
+    "c03b5d3f4f3c",
+    "c0ca7172d40e",
+    "c154b2b24bf7",
+    "c57bbf432eed",
+    "c9b13cf232a2",
+    "cba234ccccb0",
+    "d22983c2a396",
+    "d42aa5abac4c",
+    "d51e3fb5a4d3",
+    "d75768039c3b",
+    "d886cae9652e",
+    "d8b94cff5b86",
+    "d8d6ed8e716a",
+    "dbde897665bc",
+    "ddbc5f2bd50e",
+    "df045f75f626",
+    "e0205179fadb",
+    "e2a866036d93",
+    "e2f81f6e4629",
+    "e30c733c52f7",
+    "e44944493f7d",
+    "ec504bc614b8",
+    "ed76bff8ccc8",
+    "ee7966bae274",
+    "f132e57b15ab",
+    "f1a14b9ccc0c",
+    "f1b81e6fab62",
+    "f1c23a58a3a0",
+    "f2ff8978c76e",
+    "f8e599f8b0a6",
+    "f95e3133f48f",
+    "faf9a70089d0"
+   ],
+   "id": "C12",
+   "text": "Refined boundary, controller 'fixed' along 'incident_duration' (s): pass rate over 20 paired seeds at 5 values; Wilson 95% band [120, 300], 50% crossing of the isotonic fit x50=210.0 (5-seed bisection gave [225, 254]).",
+   "values": {
+    "band": [
+     120,
+     300
+    ],
+    "band_closed": true,
+    "bisection": [
+     225,
+     254
+    ],
+    "controller": "fixed",
+    "monotone_within_ci": true,
+    "param": "incident_duration",
+    "points": [
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 18,
+      "rate": 0.9,
+      "wilson95": [
+       0.699,
+       0.9721
+      ],
+      "x": 120
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 14,
+      "rate": 0.7,
+      "wilson95": [
+       0.481,
+       0.8545
+      ],
+      "x": 180
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 6,
+      "rate": 0.3,
+      "wilson95": [
+       0.1455,
+       0.519
+      ],
+      "x": 240
+     },
+     {
+      "class": "fail",
+      "n": 20,
+      "passes": 3,
+      "rate": 0.15,
+      "wilson95": [
+       0.0524,
+       0.3604
+      ],
+      "x": 300
+     },
+     {
+      "class": "fail",
+      "n": 20,
+      "passes": 0,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.1611
+      ],
+      "x": 360
+     }
+    ],
+    "x50": 210.0
+   }
+  },
+  {
+   "evidence": [
+    "0161e55fbb63",
+    "02edcee68c00",
+    "0a4e6b055f47",
+    "0bd065e9fe88",
+    "10d870b4031b",
+    "126b5fc0eaa5",
+    "13b649bc3023",
+    "1a3aa2212ff2",
+    "1c03cd242693",
+    "1c2cf1eef43c",
+    "1f8ecf14ae7d",
+    "1fe4665c9b70",
+    "1ff5f02b44e0",
+    "21426edde64a",
+    "23f9b8b09125",
+    "2583458d8060",
+    "32efcdd0c729",
+    "33c70d732a89",
+    "3720a27441a7",
+    "3889c46e0680",
+    "390d82eff6f9",
+    "393acb1bf9c0",
+    "3ab176c8c4df",
+    "3b5eeaf87509",
+    "3c31c875d230",
+    "42118b552bd0",
+    "4304a3b88915",
+    "44f96975074d",
+    "4701059d5cf3",
+    "492058d40bec",
+    "49ee4775f172",
+    "4ab1affd3b7f",
+    "5607c93fcf71",
+    "56c6938c91e4",
+    "575414fcba8f",
+    "58594e14846c",
+    "5aac31c2aacd",
+    "5ccfd36adb2f",
+    "5e2c80c063bd",
+    "62781640f3b9",
+    "62b14d1e55de",
+    "66083e290f47",
+    "6a955ec57100",
+    "708f9e0a9cab",
+    "74e36958df87",
+    "7e08812eb907",
+    "7f04cdb3ab3c",
+    "89272f231edd",
+    "89f5d2572d6e",
+    "8e6428dfa592",
+    "8e92ce6000b0",
+    "8ed89425f651",
+    "90e3b2ce54c8",
+    "9382354596eb",
+    "97400689bc05",
+    "97701979cf1e",
+    "97c0dab3eba2",
+    "9cf0e4aaebd4",
+    "a10d7ee6c45e",
+    "a14622502959",
+    "a25b1c743dda",
+    "a59ecfff1437",
+    "a94d5d9a56e6",
+    "a995f2f309b3",
+    "b2e6a7489c0b",
+    "b5893fe47338",
+    "b63ee3b5adf9",
+    "b6731e684156",
+    "b917e10e5986",
+    "ba43cb473de8",
+    "bc80d0901d47",
+    "bda4aa7570ab",
+    "be2b75b81a25",
+    "c0a3dd620940",
+    "c4524f3eebd3",
+    "c4932ea93c29",
+    "cb09075ba4de",
+    "cb501494e0f9",
+    "ccf5563dcd73",
+    "ce4d83d376bd",
+    "ce6d2e6729a1",
+    "cef25af9f374",
+    "d38312f34cba",
+    "d3838e1f19ce",
+    "d3d450bf0b2c",
+    "d54fb5ba0bd5",
+    "d7e7d44c3525",
+    "d80fd55246b4",
+    "d96724b15c69",
+    "d97d2faa0f32",
+    "da1b1f441c78",
+    "dbb94ad1cf85",
+    "dd17f5721bbd",
+    "e1c91dc7898b",
+    "e78fa071cc9c",
+    "ed3a40f3820a",
+    "f2d4aa4119f2",
+    "f4048abdd026",
+    "f646dfc823db",
+    "f9ea3156e410"
+   ],
+   "id": "C13",
+   "text": "Refined boundary, controller 'alinea' along 'incident_duration' (s): pass rate over 20 paired seeds at 5 values; Wilson 95% band [150, 270], 50% crossing of the isotonic fit x50=198.0 (5-seed bisection gave [196, 225]).",
+   "values": {
+    "band": [
+     150,
+     270
+    ],
+    "band_closed": true,
+    "bisection": [
+     196,
+     225
+    ],
+    "controller": "alinea",
+    "monotone_within_ci": true,
+    "param": "incident_duration",
+    "points": [
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 20,
+      "rate": 1.0,
+      "wilson95": [
+       0.8389,
+       1.0
+      ],
+      "x": 90
+     },
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 18,
+      "rate": 0.9,
+      "wilson95": [
+       0.699,
+       0.9721
+      ],
+      "x": 150
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 8,
+      "rate": 0.4,
+      "wilson95": [
+       0.2188,
+       0.6134
+      ],
+      "x": 210
+     },
+     {
+      "class": "fail",
+      "n": 20,
+      "passes": 4,
+      "rate": 0.2,
+      "wilson95": [
+       0.0807,
+       0.416
+      ],
+      "x": 270
+     },
+     {
+      "class": "fail",
+      "n": 20,
+      "passes": 1,
+      "rate": 0.05,
+      "wilson95": [
+       0.0089,
+       0.2361
+      ],
+      "x": 330
+     }
+    ],
+    "x50": 198.0
+   }
+  },
+  {
+   "evidence": [
+    "024d3511b830",
+    "027f86bf8764",
+    "03d5a253c0e5",
+    "047b9507c72a",
+    "0610f9647832",
+    "07a7509679ca",
+    "0d1fdde655ac",
+    "0e2f8f06c51f",
+    "105fe350c59c",
+    "1112612065c9",
+    "11ee890705b8",
+    "12b44d208ccb",
+    "147780dda787",
+    "1777ca90e91f",
+    "193a009c8c4e",
+    "1d10da496fb3",
+    "1e1fb19d2cbf",
+    "2054e0c60717",
+    "20e85ce8988c",
+    "2328b9fdf500",
+    "245f8c54cacf",
+    "24a869cd56e4",
+    "263738f17e3e",
+    "26ff10639e96",
+    "2a78d6851732",
+    "2bda6bbaa0f4",
+    "319f45f6818b",
+    "31f7778b075f",
+    "39cb0c5ecb3a",
+    "414153554794",
+    "42c681c8ae20",
+    "44ee41a94c42",
+    "4a165f81a6ef",
+    "4f520fefae87",
+    "4f982dc72c80",
+    "509142a74064",
+    "5588d97c2d3f",
+    "576735782caf",
+    "578f2a98f223",
+    "5b2f819f5466",
+    "5c961ce17582",
+    "5f861b2fd074",
+    "610a472cf46b",
+    "6224376f0779",
+    "62a333f88cb7",
+    "63f0c3175503",
+    "646e01661057",
+    "68008bf68ad4",
+    "6b6cc99dbff5",
+    "79fb9405d1f4",
+    "7d26203d5202",
+    "7fdd18a7b2f3",
+    "80fa7acb98e2",
+    "8affa52cc7a9",
+    "8ca7a0067c75",
+    "8d537ee379b5",
+    "8da446c1ca7b",
+    "8dfae8d861c4",
+    "901d95fe2072",
+    "921e2db2486e",
+    "92452ff0ab67",
+    "96ecbb25f3c1",
+    "98fb9437fcbe",
+    "99c956f93903",
+    "9b9ddb045577",
+    "9be28cdc1904",
+    "9fb903fec72c",
+    "af7a9d7088ed",
+    "b0619547ca09",
+    "b6521e72ab13",
+    "b78f61c8b97e",
+    "bb24508e9bbc",
+    "bee874c288d6",
+    "c085c12d522a",
+    "c3bd446decb5",
+    "c4591d57c6a8",
+    "c53c61f7b4f0",
+    "c69126e79497",
+    "c99594de2f2c",
+    "ca0ca5dcd700",
+    "ccb8e9b2b433",
+    "ccc7796d19f1",
+    "cf0c2a65307d",
+    "cf1a2467dfd7",
+    "d30e46a7a6fb",
+    "dd5ea0ef5491",
+    "ddd333b6d781",
+    "df992d70298e",
+    "e1095d7af47f",
+    "e4c3f3389fe6",
+    "e57a7995f576",
+    "ea41f6344d3c",
+    "edc7170ad30b",
+    "f0e8621cda58",
+    "f2e2cc85baea",
+    "f2f32544b850",
+    "f3c1d1ddd651",
+    "f780d15cf9d9",
+    "f780d957b163",
+    "fefc51d3a0fe"
+   ],
+   "id": "C14",
+   "text": "Refined boundary, controller 'fixed' along 'main_demand' (veh/h): pass rate over 20 paired seeds at 5 values; Wilson 95% band [3860, None], 50% crossing of the isotonic fit x50=4085.0 (5-seed bisection gave [4044, 4075]).",
+   "values": {
+    "band": [
+     3860,
+     null
+    ],
+    "band_closed": false,
+    "bisection": [
+     4044,
+     4075
+    ],
+    "controller": "fixed",
+    "monotone_within_ci": true,
+    "param": "main_demand",
+    "points": [
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 19,
+      "rate": 0.95,
+      "wilson95": [
+       0.7639,
+       0.9911
+      ],
+      "x": 3860
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 14,
+      "rate": 0.7,
+      "wilson95": [
+       0.481,
+       0.8545
+      ],
+      "x": 3960
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 11,
+      "rate": 0.55,
+      "wilson95": [
+       0.3421,
+       0.7418
+      ],
+      "x": 4060
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 7,
+      "rate": 0.35,
+      "wilson95": [
+       0.1812,
+       0.5671
+      ],
+      "x": 4160
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 7,
+      "rate": 0.35,
+      "wilson95": [
+       0.1812,
+       0.5671
+      ],
+      "x": 4200
+     }
+    ],
+    "x50": 4085.0
+   }
+  },
+  {
+   "evidence": [
+    "001981e1261c",
+    "00c8e3a5a392",
+    "019198f104a1",
+    "0348c47243ce",
+    "049fccdc4c1d",
+    "09ec26ec1d6a",
+    "0c281ad8da4c",
+    "0dfad7e1aba4",
+    "0fe91baf4d1c",
+    "166d61ed5b39",
+    "16c5625e4aeb",
+    "1722163b12e4",
+    "173867b6a91d",
+    "1c7a3c3aafb2",
+    "1f49a9a71621",
+    "21d5a42bd159",
+    "25a335bc9f93",
+    "2728bda2db0e",
+    "2774f368aa62",
+    "2832e14e8629",
+    "2bb125637530",
+    "2c8b05042f40",
+    "2c9585cbb266",
+    "3182e412a836",
+    "37e155400358",
+    "3cd124b95847",
+    "3f47e9d11d94",
+    "47e3860c6cc6",
+    "4983112160fa",
+    "4a91d61eaa76",
+    "4aaecec77241",
+    "4d74bb15e115",
+    "4dff9caa7507",
+    "4f1704e15fe6",
+    "5133ee915f7b",
+    "54469f2da596",
+    "55248e3dfac8",
+    "55df675b42f2",
+    "57165016052a",
+    "5f6613834e63",
+    "643a52b46051",
+    "68cb3d61112b",
+    "68f361e52d08",
+    "6c21f1b4690d",
+    "6eab01ed257c",
+    "70e76a67e311",
+    "735a48652f8a",
+    "73b8cca06958",
+    "75466a9b474e",
+    "769403fd1e08",
+    "76b869038775",
+    "7ad914530af7",
+    "7ed3901a6a17",
+    "80992fbd7032",
+    "8330588cf0c6",
+    "8430a677d710",
+    "85b87c588002",
+    "8619b2f2fc6d",
+    "868d70d2f932",
+    "87e1455dfcff",
+    "8e58417b68da",
+    "8e6ba30bb265",
+    "930a5f42f9ff",
+    "933fbcf96307",
+    "948060da197e",
+    "9805dae7955f",
+    "9bd6c3622029",
+    "9c6248460f27",
+    "9e122dfd2782",
+    "a0d4bcc7e16f",
+    "a5064da4725c",
+    "add3fc0d0c7b",
+    "b071857e5524",
+    "b7fb891ffc48",
+    "bbff9c41fcc0",
+    "bc0d3381d7d2",
+    "c09d05389540",
+    "c7567825e5bd",
+    "c7a5e4a37069",
+    "cc8108918581",
+    "cf5df156afb7",
+    "d612e809d596",
+    "d855c86f9099",
+    "dbf7f596b302",
+    "ddb68e613f4b",
+    "de9ef97739c9",
+    "e11e1652caaa",
+    "e19e03b4204d",
+    "e3490382f8b5",
+    "e395e43d0f42",
+    "ea09316d68a8",
+    "ecc90fec852e",
+    "ecd36ffb350c",
+    "eea5a6f3026c",
+    "f337908b3d2b",
+    "f678784d6d92",
+    "f91ddf5bb421",
+    "f9b9f4784dbf",
+    "fc149004b0d3",
+    "fde7d3609089"
+   ],
+   "id": "C15",
+   "text": "Refined boundary, controller 'alinea' along 'main_demand' (veh/h): pass rate over 20 paired seeds at 5 values; Wilson 95% band [3960, None], 50% crossing of the isotonic fit x50=4096.36 (5-seed bisection gave [4044, 4075]).",
+   "values": {
+    "band": [
+     3960,
+     null
+    ],
+    "band_closed": false,
+    "bisection": [
+     4044,
+     4075
+    ],
+    "controller": "alinea",
+    "monotone_within_ci": true,
+    "param": "main_demand",
+    "points": [
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 18,
+      "rate": 0.9,
+      "wilson95": [
+       0.699,
+       0.9721
+      ],
+      "x": 3860
+     },
+     {
+      "class": "pass",
+      "n": 20,
+      "passes": 15,
+      "rate": 0.75,
+      "wilson95": [
+       0.5313,
+       0.8881
+      ],
+      "x": 3960
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 12,
+      "rate": 0.6,
+      "wilson95": [
+       0.3866,
+       0.7812
+      ],
+      "x": 4060
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 6,
+      "rate": 0.3,
+      "wilson95": [
+       0.1455,
+       0.519
+      ],
+      "x": 4160
+     },
+     {
+      "class": "undecided",
+      "n": 20,
+      "passes": 7,
+      "rate": 0.35,
+      "wilson95": [
+       0.1812,
+       0.5671
+      ],
+      "x": 4200
+     }
+    ],
+    "x50": 4096.36
+   }
+  },
+  {
+   "evidence": [
+    "089736a629e7",
+    "0a5eb7998716",
+    "1037aef7fae6",
+    "1461e32945be",
+    "1603370359f5",
+    "1775eb6a7734",
+    "1a9fe31bef96",
+    "1c28a385a401",
+    "1cbcc89977e1",
+    "1e8079399c70",
+    "1e8ae87aade4",
+    "211946aa25ac",
+    "215632ef6bd2",
+    "2184b3a11975",
+    "21d5554dd2e5",
+    "224c75d44a98",
+    "252e1eb4db70",
+    "296dae7e56a6",
+    "2b793146d149",
+    "2fec540dc94e",
+    "30694c013cb9",
+    "315d90edf034",
+    "3291b4532110",
+    "35cfa39f4644",
+    "3bf42e58ecbc",
+    "3f70e7271288",
+    "425ecd2b19da",
+    "42dc238a8641",
+    "430cebffab29",
+    "43a4e9dd984a",
+    "51a62c4e934e",
+    "55e9d9154f70",
+    "569dbd00c5e5",
+    "579c2f1862d0",
+    "5a772d8b74b8",
+    "5e8fb1132938",
+    "5f9feb14d44a",
+    "6326c782fae3",
+    "640439028b7f",
+    "64fc0c3d7fee",
+    "65399eb146b2",
+    "68630a42756c",
+    "6ab9d6ff6f37",
+    "6b730efec53c",
+    "6db3df04d222",
+    "6dd6e45e6255",
+    "6e7974b0af49",
+    "73c341faea82",
+    "73f4a8a3fe81",
+    "7b5995398873",
+    "7be182441788",
+    "80691731d9ec",
+    "8d2321d6094f",
+    "8d793357cdd0",
+    "8d950372dcc1",
+    "8dc3d84e9756",
+    "9625ceec19f0",
+    "9a87f5420c4d",
+    "a3d7f777b37a",
+    "a6e1e67d3acb",
+    "ae5889aaea56",
+    "b326762f2c0f",
+    "b3423325e353",
+    "b3d70803483d",
+    "ba248bc4d681",
+    "bca1f0aefe5c",
+    "bcde13f8d321",
+    "bd3b5a43b848",
+    "c439bf8e265d",
+    "cd41b8bf201d",
+    "ceea4e3c501d",
+    "cfeb4db7217e",
+    "cffc5d56043d",
+    "d63ff89f9004",
+    "dbeed898a677",
+    "e52870bb781b",
+    "e93fd0956711",
+    "e9736eb43520",
+    "ed45786461aa",
+    "f0079cb267e3",
+    "f3e193f033cf",
+    "f8c90db005fc",
+    "fe427306d287",
+    "ff3d7822f9c5"
+   ],
+   "id": "C16",
+   "text": "Morris screening (run margin; r=6 trajectories, 4 levels, paired seeds [1, 2], calibrated ranges), controller 'fixed': ranking by mu* ['main_demand', 'sigma', 'ramp_demand', 'incident_duration', 'truck_share', 'incident_start'].",
+   "values": {
+    "invalid_runs": 0,
+    "not_pass_runs": 45,
+    "ranking": [
+     "main_demand",
+     "sigma",
+     "ramp_demand",
+     "incident_duration",
+     "truck_share",
+     "incident_start"
+    ],
+    "runs": 84,
+    "stats": {
+     "incident_duration": {
+      "mu": -0.5494,
+      "mu_star": 0.5494,
+      "n": 12,
+      "sigma": 0.5719,
+      "sigma_seed": 0.0434
+     },
+     "incident_start": {
+      "mu": -0.1681,
+      "mu_star": 0.2103,
+      "n": 12,
+      "sigma": 0.2919,
+      "sigma_seed": 0.1475
+     },
+     "main_demand": {
+      "mu": -1.5857,
+      "mu_star": 1.5857,
+      "n": 12,
+      "sigma": 1.0729,
+      "sigma_seed": 0.369
+     },
+     "ramp_demand": {
+      "mu": -0.7021,
+      "mu_star": 1.0469,
+      "n": 12,
+      "sigma": 1.0883,
+      "sigma_seed": 0.4832
+     },
+     "sigma": {
+      "mu": -1.3171,
+      "mu_star": 1.4887,
+      "n": 12,
+      "sigma": 1.6589,
+      "sigma_seed": 0.3472
+     },
+     "truck_share": {
+      "mu": -0.4646,
+      "mu_star": 0.4646,
+      "n": 12,
+      "sigma": 0.3309,
+      "sigma_seed": 0.0335
+     }
+    }
+   }
+  },
+  {
+   "evidence": [
+    "04c206a60f7e",
+    "05fe93de4ece",
+    "0a565488e769",
+    "0d5d45c68031",
+    "0e7e97aabd8e",
+    "0e7eb77928dc",
+    "197b013f54ce",
+    "1a629917ed00",
+    "1b6af9acdb39",
+    "1dc5e02d2aa9",
+    "22aacce1066c",
+    "22e939a95345",
+    "236b327e9320",
+    "263a3cfbfd0e",
+    "271be7113129",
+    "2c92474cd942",
+    "3781cd50b0f3",
+    "44d53645ddeb",
+    "4947d3b52dd9",
+    "495c9b36742b",
+    "4b15478924f3",
+    "4c2b431021be",
+    "4cea3159a105",
+    "51518ff18bf8",
+    "5536eb5dd463",
+    "5d1f89a08c1f",
+    "64d8f2e11f50",
+    "663a82477f8f",
+    "6713f8f24f47",
+    "677dcce73513",
+    "6a982966b346",
+    "6c48d644ae72",
+    "6e71137f8f7e",
+    "718d0bf263b6",
+    "760eb4cb113b",
+    "77772b6302cd",
+    "7984fc8ad0a7",
+    "7d03dfababe3",
+    "800d84c974a6",
+    "81f890aa35dd",
+    "844ca1a8c054",
+    "86a4fbaeb9ed",
+    "87b3e7c688a6",
+    "8aed7a0e467d",
+    "8b771dd935b8",
+    "8b8e0e9a0b66",
+    "8c7be88cd921",
+    "8f18e3ad0d39",
+    "93b1ba2f633d",
+    "966f30825c86",
+    "99933d9761a0",
+    "999bc4cb1cc0",
+    "9fa184fd7fdf",
+    "a00e247d7b33",
+    "a0f19b92b576",
+    "a0f82de38a3f",
+    "a21b690191ac",
+    "a68d8645a617",
+    "a765642debb8",
+    "a9f2bf091eeb",
+    "b473fb4d6fb9",
+    "b90598bf5b8e",
+    "bd09f5597397",
+    "bea7260e6b23",
+    "c47d47129c96",
+    "c56bcfc7c1fb",
+    "d1021b6f6289",
+    "d1f3f2b76e81",
+    "da742537c7a3",
+    "ddbde97264d9",
+    "de1aa77cdb56",
+    "de4da75f8295",
+    "e490aea56d4b",
+    "e601404e8ebe",
+    "e74ba93d57e6",
+    "ea9458686d32",
+    "ecd8d569f3c2",
+    "ecddb14071d4",
+    "eefc2bea7a7c",
+    "effdbe8f97f7",
+    "f103c5196a4a",
+    "f222c4051301",
+    "fb2d746f474e",
+    "fef99500882e"
+   ],
+   "id": "C17",
+   "text": "Morris screening (run margin; r=6 trajectories, 4 levels, paired seeds [1, 2], calibrated ranges), controller 'alinea': ranking by mu* ['main_demand', 'sigma', 'incident_duration', 'truck_share', 'incident_start', 'ramp_demand'].",
+   "values": {
+    "invalid_runs": 0,
+    "not_pass_runs": 37,
+    "ranking": [
+     "main_demand",
+     "sigma",
+     "incident_duration",
+     "truck_share",
+     "incident_start",
+     "ramp_demand"
+    ],
+    "runs": 84,
+    "stats": {
+     "incident_duration": {
+      "mu": -1.0507,
+      "mu_star": 1.0507,
+      "n": 12,
+      "sigma": 0.7986,
+      "sigma_seed": 0.2397
+     },
+     "incident_start": {
+      "mu": -0.7524,
+      "mu_star": 0.8292,
+      "n": 12,
+      "sigma": 1.4319,
+      "sigma_seed": 0.5446
+     },
+     "main_demand": {
+      "mu": -2.0358,
+      "mu_star": 2.0358,
+      "n": 12,
+      "sigma": 1.7523,
+      "sigma_seed": 0.8658
+     },
+     "ramp_demand": {
+      "mu": -0.5873,
+      "mu_star": 0.773,
+      "n": 12,
+      "sigma": 1.1166,
+      "sigma_seed": 0.4629
+     },
+     "sigma": {
+      "mu": -0.9766,
+      "mu_star": 1.23,
+      "n": 12,
+      "sigma": 1.4923,
+      "sigma_seed": 0.3197
+     },
+     "truck_share": {
+      "mu": -0.8236,
+      "mu_star": 0.9777,
+      "n": 12,
+      "sigma": 1.3902,
+      "sigma_seed": 0.4893
+     }
+    }
+   }
+  },
+  {
+   "evidence": [
+    "001981e1261c",
+    "00c8e3a5a392",
+    "0190e68f226b",
+    "01a29a43155b",
+    "0206dd36cf13",
+    "031387f2f8d9",
+    "0348c47243ce",
+    "03d5a253c0e5",
+    "0504866a07c2",
+    "05407e887f7b",
+    "05540a1408a0",
+    "05da049a6203",
+    "0610f9647832",
+    "063058d8c2b0",
+    "07a7509679ca",
+    "085fcd30041a",
+    "09ec26ec1d6a",
+    "0a565488e769",
+    "0b2c5211b6b3",
+    "0c8c9964c985",
+    "0d1fdde655ac",
+    "0e7e97aabd8e",
+    "0e9ba335746d",
+    "0f6aa5f69187",
+    "0ffbe6a5278b",
+    "1037aef7fae6",
+    "10d870b4031b",
+    "126b5fc0eaa5",
+    "12b44d208ccb",
+    "13a3a6b1029d",
+    "13b649bc3023",
+    "16c2f3457f58",
+    "16c5625e4aeb",
+    "1775eb6a7734",
+    "192204924fec",
+    "197b013f54ce",
+    "1a9fe31bef96",
+    "1a9fe3581d59",
+    "1c03cd242693",
+    "1cbcc89977e1",
+    "1ccb74a33053",
+    "1e8ae87aade4",
+    "1f8ecf14ae7d",
+    "200fa7eabea0",
+    "203217f31684",
+    "2184b3a11975",
+    "21d5554dd2e5",
+    "22aacce1066c",
+    "22e939a95345",
+    "230ddfaac8a6",
+    "245f8c54cacf",
+    "24a869cd56e4",
+    "252e1eb4db70",
+    "256501e718bc",
+    "26857bdc104e",
+    "26f74ebf780f",
+    "26ff10639e96",
+    "2835ec0bd372",
+    "29a0679bddd3",
+    "2a425a563b64",
+    "2a78d6851732",
+    "2b793146d149",
+    "2c225e7ba2e0",
+    "2c8b05042f40",
+    "2c9ece6240ac",
+    "2e0794f6f8aa",
+    "2fec540dc94e",
+    "301f3f9ac19e",
+    "3182e412a836",
+    "319f45f6818b",
+    "31f7778b075f",
+    "3210fbb7ce28",
+    "3291b4532110",
+    "33c70d732a89",
+    "3506e456ec24",
+    "3720a27441a7",
+    "38d6e1a8e173",
+    "393acb1bf9c0",
+    "39adcd61a61c",
+    "39cb0c5ecb3a",
+    "3a6bdfc5e3e2",
+    "3a861716aac7",
+    "3ac32ff099ca",
+    "3cde6a732877",
+    "3f70e7271288",
+    "414153554794",
+    "41c5f2fb040d",
+    "4200ef96bfc3",
+    "42118b552bd0",
+    "42a5533ea692",
+    "42dc238a8641",
+    "4304a3b88915",
+    "44e1954c152e",
+    "44f96975074d",
+    "4659e0704e4b",
+    "47e3860c6cc6",
+    "492058d40bec",
+    "4983112160fa",
+    "49ee4775f172",
+    "4a6721522e6d",
+    "4a91d61eaa76",
+    "4aa87fc5be31",
+    "4ab1affd3b7f",
+    "4c2b431021be",
+    "4cad7daed17a",
+    "4cbf8c8797a3",
+    "4cea3159a105",
+    "4d59c9a4ac0e",
+    "4de7c08ff742",
+    "4eb159f716be",
+    "509142a74064",
+    "50e1432e6cae",
+    "50f1e93c731c",
+    "51518ff18bf8",
+    "51a62c4e934e",
+    "51e443b33936",
+    "5224ba9c9247",
+    "54469f2da596",
+    "54b498f0357d",
+    "54ff005707e7",
+    "5536eb5dd463",
+    "5588d97c2d3f",
+    "5607c93fcf71",
+    "560af3bd5974",
+    "56374720a12f",
+    "569dbd00c5e5",
+    "56c6938c91e4",
+    "57165016052a",
+    "5727f57c6b03",
+    "576735782caf",
+    "578f2a98f223",
+    "58594e14846c",
+    "58dfe3e3b57c",
+    "599665933f70",
+    "5a772d8b74b8",
+    "5b69e0a7a7c3",
+    "5c45be01422b",
+    "5c961ce17582",
+    "5ccfd36adb2f",
+    "5e2c80c063bd",
+    "5e8fb1132938",
+    "5f9feb14d44a",
+    "61eb04f1e0a1",
+    "62cd4a0567bc",
+    "6326c782fae3",
+    "633dc142a9c6",
+    "640439028b7f",
+    "643a52b46051",
+    "64523c1b6d06",
+    "646e01661057",
+    "64d8f2e11f50",
+    "65399eb146b2",
+    "66083e290f47",
+    "663a82477f8f",
+    "6713f8f24f47",
+    "672fd7385dfe",
+    "677dcce73513",
+    "68008bf68ad4",
+    "6822053e1e54",
+    "68630a42756c",
+    "68ace1b39ae6",
+    "68cb3d61112b",
+    "68f361e52d08",
+    "6991a9a5eb98",
+    "6a955ec57100",
+    "6a982966b346",
+    "6ab9d6ff6f37",
+    "6af2e63a0113",
+    "6b6cc99dbff5",
+    "6c21f1b4690d",
+    "6c48d644ae72",
+    "6d3e4c73d9d0",
+    "6d7dbfce80be",
+    "6dd6e45e6255",
+    "6e7974b0af49",
+    "6eab01ed257c",
+    "6eeb71e440d6",
+    "700bbb06c123",
+    "708f9e0a9cab",
+    "718d0bf263b6",
+    "72c954054826",
+    "7311ca1ac4eb",
+    "734c4cb26bb6",
+    "73f4a8a3fe81",
+    "74e1941e9378",
+    "760eb4cb113b",
+    "769403fd1e08",
+    "774e613dcf95",
+    "796b15404388",
+    "7984fc8ad0a7",
+    "79cebad1278e",
+    "7a2625efd310",
+    "7be182441788",
+    "7c4f24e15c52",
+    "7cfc51f22465",
+    "7d14be8071c9",
+    "7e00da477fee",
+    "7e14a2eca91f",
+    "7eb4b0a2ad00",
+    "7f04cdb3ab3c",
+    "7fdd18a7b2f3",
+    "80f4136ced05",
+    "80fa7acb98e2",
+    "817711bf78c3",
+    "81f890aa35dd",
+    "83020de7edcb",
+    "832969d7439a",
+    "844ca1a8c054",
+    "84ddc8cd69d3",
+    "85bf198bf9ac",
+    "868d70d2f932",
+    "87e1455dfcff",
+    "87eb4dab79a8",
+    "881e36b841ed",
+    "8852c7f0e6e4",
+    "896e3c944088",
+    "8983b24c47f5",
+    "8aed7a0e467d",
+    "8ba1e5f6362c",
+    "8bf740eedb81",
+    "8c7be88cd921",
+    "8ca7a0067c75",
+    "8cf7269f2da4",
+    "8d5102640e2e",
+    "8d537ee379b5",
+    "8d793357cdd0",
+    "8da794d54383",
+    "8dc3d84e9756",
+    "8dfae8d861c4",
+    "8e6ba30bb265",
+    "8e92ce6000b0",
+    "8ed89425f651",
+    "8f292be11ec7",
+    "8f8c45969a37",
+    "8fc515fffe77",
+    "9015246c364c",
+    "901d95fe2072",
+    "91089dc2152f",
+    "930a5f42f9ff",
+    "933fbcf96307",
+    "9439895cd008",
+    "949bbe14e0ce",
+    "9621bfa9c6bc",
+    "9625ceec19f0",
+    "966f30825c86",
+    "97400689bc05",
+    "97701979cf1e",
+    "9803cc4c31ba",
+    "9805dae7955f",
+    "983cc4ce5740",
+    "999513ac4970",
+    "99f8e3c4260a",
+    "9b9ddb045577",
+    "9cf0e4aaebd4",
+    "9da128aaa47f",
+    "9e122dfd2782",
+    "9f04c0333c37",
+    "9fb903fec72c",
+    "a0d4bcc7e16f",
+    "a0f19b92b576",
+    "a0f82de38a3f",
+    "a10d7ee6c45e",
+    "a137839f4a11",
+    "a18cc4fa1d08",
+    "a21b690191ac",
+    "a354ba805f99",
+    "a3d7f777b37a",
+    "a4a547d84615",
+    "a5064da4725c",
+    "a59ecfff1437",
+    "a6e1e67d3acb",
+    "a6e8270990c1",
+    "a726a710d9e2",
+    "a765642debb8",
+    "a94d5d9a56e6",
+    "a995f2f309b3",
+    "a9f8909b7436",
+    "add3fc0d0c7b",
+    "ae7b578fad66",
+    "ae7b7122ec2b",
+    "af7a9d7088ed",
+    "afb86c7922a0",
+    "b177c9de0bc6",
+    "b1e051ca5b03",
+    "b326762f2c0f",
+    "b43dae664a5e",
+    "b4bd80767782",
+    "b559cbf7b07c",
+    "b5893fe47338",
+    "b6db6ce7dc87",
+    "b7c7c6a17ee6",
+    "b8313038bdcc",
+    "b90598bf5b8e",
+    "b917e10e5986",
+    "ba248bc4d681",
+    "ba43cb473de8",
+    "baf98a025b89",
+    "bbff9c41fcc0",
+    "bc0d3381d7d2",
+    "bca1f0aefe5c",
+    "bcde13f8d321",
+    "bd3b5a43b848",
+    "be3b34692fde",
+    "bee2fe6e2ac5",
+    "bf5b87760a02",
+    "c03b5d3f4f3c",
+    "c0459d7d79da",
+    "c0a3dd620940",
+    "c154b2b24bf7",
+    "c381a31dae9f",
+    "c439bf8e265d",
+    "c4524f3eebd3",
+    "c4591d57c6a8",
+    "c47d47129c96",
+    "c48f90d21945",
+    "c56bcfc7c1fb",
+    "c57bbf432eed",
+    "c7a5e4a37069",
+    "c945aff5b69e",
+    "cb3b606025db",
+    "ccb77a797243",
+    "ccb8e9b2b433",
+    "ccc7796d19f1",
+    "ccf5563dcd73",
+    "cd41b8bf201d",
+    "cd76d11cd57c",
+    "cef25af9f374",
+    "cf1a2467dfd7",
+    "cfeb4db7217e",
+    "cffc5d56043d",
+    "d02047fc7541",
+    "d1021b6f6289",
+    "d16566fefbc8",
+    "d1f3f2b76e81",
+    "d22983c2a396",
+    "d30e46a7a6fb",
+    "d38312f34cba",
+    "d3838e1f19ce",
+    "d3cb0827dd58",
+    "d3d450bf0b2c",
+    "d42aa5abac4c",
+    "d51e3fb5a4d3",
+    "d54fb5ba0bd5",
+    "d612e809d596",
+    "d7141c76c8d6",
+    "d7e7d44c3525",
+    "d87d5e927eac",
+    "d8d6ed8e716a",
+    "da742537c7a3",
+    "dbb94ad1cf85",
+    "dbeed898a677",
+    "dbf7f596b302",
+    "dd17f5721bbd",
+    "ddb68e613f4b",
+    "ddbde97264d9",
+    "de1aa77cdb56",
+    "de325166dc1f",
+    "de473cfc25ba",
+    "de9ef97739c9",
+    "dee507fd2fb3",
+    "df045f75f626",
+    "df91f8e13f82",
+    "df992d70298e",
+    "dfe0cac3d9fb",
+    "e0205179fadb",
+    "e1095d7af47f",
+    "e11e1652caaa",
+    "e19b7749e861",
+    "e1c91dc7898b",
+    "e257ee92d4e0",
+    "e2f81f6e4629",
+    "e30c733c52f7",
+    "e32255281b96",
+    "e3490382f8b5",
+    "e395e43d0f42",
+    "e44944493f7d",
+    "e57a7995f576",
+    "e6721ddebeb9",
+    "e7332f22383d",
+    "e78fa071cc9c",
+    "e81ec4374788",
+    "e8b2e2e34676",
+    "e9928b75294c",
+    "ea753622f443",
+    "ea9458686d32",
+    "ec504bc614b8",
+    "ecd8d569f3c2",
+    "ed45786461aa",
+    "f0079cb267e3",
+    "f0e8621cda58",
+    "f11e89990a06",
+    "f1a14b9ccc0c",
+    "f2be735e0f3c",
+    "f2d4aa4119f2",
+    "f337908b3d2b",
+    "f391acfca4a6",
+    "f3980495b21a",
+    "f442ae42dbb0",
+    "f603594f3280",
+    "f65971ed3583",
+    "f780d15cf9d9",
+    "f780d957b163",
+    "f8c90db005fc",
+    "f8e599f8b0a6",
+    "f91ddf5bb421",
+    "f9edcbfb0c77",
+    "faf9a70089d0",
+    "fb25df3cad3f",
+    "fc149004b0d3",
+    "fc474f035f9b",
+    "fde7d3609089",
+    "fefc51d3a0fe",
+    "ff3e39a2d9e5"
+   ],
+   "id": "C18",
+   "text": "Failure modes over all runs: number of runs violating each criterion.",
+   "values": {
+    "mean_delay_s": 226,
+    "merge_speed_kmh": 44,
+    "ramp_p95_delay_s": 244,
+    "runs": 908,
+    "ttc_per_1000veh": 184
+   }
+  },
+  {
+   "evidence": [],
+   "id": "C19",
+   "text": "Validity: runs with teleports or collisions (excluded from PASS/FAIL, counted as not-PASS).",
+   "values": {
+    "collision_lanes": {},
+    "collisions": 0,
+    "invalid_by_phase": {},
+    "invalid_runs": 0,
+    "invalid_with_incident": 0,
+    "runs": 908,
+    "teleports": 0
+   }
+  }
+ ],
+ "config": {
+  "agent_seed": 20260926,
+  "budget": 1300,
+  "controllers": [
+   "fixed",
+   "alinea"
+  ],
+  "max_probes": 3,
+  "morris_levels": 4,
+  "morris_r": 6,
+  "morris_seeds": [
+   1,
+   2
+  ],
+  "reference_controller": "none",
+  "refine_extend": 1,
+  "refine_points": 5,
+  "refine_seeds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20
+  ],
+  "refine_step_tol": 2.0,
+  "screen_n": 0,
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "tol": {
+   "incident_duration": 30,
+   "incident_start": 30,
+   "main_demand": 50,
+   "ramp_demand": 25,
+   "sigma": 0.05,
+   "truck_share": 0.0125
+  }
+ },
+ "criteria": [
+  {
+   "kpi": "mean_delay_s",
+   "limit": 60.0,
+   "op": "<=",
+   "why": "network-wide mean delay per vehicle (timeLoss + departDelay)"
+  },
+  {
+   "kpi": "ramp_p95_delay_s",
+   "limit": 120.0,
+   "op": "<=",
+   "why": "95th-percentile delay of ramp vehicles (queue / spillback)"
+  },
+  {
+   "kpi": "merge_speed_kmh",
+   "limit": 75.0,
+   "op": ">=",
+   "why": "flow-weighted mainline spot speed in the merge area"
+  },
+  {
+   "kpi": "ttc_per_1000veh",
+   "limit": 10.0,
+   "op": "<=",
+   "why": "SSM conflicts with min TTC < 1.5 s per 1000 vehicles"
+  }
+ ],
+ "meta": {
+  "cpu_count": 8,
+  "date": "2026-09-26",
+  "jobs": 7,
+  "net_sha256": "9b93309afcb0d3b5ff95bcee832130bc3ddcc49dbe0f01d4abd95e7229f5f1eb",
+  "phase_walls_s": {
+   "morris": 406.1,
+   "oat": 380.7,
+   "probe": 484.7,
+   "refine": 1261.5
+  },
+  "platform": "Windows-10",
+  "python": "3.11.5",
+  "sim_options": {
+   "amber_s": 2.5,
+   "incident_method": "stall",
+   "log_warnings": true
+  },
+  "sim_wall_s_sum": 16436.2,
+  "sumo_version": "1.24.0",
+  "wall_time_s": 2533.5
+ },
+ "morris": {
+  "by_controller": {
+   "alinea": {
+    "invalid_runs": 0,
+    "not_pass_runs": 37,
+    "ranking": [
+     "main_demand",
+     "sigma",
+     "incident_duration",
+     "truck_share",
+     "incident_start",
+     "ramp_demand"
+    ],
+    "runs": 84,
+    "stats": {
+     "incident_duration": {
+      "mu": -1.0507,
+      "mu_star": 1.0507,
+      "n": 12,
+      "sigma": 0.7986,
+      "sigma_seed": 0.2397
+     },
+     "incident_start": {
+      "mu": -0.7524,
+      "mu_star": 0.8292,
+      "n": 12,
+      "sigma": 1.4319,
+      "sigma_seed": 0.5446
+     },
+     "main_demand": {
+      "mu": -2.0358,
+      "mu_star": 2.0358,
+      "n": 12,
+      "sigma": 1.7523,
+      "sigma_seed": 0.8658
+     },
+     "ramp_demand": {
+      "mu": -0.5873,
+      "mu_star": 0.773,
+      "n": 12,
+      "sigma": 1.1166,
+      "sigma_seed": 0.4629
+     },
+     "sigma": {
+      "mu": -0.9766,
+      "mu_star": 1.23,
+      "n": 12,
+      "sigma": 1.4923,
+      "sigma_seed": 0.3197
+     },
+     "truck_share": {
+      "mu": -0.8236,
+      "mu_star": 0.9777,
+      "n": 12,
+      "sigma": 1.3902,
+      "sigma_seed": 0.4893
+     }
+    }
+   },
+   "fixed": {
+    "invalid_runs": 0,
+    "not_pass_runs": 45,
+    "ranking": [
+     "main_demand",
+     "sigma",
+     "ramp_demand",
+     "incident_duration",
+     "truck_share",
+     "incident_start"
+    ],
+    "runs": 84,
+    "stats": {
+     "incident_duration": {
+      "mu": -0.5494,
+      "mu_star": 0.5494,
+      "n": 12,
+      "sigma": 0.5719,
+      "sigma_seed": 0.0434
+     },
+     "incident_start": {
+      "mu": -0.1681,
+      "mu_star": 0.2103,
+      "n": 12,
+      "sigma": 0.2919,
+      "sigma_seed": 0.1475
+     },
+     "main_demand": {
+      "mu": -1.5857,
+      "mu_star": 1.5857,
+      "n": 12,
+      "sigma": 1.0729,
+      "sigma_seed": 0.369
+     },
+     "ramp_demand": {
+      "mu": -0.7021,
+      "mu_star": 1.0469,
+      "n": 12,
+      "sigma": 1.0883,
+      "sigma_seed": 0.4832
+     },
+     "sigma": {
+      "mu": -1.3171,
+      "mu_star": 1.4887,
+      "n": 12,
+      "sigma": 1.6589,
+      "sigma_seed": 0.3472
+     },
+     "truck_share": {
+      "mu": -0.4646,
+      "mu_star": 0.4646,
+      "n": 12,
+      "sigma": 0.3309,
+      "sigma_seed": 0.0335
+     }
+    }
+   }
+  },
+  "levels": 4,
+  "r": 6,
+  "ranges": {
+   "incident_duration": {
+    "hi": 263,
+    "lo": 0,
+    "rule": "nominal +- 1.25 x distance to nearest boundary (210.5)"
+   },
+   "incident_start": {
+    "hi": 1200,
+    "lo": 300,
+    "rule": "full range (no verdict flip in one-at-a-time)"
+   },
+   "main_demand": {
+    "hi": 4200,
+    "lo": 2400,
+    "rule": "nominal +- 1.25 x distance to nearest boundary (859.5)"
+   },
+   "ramp_demand": {
+    "hi": 846,
+    "lo": 354,
+    "rule": "nominal +- 1.25 x distance to nearest boundary (197.0)"
+   },
+   "sigma": {
+    "hi": 0.9,
+    "lo": 0.0,
+    "rule": "full range (no verdict flip in one-at-a-time)"
+   },
+   "truck_share": {
+    "hi": 0.25,
+    "lo": 0.0,
+    "rule": "full range (no verdict flip in one-at-a-time)"
+   }
+  },
+  "seeds": [
+   1,
+   2
+  ],
+  "trajectories": [
+   [
+    {
+     "incident_duration": 88,
+     "incident_start": 600,
+     "main_demand": 2400,
+     "ramp_demand": 354,
+     "sigma": 0.0,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 600,
+     "main_demand": 2400,
+     "ramp_demand": 682,
+     "sigma": 0.0,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 600,
+     "main_demand": 2400,
+     "ramp_demand": 682,
+     "sigma": 0.0,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 600,
+     "main_demand": 2400,
+     "ramp_demand": 682,
+     "sigma": 0.6,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 1200,
+     "main_demand": 2400,
+     "ramp_demand": 682,
+     "sigma": 0.6,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 1200,
+     "main_demand": 2400,
+     "ramp_demand": 682,
+     "sigma": 0.6,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 1200,
+     "main_demand": 3600,
+     "ramp_demand": 682,
+     "sigma": 0.6,
+     "truck_share": 0.1667
+    }
+   ],
+   [
+    {
+     "incident_duration": 88,
+     "incident_start": 900,
+     "main_demand": 3000,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 900,
+     "main_demand": 3000,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 300,
+     "main_demand": 3000,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 300,
+     "main_demand": 4200,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 300,
+     "main_demand": 4200,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 300,
+     "main_demand": 4200,
+     "ramp_demand": 518,
+     "sigma": 0.9,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 300,
+     "main_demand": 4200,
+     "ramp_demand": 518,
+     "sigma": 0.3,
+     "truck_share": 0.1667
+    }
+   ],
+   [
+    {
+     "incident_duration": 0,
+     "incident_start": 900,
+     "main_demand": 3600,
+     "ramp_demand": 682,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 0,
+     "incident_start": 900,
+     "main_demand": 3600,
+     "ramp_demand": 354,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 0,
+     "incident_start": 900,
+     "main_demand": 2400,
+     "ramp_demand": 354,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 0,
+     "incident_start": 300,
+     "main_demand": 2400,
+     "ramp_demand": 354,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 0,
+     "incident_start": 300,
+     "main_demand": 2400,
+     "ramp_demand": 354,
+     "sigma": 0.3,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 300,
+     "main_demand": 2400,
+     "ramp_demand": 354,
+     "sigma": 0.3,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 300,
+     "main_demand": 2400,
+     "ramp_demand": 354,
+     "sigma": 0.3,
+     "truck_share": 0.25
+    }
+   ],
+   [
+    {
+     "incident_duration": 88,
+     "incident_start": 1200,
+     "main_demand": 2400,
+     "ramp_demand": 518,
+     "sigma": 0.9,
+     "truck_share": 0.25
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 1200,
+     "main_demand": 2400,
+     "ramp_demand": 518,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 1200,
+     "main_demand": 2400,
+     "ramp_demand": 518,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 600,
+     "main_demand": 2400,
+     "ramp_demand": 518,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 600,
+     "main_demand": 2400,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 600,
+     "main_demand": 3600,
+     "ramp_demand": 846,
+     "sigma": 0.9,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 600,
+     "main_demand": 3600,
+     "ramp_demand": 846,
+     "sigma": 0.3,
+     "truck_share": 0.0833
+    }
+   ],
+   [
+    {
+     "incident_duration": 175,
+     "incident_start": 300,
+     "main_demand": 3000,
+     "ramp_demand": 518,
+     "sigma": 0.0,
+     "truck_share": 0.0833
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 300,
+     "main_demand": 3000,
+     "ramp_demand": 518,
+     "sigma": 0.0,
+     "truck_share": 0.25
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 300,
+     "main_demand": 3000,
+     "ramp_demand": 846,
+     "sigma": 0.0,
+     "truck_share": 0.25
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 300,
+     "main_demand": 3000,
+     "ramp_demand": 846,
+     "sigma": 0.6,
+     "truck_share": 0.25
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 900,
+     "main_demand": 3000,
+     "ramp_demand": 846,
+     "sigma": 0.6,
+     "truck_share": 0.25
+    },
+    {
+     "incident_duration": 175,
+     "incident_start": 900,
+     "main_demand": 4200,
+     "ramp_demand": 846,
+     "sigma": 0.6,
+     "truck_share": 0.25
+    },
+    {
+     "incident_duration": 0,
+     "incident_start": 900,
+     "main_demand": 4200,
+     "ramp_demand": 846,
+     "sigma": 0.6,
+     "truck_share": 0.25
+    }
+   ],
+   [
+    {
+     "incident_duration": 88,
+     "incident_start": 300,
+     "main_demand": 3600,
+     "ramp_demand": 846,
+     "sigma": 0.6,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 300,
+     "main_demand": 3600,
+     "ramp_demand": 518,
+     "sigma": 0.6,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 900,
+     "main_demand": 3600,
+     "ramp_demand": 518,
+     "sigma": 0.6,
+     "truck_share": 0.0
+    },
+    {
+     "incident_duration": 88,
+     "incident_start": 900,
+     "main_demand": 3600,
+     "ramp_demand": 518,
+     "sigma": 0.6,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 900,
+     "main_demand": 3600,
+     "ramp_demand": 518,
+     "sigma": 0.6,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 900,
+     "main_demand": 2400,
+     "ramp_demand": 518,
+     "sigma": 0.6,
+     "truck_share": 0.1667
+    },
+    {
+     "incident_duration": 263,
+     "incident_start": 900,
+     "main_demand": 2400,
+     "ramp_demand": 518,
+     "sigma": 0.0,
+     "truck_share": 0.1667
+    }
+   ]
+  ]
+ },
+ "nominal": {
+  "controller": "alinea",
+  "incident_duration": 0,
+  "incident_start": 600,
+  "main_demand": 3200,
+  "ramp_demand": 600,
+  "seed": 1,
+  "sigma": 0.5,
+  "truck_share": 0.1
+ },
+ "oat": {
+  "alinea": [
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 4.2648,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -3.4112,
+      "mean_delta_margin": -4.2648,
+      "min_delta_margin": -5.2067,
+      "run_ids": [
+       "5224ba9c9247",
+       "633dc142a9c6",
+       "a9f8909b7436",
+       "8983b24c47f5",
+       "7a2625efd310"
+      ],
+      "value": 900,
+      "verdicts": [
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "5da8cb55bbb9",
+       "51dd7aabb8cb",
+       "162fa6351870",
+       "576fab337e71",
+       "1cab0918e077"
+      ],
+      "value": 0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_duration"
+   },
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 0.5313,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -0.0929,
+      "mean_delta_margin": -0.5313,
+      "min_delta_margin": -1.0738,
+      "run_ids": [
+       "e19e03b4204d",
+       "8e58417b68da",
+       "de9ef97739c9",
+       "2c8b05042f40",
+       "16c5625e4aeb"
+      ],
+      "value": 4200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0893,
+      "mean_delta_margin": 0.0802,
+      "min_delta_margin": 0.0709,
+      "run_ids": [
+       "9d79762db403",
+       "f8e8efc5624c",
+       "9af66bffa496",
+       "ca4ae7d04bf9",
+       "7337629ef504"
+      ],
+      "value": 2400,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "main_demand"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.1278,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0825,
+      "mean_delta_margin": -0.1018,
+      "min_delta_margin": -0.1226,
+      "run_ids": [
+       "12600a9b7524",
+       "53025f3b0168",
+       "2fa38e6c0b00",
+       "f53baf106b7a",
+       "47b68549c85a"
+      ],
+      "value": 0.25,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.1384,
+      "mean_delta_margin": 0.1278,
+      "min_delta_margin": 0.114,
+      "run_ids": [
+       "d32ac8782022",
+       "1513f6803f48",
+       "41ee09b7802d",
+       "f955e646a623",
+       "2fbe79cec683"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "truck_share"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.1181,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0565,
+      "mean_delta_margin": -0.1181,
+      "min_delta_margin": -0.1591,
+      "run_ids": [
+       "80864229863b",
+       "b2c42e1ab264",
+       "634d0df3bb94",
+       "04e8fa203b41",
+       "2e8d3c51ad05"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0421,
+      "mean_delta_margin": 0.0307,
+      "min_delta_margin": 0.014,
+      "run_ids": [
+       "ecfd97c12e1f",
+       "ef097623e6f5",
+       "31bd3bf94367",
+       "360c818132f0",
+       "2fda88f878b4"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "ramp_demand"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0581,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0043,
+      "mean_delta_margin": -0.0581,
+      "min_delta_margin": -0.1861,
+      "run_ids": [
+       "b4769eb538f1",
+       "fef2eed91be3",
+       "c6f6b8d26b5e",
+       "7a2f7d891be0",
+       "3ab2c10f05a0"
+      ],
+      "value": 0.9,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0317,
+      "mean_delta_margin": 0.0232,
+      "min_delta_margin": 0.0137,
+      "run_ids": [
+       "95d02054362c",
+       "10a2ede0e448",
+       "767e223f24ee",
+       "1855457ba650",
+       "4f85e975a2f6"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "sigma"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "9b9763fe2b7a",
+       "a04ed130f089",
+       "5e1bebca018b",
+       "7bb952886ec1",
+       "3cfaf0ec3fe3"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "1e512225eb0b",
+       "f5129a3244f0",
+       "54dabb84f14e",
+       "c62eb39dce42",
+       "76ab2f5a083f"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_start"
+   }
+  ],
+  "fixed": [
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 5.2563,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -4.8591,
+      "mean_delta_margin": -5.2563,
+      "min_delta_margin": -5.5804,
+      "run_ids": [
+       "d02047fc7541",
+       "5b69e0a7a7c3",
+       "c945aff5b69e",
+       "8f292be11ec7",
+       "560af3bd5974"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0379,
+      "mean_delta_margin": 0.0255,
+      "min_delta_margin": 0.0107,
+      "run_ids": [
+       "2c43e08b27cf",
+       "10273b301df4",
+       "f18a44651ccc",
+       "c276b03b4e71",
+       "e66e34f37d8f"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "ramp_demand"
+   },
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 4.6377,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -3.644,
+      "mean_delta_margin": -4.6377,
+      "min_delta_margin": -5.9488,
+      "run_ids": [
+       "b4bd80767782",
+       "f11e89990a06",
+       "6991a9a5eb98",
+       "7c4f24e15c52",
+       "949bbe14e0ce"
+      ],
+      "value": 900,
+      "verdicts": [
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "09de1b65ac99",
+       "4224d1e7fafd",
+       "dbec7f1de5b6",
+       "8107cc25c975",
+       "6dccacdae032"
+      ],
+      "value": 0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_duration"
+   },
+   {
+    "flip_levels": [
+     "hi"
+    ],
+    "influence": 0.5604,
+    "levels": {
+     "hi": {
+      "majority_fails": true,
+      "max_delta_margin": -0.1301,
+      "mean_delta_margin": -0.5604,
+      "min_delta_margin": -1.0616,
+      "run_ids": [
+       "4f520fefae87",
+       "5f861b2fd074",
+       "f0e8621cda58",
+       "af7a9d7088ed",
+       "fefc51d3a0fe"
+      ],
+      "value": 4200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "FAIL",
+       "FAIL",
+       "FAIL"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0936,
+      "mean_delta_margin": 0.0743,
+      "min_delta_margin": 0.0584,
+      "run_ids": [
+       "e706e12601ec",
+       "f2644fdf1541",
+       "a704bb47deb8",
+       "e9f8746263cd",
+       "938cd6fcd9a9"
+      ],
+      "value": 2400,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "main_demand"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.125,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0725,
+      "mean_delta_margin": -0.1029,
+      "min_delta_margin": -0.1251,
+      "run_ids": [
+       "ab75afb1c2c1",
+       "3147cf1684ee",
+       "7672daec2edf",
+       "f0bb2f1856af",
+       "e55b722ee976"
+      ],
+      "value": 0.25,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.1445,
+      "mean_delta_margin": 0.125,
+      "min_delta_margin": 0.1167,
+      "run_ids": [
+       "e75063862fb7",
+       "c88f050bd977",
+       "3d6eaa696c0e",
+       "d946b7af51b8",
+       "c693e40790f4"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "truck_share"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0964,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": -0.0313,
+      "mean_delta_margin": -0.0964,
+      "min_delta_margin": -0.3183,
+      "run_ids": [
+       "986c27f9280a",
+       "510796519367",
+       "e10efdd5a5f9",
+       "2a425a563b64",
+       "7f987ea33b0e"
+      ],
+      "value": 0.9,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "FAIL",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0266,
+      "mean_delta_margin": 0.0198,
+      "min_delta_margin": 0.0164,
+      "run_ids": [
+       "225d4cd8923b",
+       "f0c2d5964a70",
+       "01353ba80d3b",
+       "c80582e2bd70",
+       "617c8112c500"
+      ],
+      "value": 0.0,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "sigma"
+   },
+   {
+    "flip_levels": [],
+    "influence": 0.0,
+    "levels": {
+     "hi": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "af56013a98df",
+       "5b37c6df739d",
+       "c960bb3fdab8",
+       "7f215f66e4cc",
+       "1c17246a94dd"
+      ],
+      "value": 1200,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     },
+     "lo": {
+      "majority_fails": false,
+      "max_delta_margin": 0.0,
+      "mean_delta_margin": 0.0,
+      "min_delta_margin": 0.0,
+      "run_ids": [
+       "d773c8548996",
+       "26635aa80495",
+       "efdfff81fa40",
+       "525affe439b6",
+       "0d4e1314a48c"
+      ],
+      "value": 300,
+      "verdicts": [
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS",
+       "PASS"
+      ]
+     }
+    },
+    "nominal_fails": false,
+    "param": "incident_start"
+   }
+  ]
+ },
+ "policy": "deterministic",
+ "refined": [
+  {
+   "band": [
+    697,
+    847
+   ],
+   "band_closed": true,
+   "bisection": [
+    788,
+    806
+   ],
+   "controller": "fixed",
+   "grid": [
+    697,
+    747,
+    797,
+    847,
+    897
+   ],
+   "monotone_within_ci": true,
+   "param": "ramp_demand",
+   "pass_side": "low",
+   "points": [
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 19,
+     "rate": 0.95,
+     "wilson95": [
+      0.7639,
+      0.9911
+     ],
+     "x": 697
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 13,
+     "rate": 0.65,
+     "wilson95": [
+      0.4329,
+      0.8188
+     ],
+     "x": 747
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 7,
+     "rate": 0.35,
+     "wilson95": [
+      0.1812,
+      0.5671
+     ],
+     "x": 797
+    },
+    {
+     "class": "fail",
+     "n": 20,
+     "passes": 0,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.1611
+     ],
+     "x": 847
+    },
+    {
+     "class": "fail",
+     "n": 20,
+     "passes": 0,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.1611
+     ],
+     "x": 897
+    }
+   ],
+   "run_ids": {
+    "697": [
+     "cb72e90c61f1",
+     "594468b07985",
+     "dc486d132c2e",
+     "e0fe6c2b86cb",
+     "fd7b9a4652c7",
+     "9892c769233d",
+     "c4bd131b6df6",
+     "ecaedc42e0cc",
+     "c5f099e2a165",
+     "6e24b00dc167",
+     "83f9f46abb57",
+     "485f8b3bb452",
+     "d54db0133f27",
+     "c48f90d21945",
+     "f8988b1227e2",
+     "2636d4833bc5",
+     "0861ab65fdd7",
+     "b42104f47742",
+     "dd766d16a2e8",
+     "4a52d150ebab"
+    ],
+    "747": [
+     "3f3c209ab544",
+     "efabe626f302",
+     "22a698475d82",
+     "6d7dbfce80be",
+     "8d8189401d3b",
+     "ae7b7122ec2b",
+     "445dc1b9ad5d",
+     "a9064fdbbdf1",
+     "308f56f5e24c",
+     "75e860616040",
+     "4cbf8c8797a3",
+     "d14684d76307",
+     "9621bfa9c6bc",
+     "8bf740eedb81",
+     "af3f301fd8dc",
+     "68ace1b39ae6",
+     "329cec033456",
+     "5bc4890f91c8",
+     "9dcdd71a5b08",
+     "64523c1b6d06"
+    ],
+    "797": [
+     "2e0794f6f8aa",
+     "9e3a9634989b",
+     "256501e718bc",
+     "d87d5e927eac",
+     "77f3876ff51c",
+     "4200ef96bfc3",
+     "3f0ea2b791d2",
+     "42a5533ea692",
+     "020ea211e3a4",
+     "e25ec39e89ba",
+     "8da794d54383",
+     "e257ee92d4e0",
+     "74e1941e9378",
+     "f603594f3280",
+     "d698268e6976",
+     "03b290f8d5ab",
+     "301f3f9ac19e",
+     "a354ba805f99",
+     "ea753622f443",
+     "e8b2e2e34676"
+    ],
+    "847": [
+     "3210fbb7ce28",
+     "b559cbf7b07c",
+     "f442ae42dbb0",
+     "1ccb74a33053",
+     "ff3e39a2d9e5",
+     "fb25df3cad3f",
+     "e32255281b96",
+     "d16566fefbc8",
+     "72c954054826",
+     "3a6bdfc5e3e2",
+     "817711bf78c3",
+     "599665933f70",
+     "fc474f035f9b",
+     "f65971ed3583",
+     "85bf198bf9ac",
+     "13a3a6b1029d",
+     "0190e68f226b",
+     "9439895cd008",
+     "df91f8e13f82",
+     "a726a710d9e2"
+    ],
+    "897": [
+     "7311ca1ac4eb",
+     "4d59c9a4ac0e",
+     "3ac32ff099ca",
+     "031387f2f8d9",
+     "d3cb0827dd58",
+     "80f4136ced05",
+     "8d5102640e2e",
+     "ccb77a797243",
+     "e9928b75294c",
+     "0504866a07c2",
+     "f3980495b21a",
+     "c0459d7d79da",
+     "7cfc51f22465",
+     "91089dc2152f",
+     "de473cfc25ba",
+     "50f1e93c731c",
+     "7e00da477fee",
+     "0c8c9964c985",
+     "881e36b841ed",
+     "700bbb06c123"
+    ]
+   },
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "x50": 772.0
+  },
+  {
+   "band": [
+    120,
+    300
+   ],
+   "band_closed": true,
+   "bisection": [
+    225,
+    254
+   ],
+   "controller": "fixed",
+   "grid": [
+    120,
+    180,
+    240,
+    300,
+    360
+   ],
+   "monotone_within_ci": true,
+   "param": "incident_duration",
+   "pass_side": "low",
+   "points": [
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 18,
+     "rate": 0.9,
+     "wilson95": [
+      0.699,
+      0.9721
+     ],
+     "x": 120
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 14,
+     "rate": 0.7,
+     "wilson95": [
+      0.481,
+      0.8545
+     ],
+     "x": 180
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 6,
+     "rate": 0.3,
+     "wilson95": [
+      0.1455,
+      0.519
+     ],
+     "x": 240
+    },
+    {
+     "class": "fail",
+     "n": 20,
+     "passes": 3,
+     "rate": 0.15,
+     "wilson95": [
+      0.0524,
+      0.3604
+     ],
+     "x": 300
+    },
+    {
+     "class": "fail",
+     "n": 20,
+     "passes": 0,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.1611
+     ],
+     "x": 360
+    }
+   ],
+   "run_ids": {
+    "120": [
+     "ad8a4ad45b1f",
+     "e2a866036d93",
+     "f132e57b15ab",
+     "82a3376d55cb",
+     "4eb3bb94b488",
+     "f1c23a58a3a0",
+     "a884132ebc6a",
+     "b2c655eebddc",
+     "52a85e647c85",
+     "73b31c59fe88",
+     "6fc470330808",
+     "639fd3f3cdec",
+     "ed76bff8ccc8",
+     "d8b94cff5b86",
+     "5c8b44d0fba1",
+     "86e2af6f040c",
+     "a6e8270990c1",
+     "2624e9399ba7",
+     "0915594e5889",
+     "54ff005707e7"
+    ],
+    "180": [
+     "416fe1c37135",
+     "d75768039c3b",
+     "6af2e63a0113",
+     "ddbc5f2bd50e",
+     "cba234ccccb0",
+     "d886cae9652e",
+     "0b3fc4ea2681",
+     "1b6be5a2f657",
+     "ee7966bae274",
+     "2ef0c8f82e77",
+     "b43dae664a5e",
+     "f1b81e6fab62",
+     "dbde897665bc",
+     "4aa87fc5be31",
+     "f2ff8978c76e",
+     "56e462e088f0",
+     "44e1954c152e",
+     "967ad4c90eaa",
+     "3506e456ec24",
+     "38d6e1a8e173"
+    ],
+    "240": [
+     "148e62efa0f1",
+     "a137839f4a11",
+     "58dfe3e3b57c",
+     "0a1bea2eb62f",
+     "d22983c2a396",
+     "2c9ece6240ac",
+     "b7c7c6a17ee6",
+     "c57bbf432eed",
+     "b8313038bdcc",
+     "b19d2e5d57a4",
+     "41c5f2fb040d",
+     "b1e051ca5b03",
+     "21430c342f35",
+     "4de7c08ff742",
+     "f95e3133f48f",
+     "9da128aaa47f",
+     "d51e3fb5a4d3",
+     "9a9112500789",
+     "e0205179fadb",
+     "8fc515fffe77"
+    ],
+    "300": [
+     "83020de7edcb",
+     "05407e887f7b",
+     "9f04c0333c37",
+     "e2f81f6e4629",
+     "734c4cb26bb6",
+     "7e14a2eca91f",
+     "be3b34692fde",
+     "d42aa5abac4c",
+     "3a861716aac7",
+     "1b2e134518f0",
+     "d8d6ed8e716a",
+     "baf98a025b89",
+     "c9b13cf232a2",
+     "7eb4b0a2ad00",
+     "ec504bc614b8",
+     "0206dd36cf13",
+     "e44944493f7d",
+     "c0ca7172d40e",
+     "8852c7f0e6e4",
+     "832969d7439a"
+    ],
+    "360": [
+     "bf5b87760a02",
+     "c03b5d3f4f3c",
+     "0b2c5211b6b3",
+     "df045f75f626",
+     "54b498f0357d",
+     "774e613dcf95",
+     "e30c733c52f7",
+     "05540a1408a0",
+     "c154b2b24bf7",
+     "2c225e7ba2e0",
+     "9803cc4c31ba",
+     "faf9a70089d0",
+     "f8e599f8b0a6",
+     "01a29a43155b",
+     "3cde6a732877",
+     "6d3e4c73d9d0",
+     "5c45be01422b",
+     "4eb159f716be",
+     "f1a14b9ccc0c",
+     "2835ec0bd372"
+    ]
+   },
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "x50": 210.0
+  },
+  {
+   "band": [
+    150,
+    270
+   ],
+   "band_closed": true,
+   "bisection": [
+    196,
+    225
+   ],
+   "controller": "alinea",
+   "grid": [
+    90,
+    150,
+    210,
+    270,
+    330
+   ],
+   "monotone_within_ci": true,
+   "param": "incident_duration",
+   "pass_side": "low",
+   "points": [
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 20,
+     "rate": 1.0,
+     "wilson95": [
+      0.8389,
+      1.0
+     ],
+     "x": 90
+    },
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 18,
+     "rate": 0.9,
+     "wilson95": [
+      0.699,
+      0.9721
+     ],
+     "x": 150
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 8,
+     "rate": 0.4,
+     "wilson95": [
+      0.2188,
+      0.6134
+     ],
+     "x": 210
+    },
+    {
+     "class": "fail",
+     "n": 20,
+     "passes": 4,
+     "rate": 0.2,
+     "wilson95": [
+      0.0807,
+      0.416
+     ],
+     "x": 270
+    },
+    {
+     "class": "fail",
+     "n": 20,
+     "passes": 1,
+     "rate": 0.05,
+     "wilson95": [
+      0.0089,
+      0.2361
+     ],
+     "x": 330
+    }
+   ],
+   "run_ids": {
+    "150": [
+     "390d82eff6f9",
+     "0a4e6b055f47",
+     "d97d2faa0f32",
+     "5aac31c2aacd",
+     "9cf0e4aaebd4",
+     "ed3a40f3820a",
+     "56c6938c91e4",
+     "bc80d0901d47",
+     "d96724b15c69",
+     "21426edde64a",
+     "2583458d8060",
+     "a25b1c743dda",
+     "f9ea3156e410",
+     "0161e55fbb63",
+     "d80fd55246b4",
+     "3ab176c8c4df",
+     "a14622502959",
+     "b63ee3b5adf9",
+     "b2e6a7489c0b",
+     "f646dfc823db"
+    ],
+    "210": [
+     "c4932ea93c29",
+     "b6731e684156",
+     "a94d5d9a56e6",
+     "a995f2f309b3",
+     "d7e7d44c3525",
+     "a10d7ee6c45e",
+     "d54fb5ba0bd5",
+     "33c70d732a89",
+     "9382354596eb",
+     "32efcdd0c729",
+     "cef25af9f374",
+     "393acb1bf9c0",
+     "bda4aa7570ab",
+     "a59ecfff1437",
+     "97701979cf1e",
+     "0bd065e9fe88",
+     "10d870b4031b",
+     "ce6d2e6729a1",
+     "4304a3b88915",
+     "1c2cf1eef43c"
+    ],
+    "270": [
+     "d38312f34cba",
+     "62b14d1e55de",
+     "e78fa071cc9c",
+     "d3838e1f19ce",
+     "8e92ce6000b0",
+     "d3d450bf0b2c",
+     "c0a3dd620940",
+     "44f96975074d",
+     "1c03cd242693",
+     "dbb94ad1cf85",
+     "13b649bc3023",
+     "c4524f3eebd3",
+     "575414fcba8f",
+     "4ab1affd3b7f",
+     "8ed89425f651",
+     "5e2c80c063bd",
+     "e1c91dc7898b",
+     "f4048abdd026",
+     "5ccfd36adb2f",
+     "8e6428dfa592"
+    ],
+    "330": [
+     "3720a27441a7",
+     "b5893fe47338",
+     "7f04cdb3ab3c",
+     "58594e14846c",
+     "b917e10e5986",
+     "42118b552bd0",
+     "126b5fc0eaa5",
+     "dd17f5721bbd",
+     "ba43cb473de8",
+     "97400689bc05",
+     "ccf5563dcd73",
+     "708f9e0a9cab",
+     "1a3aa2212ff2",
+     "66083e290f47",
+     "49ee4775f172",
+     "f2d4aa4119f2",
+     "492058d40bec",
+     "6a955ec57100",
+     "5607c93fcf71",
+     "1f8ecf14ae7d"
+    ],
+    "90": [
+     "1fe4665c9b70",
+     "02edcee68c00",
+     "da1b1f441c78",
+     "97c0dab3eba2",
+     "89f5d2572d6e",
+     "3c31c875d230",
+     "89272f231edd",
+     "ce4d83d376bd",
+     "cb501494e0f9",
+     "62781640f3b9",
+     "23f9b8b09125",
+     "3b5eeaf87509",
+     "90e3b2ce54c8",
+     "4701059d5cf3",
+     "be2b75b81a25",
+     "1ff5f02b44e0",
+     "74e36958df87",
+     "cb09075ba4de",
+     "3889c46e0680",
+     "7e08812eb907"
+    ]
+   },
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "x50": 198.0
+  },
+  {
+   "band": [
+    3860,
+    null
+   ],
+   "band_closed": false,
+   "bisection": [
+    4044,
+    4075
+   ],
+   "controller": "fixed",
+   "grid": [
+    3860,
+    3960,
+    4060,
+    4160,
+    4200
+   ],
+   "monotone_within_ci": true,
+   "param": "main_demand",
+   "pass_side": "low",
+   "points": [
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 19,
+     "rate": 0.95,
+     "wilson95": [
+      0.7639,
+      0.9911
+     ],
+     "x": 3860
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 14,
+     "rate": 0.7,
+     "wilson95": [
+      0.481,
+      0.8545
+     ],
+     "x": 3960
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 11,
+     "rate": 0.55,
+     "wilson95": [
+      0.3421,
+      0.7418
+     ],
+     "x": 4060
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 7,
+     "rate": 0.35,
+     "wilson95": [
+      0.1812,
+      0.5671
+     ],
+     "x": 4160
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 7,
+     "rate": 0.35,
+     "wilson95": [
+      0.1812,
+      0.5671
+     ],
+     "x": 4200
+    }
+   ],
+   "run_ids": {
+    "3860": [
+     "147780dda787",
+     "027f86bf8764",
+     "99c956f93903",
+     "1777ca90e91f",
+     "edc7170ad30b",
+     "cf0c2a65307d",
+     "62a333f88cb7",
+     "98fb9437fcbe",
+     "024d3511b830",
+     "44ee41a94c42",
+     "79fb9405d1f4",
+     "8da446c1ca7b",
+     "0e2f8f06c51f",
+     "578f2a98f223",
+     "c3bd446decb5",
+     "ddd333b6d781",
+     "4f982dc72c80",
+     "105fe350c59c",
+     "c085c12d522a",
+     "4a165f81a6ef"
+    ],
+    "3960": [
+     "f2e2cc85baea",
+     "7d26203d5202",
+     "921e2db2486e",
+     "509142a74064",
+     "c99594de2f2c",
+     "0610f9647832",
+     "8affa52cc7a9",
+     "c69126e79497",
+     "9be28cdc1904",
+     "42c681c8ae20",
+     "9fb903fec72c",
+     "1d10da496fb3",
+     "610a472cf46b",
+     "ccc7796d19f1",
+     "047b9507c72a",
+     "20e85ce8988c",
+     "ca0ca5dcd700",
+     "2054e0c60717",
+     "901d95fe2072",
+     "80fa7acb98e2"
+    ],
+    "4060": [
+     "5b2f819f5466",
+     "1e1fb19d2cbf",
+     "9b9ddb045577",
+     "5c961ce17582",
+     "ea41f6344d3c",
+     "f780d15cf9d9",
+     "96ecbb25f3c1",
+     "03d5a253c0e5",
+     "63f0c3175503",
+     "193a009c8c4e",
+     "e57a7995f576",
+     "12b44d208ccb",
+     "6224376f0779",
+     "e1095d7af47f",
+     "92452ff0ab67",
+     "2328b9fdf500",
+     "68008bf68ad4",
+     "f3c1d1ddd651",
+     "b78f61c8b97e",
+     "df992d70298e"
+    ],
+    "4160": [
+     "263738f17e3e",
+     "2bda6bbaa0f4",
+     "576735782caf",
+     "ccb8e9b2b433",
+     "7fdd18a7b2f3",
+     "31f7778b075f",
+     "5588d97c2d3f",
+     "07a7509679ca",
+     "b6521e72ab13",
+     "c53c61f7b4f0",
+     "8ca7a0067c75",
+     "d30e46a7a6fb",
+     "24a869cd56e4",
+     "39cb0c5ecb3a",
+     "26ff10639e96",
+     "b0619547ca09",
+     "2a78d6851732",
+     "bee874c288d6",
+     "11ee890705b8",
+     "8d537ee379b5"
+    ],
+    "4200": [
+     "4f520fefae87",
+     "5f861b2fd074",
+     "f0e8621cda58",
+     "af7a9d7088ed",
+     "fefc51d3a0fe",
+     "c4591d57c6a8",
+     "319f45f6818b",
+     "f780d957b163",
+     "1112612065c9",
+     "f2f32544b850",
+     "cf1a2467dfd7",
+     "245f8c54cacf",
+     "bb24508e9bbc",
+     "646e01661057",
+     "0d1fdde655ac",
+     "e4c3f3389fe6",
+     "6b6cc99dbff5",
+     "dd5ea0ef5491",
+     "8dfae8d861c4",
+     "414153554794"
+    ]
+   },
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "x50": 4085.0
+  },
+  {
+   "band": [
+    3960,
+    null
+   ],
+   "band_closed": false,
+   "bisection": [
+    4044,
+    4075
+   ],
+   "controller": "alinea",
+   "grid": [
+    3860,
+    3960,
+    4060,
+    4160,
+    4200
+   ],
+   "monotone_within_ci": true,
+   "param": "main_demand",
+   "pass_side": "low",
+   "points": [
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 18,
+     "rate": 0.9,
+     "wilson95": [
+      0.699,
+      0.9721
+     ],
+     "x": 3860
+    },
+    {
+     "class": "pass",
+     "n": 20,
+     "passes": 15,
+     "rate": 0.75,
+     "wilson95": [
+      0.5313,
+      0.8881
+     ],
+     "x": 3960
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 12,
+     "rate": 0.6,
+     "wilson95": [
+      0.3866,
+      0.7812
+     ],
+     "x": 4060
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 6,
+     "rate": 0.3,
+     "wilson95": [
+      0.1455,
+      0.519
+     ],
+     "x": 4160
+    },
+    {
+     "class": "undecided",
+     "n": 20,
+     "passes": 7,
+     "rate": 0.35,
+     "wilson95": [
+      0.1812,
+      0.5671
+     ],
+     "x": 4200
+    }
+   ],
+   "run_ids": {
+    "3860": [
+     "eea5a6f3026c",
+     "1c7a3c3aafb2",
+     "87e1455dfcff",
+     "5133ee915f7b",
+     "166d61ed5b39",
+     "b071857e5524",
+     "173867b6a91d",
+     "f9b9f4784dbf",
+     "cc8108918581",
+     "3f47e9d11d94",
+     "049fccdc4c1d",
+     "4aaecec77241",
+     "f678784d6d92",
+     "6c21f1b4690d",
+     "25a335bc9f93",
+     "55df675b42f2",
+     "7ed3901a6a17",
+     "76b869038775",
+     "cf5df156afb7",
+     "b7fb891ffc48"
+    ],
+    "3960": [
+     "7ad914530af7",
+     "5f6613834e63",
+     "019198f104a1",
+     "bc0d3381d7d2",
+     "2832e14e8629",
+     "d612e809d596",
+     "735a48652f8a",
+     "80992fbd7032",
+     "ecd36ffb350c",
+     "2728bda2db0e",
+     "6eab01ed257c",
+     "21d5a42bd159",
+     "1722163b12e4",
+     "ddb68e613f4b",
+     "8330588cf0c6",
+     "4d74bb15e115",
+     "85b87c588002",
+     "ea09316d68a8",
+     "2774f368aa62",
+     "e11e1652caaa"
+    ],
+    "4060": [
+     "0c281ad8da4c",
+     "3cd124b95847",
+     "f337908b3d2b",
+     "4983112160fa",
+     "9c6248460f27",
+     "868d70d2f932",
+     "8619b2f2fc6d",
+     "37e155400358",
+     "2bb125637530",
+     "d855c86f9099",
+     "9e122dfd2782",
+     "add3fc0d0c7b",
+     "70e76a67e311",
+     "54469f2da596",
+     "75466a9b474e",
+     "55248e3dfac8",
+     "933fbcf96307",
+     "4dff9caa7507",
+     "8430a677d710",
+     "4a91d61eaa76"
+    ],
+    "4160": [
+     "00c8e3a5a392",
+     "948060da197e",
+     "dbf7f596b302",
+     "3182e412a836",
+     "1f49a9a71621",
+     "930a5f42f9ff",
+     "68cb3d61112b",
+     "47e3860c6cc6",
+     "0dfad7e1aba4",
+     "4f1704e15fe6",
+     "a5064da4725c",
+     "fc149004b0d3",
+     "09ec26ec1d6a",
+     "e3490382f8b5",
+     "f91ddf5bb421",
+     "9bd6c3622029",
+     "bbff9c41fcc0",
+     "ecc90fec852e",
+     "fde7d3609089",
+     "769403fd1e08"
+    ],
+    "4200": [
+     "e19e03b4204d",
+     "8e58417b68da",
+     "de9ef97739c9",
+     "2c8b05042f40",
+     "16c5625e4aeb",
+     "9805dae7955f",
+     "57165016052a",
+     "001981e1261c",
+     "73b8cca06958",
+     "c09d05389540",
+     "643a52b46051",
+     "0348c47243ce",
+     "2c9585cbb266",
+     "a0d4bcc7e16f",
+     "e395e43d0f42",
+     "c7567825e5bd",
+     "c7a5e4a37069",
+     "0fe91baf4d1c",
+     "68f361e52d08",
+     "8e6ba30bb265"
+    ]
+   },
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "x50": 4096.36
+  }
+ ],
+ "runs_executed": 908,
+ "screen": {},
+ "stop_reason": "max_probes=3 reached",
+ "verdict_counts": {
+  "FAIL": 413,
+  "INVALID": 0,
+  "PASS": 495
+ }
+}

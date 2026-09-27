@@ -1,13 +1,15 @@
-"""Check that results/report.json is consistent with results/runs.jsonl (claims, verdicts, evidence)."""
+"""Check results/ for internal consistency: the main report against runs.jsonl (claims, verdicts,
+evidence, refinement and Morris design) and the diagnosis / LLM summaries against their logs."""
 import argparse
 import sys
 
 import _path  # noqa: F401
-from simeval.report import verify
+from simeval.report import verify, verify_experiments
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--dir", default=str(_path.ROOT / "results"))
-problems = verify(ap.parse_args().dir)
+d = ap.parse_args().dir
+problems = verify(d) + verify_experiments(d)
 for p in problems:
     print("PROBLEM:", p)
 print("OK" if not problems else f"{len(problems)} problem(s)")

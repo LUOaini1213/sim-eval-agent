@@ -40,7 +40,7 @@ def test_v1_invalid_run_reproduces_with_legacy_closure_and_is_clean_with_the_fix
     from simeval.scenario import Scenario
 
     s = Scenario(main_demand=3038, ramp_demand=394, truck_share=0.099, incident_start=806, incident_duration=206,
-                 sigma=0.4688, controller="alinea", seed=1)
+                 sigma=0.4688, controller="fixed", seed=1)
     assert s.id == "6d30a934cf4b"
     net = str(ROOT / "network" / "merge.net.xml")
     legacy = _run_one((s.canonical(), net, str(tmp_path / "l"), False, {**LEGACY_OPTIONS.as_dict(), "log_warnings": True}))

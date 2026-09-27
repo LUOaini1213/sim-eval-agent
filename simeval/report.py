@@ -14,7 +14,8 @@ from statistics import mean
 from . import criteria
 from .attribution import majority_fail
 from .criteria import CRITERIA, INVALID, PASS
-from .scenario import PARAMS
+from .scenario import PARAMS, Scenario
+from .stats import boundary_from_rates
 
 KPI_COLS = ("mean_delay_s", "ramp_p95_delay_s", "merge_speed_kmh", "ttc_per_1000veh",
             "throughput_veh", "ramp_queue_max_veh", "teleports", "collisions")
@@ -33,6 +34,8 @@ def _mean(rs: list[dict], k: str) -> float | None:
 
 
 def build_claims(result: dict) -> list[dict]:
+    from .agent import morris_summary
+
     runs, nominal, seeds = result["runs"], result["nominal"], result["config"]["seeds"]
     claims: list[dict] = []
 
@@ -107,6 +110,39 @@ def build_claims(result: dict) -> list[dict]:
             ids,
         )
 
+    by_id = {r["id"]: r for r in runs}
+    for rf in result.get("refined") or []:
+        counts = [(x, sum(by_id[i]["eval"]["verdict"] == PASS for i in rf["run_ids"][str(x)]), len(rf["run_ids"][str(x)]))
+                  for x in rf["grid"]]
+        res = boundary_from_rates(counts, rf["pass_side"])
+        add(
+            f"Refined boundary, controller '{rf['controller']}' along '{rf['param']}' ({PARAMS[rf['param']].unit}): "
+            f"pass rate over {len(rf['seeds'])} paired seeds at {len(counts)} values; Wilson 95% band "
+            f"{res['band']}, 50% crossing of the isotonic fit x50={res['x50']} "
+            f"(5-seed bisection gave {rf['bisection']}).",
+            {"controller": rf["controller"], "param": rf["param"], "bisection": rf["bisection"],
+             "band": res["band"], "x50": res["x50"], "band_closed": res["band_closed"],
+             "monotone_within_ci": res["monotone_within_ci"], "points": res["points"]},
+            [i for x in rf["grid"] for i in rf["run_ids"][str(x)]],
+        )
+
+    mo_res = result.get("morris") or {}
+    for c in result["config"]["controllers"]:
+        if c not in mo_res.get("by_controller", {}):
+            continue
+        nom = Scenario.from_dict(nominal)
+        summ = morris_summary(by_id, mo_res["trajectories"], mo_res["ranges"], c, mo_res["seeds"], nom)
+        ids = sorted({nom.with_(controller=c, seed=s, **pt).id
+                      for pts in mo_res["trajectories"] for pt in pts for s in mo_res["seeds"]})
+        add(
+            f"Morris screening (run margin; r={mo_res['r']} trajectories, {mo_res['levels']} levels, "
+            f"paired seeds {mo_res['seeds']}, calibrated ranges), controller '{c}': "
+            f"ranking by mu* {summ['ranking']}.",
+            {"ranking": summ["ranking"], "stats": summ["stats"], "runs": summ["runs"],
+             "not_pass_runs": summ["not_pass_runs"], "invalid_runs": summ["invalid_runs"]},
+            ids,
+        )
+
     by_crit = {c.kpi: [r["id"] for r in runs if c.kpi in r["eval"]["failed"]] for c in CRITERIA}
     add("Failure modes over all runs: number of runs violating each criterion.",
         {k: len(v) for k, v in by_crit.items()} | {"runs": len(runs)}, sorted({i for v in by_crit.values() for i in v}))
@@ -145,7 +181,7 @@ def write_all(result: dict, meta: dict, out_dir: Path) -> dict:
 
 
 RESULT_KEYS = ("config", "nominal", "policy", "stop_reason", "runs_executed", "batches", "actions",
-               "screen", "oat", "boundaries")
+               "screen", "oat", "boundaries", "refined", "morris")
 
 
 def rebuild(results_dir: Path) -> dict:
@@ -171,10 +207,11 @@ def verify(results_dir: Path) -> list[str]:
         again = criteria.evaluate(r["kpis"])
         if again != r["eval"]:
             problems.append(f"run {r['id']}: stored eval differs from criteria applied to its KPIs")
-    result = {k: rep[k] for k in ("config", "nominal", "oat", "boundaries", "screen")} | {"runs": runs}
+    result = {k: rep.get(k) for k in ("config", "nominal", "oat", "boundaries", "screen", "refined", "morris")} | {"runs": runs}
     fresh = build_claims(result)
     if fresh != rep["claims"]:
         problems.append("claims in report.json differ from claims rebuilt from runs.jsonl")
+    problems += verify_design(rep)
     for c in rep["claims"]:
         missing = [e for e in c["evidence"] if e not in ids]
         if missing:
@@ -184,6 +221,28 @@ def verify(results_dir: Path) -> list[str]:
             vs = [next(r for r in runs if r["id"] == i)["eval"]["verdict"] for i in st["run_ids"]]
             if vs != st["verdicts"] or majority_fail(vs) != st["failed"]:
                 problems.append(f"boundary {b['controller']}/{b['param']} step {st['value']}: verdicts mismatch")
+    return problems
+
+
+def verify_design(rep: dict) -> list[str]:
+    """The stored refinement / Morris design must follow from the stored boundaries and config."""
+    from .morris import calibrated_ranges, scale, trajectories
+
+    problems = []
+    for rf in rep.get("refined") or []:
+        b = next((b for b in rep["boundaries"] if b["controller"] == rf["controller"] and b["param"] == rf["param"]), None)
+        if b is None or [b["last_pass"], b["first_fail"]] != rf["bisection"]:
+            problems.append(f"refined {rf['controller']}/{rf['param']}: no matching bisection boundary")
+    mo_res = rep.get("morris") or {}
+    if mo_res:
+        cfg = rep["config"]
+        ranges = calibrated_ranges(rep["nominal"], rep["boundaries"])
+        traj = [[scale(u, ranges) for u in pts]
+                for pts in trajectories(list(PARAMS), cfg["morris_r"], cfg["morris_levels"], seed=cfg["agent_seed"])]
+        if ranges != mo_res["ranges"]:
+            problems.append("Morris ranges differ from calibrated_ranges(nominal, boundaries)")
+        if traj != mo_res["trajectories"]:
+            problems.append("Morris trajectories differ from the design implied by the config")
     return problems
 
 
@@ -229,6 +288,36 @@ def render_markdown(rep: dict) -> str:
     if not rep["boundaries"]:
         L.append("| - | - | - | - | - | - | - | - | - |")
 
+    if rep.get("refined"):
+        L += ["", "## Refined boundaries (pass rate over paired seeds, Wilson 95% interval)", "",
+              "Rule: a value is confidently PASS if the interval's lower end > 0.5, confidently not-PASS if its "
+              "upper end < 0.5. The band runs from the last confidently-PASS value to the first confidently-not-PASS "
+              "value; x50 is where the isotonic fit of the pass rate crosses 0.5.", ""]
+        for c in rep["claims"]:
+            if not c["text"].startswith("Refined boundary"):
+                continue
+            v = c["values"]
+            L += [f"### {v['controller']} / {v['param']}: band {v['band']}, x50 {v['x50']} (bisection {v['bisection']})", "",
+                  "| value | passes / n | rate | Wilson 95% | class |", "|---|---|---|---|---|"]
+            L += [f"| {_fmt(pt['x'])} | {pt['passes']}/{pt['n']} | {pt['rate']:.2f} | "
+                  f"{pt['wilson95'][0]:.2f}-{pt['wilson95'][1]:.2f} | {pt['class']} |" for pt in v["points"]]
+            L.append("")
+    if rep.get("morris"):
+        mo_res = rep["morris"]
+        L += ["", "## Morris screening (elementary effects of the run margin, per unit of calibrated range)", "",
+              "| parameter | range | rule |", "|---|---|---|"]
+        L += [f"| {k} | {_fmt(v['lo'])}..{_fmt(v['hi'])} | {v['rule']} |" for k, v in mo_res["ranges"].items()]
+        for c in rep["claims"]:
+            if not c["text"].startswith("Morris screening"):
+                continue
+            v = c["values"]
+            name = c["text"].split("'")[1]
+            L += ["", f"### controller `{name}` ({v['runs']} runs, {v['not_pass_runs']} not-PASS, {v['invalid_runs']} INVALID)", "",
+                  "| parameter | mu* | mu | sigma | sigma_seed | n |", "|---|---|---|---|---|---|"]
+            L += [f"| {f} | {v['stats'][f]['mu_star']:.4f} | {v['stats'][f]['mu']:.4f} | {v['stats'][f]['sigma']:.4f} | "
+                  f"{v['stats'][f]['sigma_seed']:.4f} | {v['stats'][f]['n']} |" for f in v["ranking"]]
+        L.append("")
+
     L += ["", "## One-at-a-time sensitivity (paired seeds; delta of run margin vs nominal)", ""]
     for c in rep["config"]["controllers"]:
         rows = rep["oat"].get(c, [])
@@ -264,3 +353,46 @@ def render_markdown(rep: dict) -> str:
               "values: `" + json.dumps(c["values"], sort_keys=True) + "`", "",
               f"evidence ({len(c['evidence'])} runs): {ev}{more}", ""]
     return "\n".join(L) + "\n"
+
+
+# ---------------------------------------------------------------------- experiments
+def verify_experiments(results_dir: Path) -> list[str]:
+    """Recompute results/diagnosis and results/llm summaries from their run/log files."""
+    from .diagnosis import build_summary
+    from .llm_compare import summarize_campaigns
+
+    d = Path(results_dir)
+    problems = []
+    diag = d / "diagnosis"
+    if (diag / "summary.json").exists():
+        stored = json.loads((diag / "summary.json").read_text(encoding="utf-8"))
+        recs = load_runs(diag / "runs.jsonl")
+        fresh = build_summary(recs, load_runs(d / "v1" / "runs.jsonl"), stored["compare_ids"], stored["invalid_ids"])
+        if {k: v for k, v in stored.items() if k != "meta"} != fresh:
+            problems.append("diagnosis/summary.json differs from the summary rebuilt from diagnosis/runs.jsonl")
+        for r in recs:
+            if r["kpis"]["collisions"] != len(r["log"]["collisions"]):
+                problems.append(f"diagnosis run {r['config']}/{r['id']}: collision count differs from the SUMO log")
+    llm = d / "llm"
+    if (llm / "summary.json").exists():
+        stored = json.loads((llm / "summary.json").read_text(encoding="utf-8"))
+        logs = load_runs(llm / "llm_log.jsonl")
+        fresh = summarize_campaigns(stored["campaigns"], logs)
+        if fresh["per_campaign"] != stored["per_campaign"] or fresh["totals"] != stored["totals"]:
+            problems.append("llm/summary.json differs from the summary rebuilt from llm/llm_log.jsonl")
+        runs = {r["id"]: r for r in load_runs(d / "runs.jsonl")}
+        runs |= {r["id"]: r for r in load_runs(llm / "runs_extra.jsonl")} if (llm / "runs_extra.jsonl").exists() else {}
+        for c in stored["campaigns"]:
+            for b in c["boundaries"]:
+                for st in b["steps"]:
+                    missing = [i for i in st["run_ids"] if i not in runs]
+                    if missing:
+                        problems.append(f"llm {c['name']} {b['controller']}/{b['param']}: runs {missing[:2]} not on record")
+                        continue
+                    vs = [criteria.evaluate(runs[i]["kpis"])["verdict"] for i in st["run_ids"]]
+                    if vs != st["verdicts"] or majority_fail(vs) != st["failed"]:
+                        problems.append(f"llm {c['name']} {b['controller']}/{b['param']} step {st['value']}: verdicts mismatch")
+        for e in logs:
+            if e["accepted"] != (e["rejection"] is None) or (e["accepted"] and e["used"] != e["parsed"]):
+                problems.append(f"llm log {e['campaign']}#{e['step']}: accepted/used inconsistent")
+    return problems

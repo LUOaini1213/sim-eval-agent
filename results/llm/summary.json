@@ -1,0 +1,2948 @@
+{
+ "campaigns": [
+  {
+   "actions": [
+    {
+     "action": "probe:ramp_demand:hi",
+     "policy": "deterministic",
+     "runs_so_far": 125,
+     "why": "largest paired |mean delta margin| among unprobed directions with a verdict flip (probe:ramp_demand:hi)"
+    },
+    {
+     "action": "probe:incident_duration:hi",
+     "policy": "deterministic",
+     "runs_so_far": 150,
+     "why": "largest paired |mean delta margin| among unprobed directions with a verdict flip (probe:incident_duration:hi)"
+    },
+    {
+     "action": "probe:main_demand:hi",
+     "policy": "deterministic",
+     "runs_so_far": 200,
+     "why": "largest paired |mean delta margin| among unprobed directions with a verdict flip (probe:main_demand:hi)"
+    }
+   ],
+   "boundaries": [
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 806,
+     "last_pass": 788,
+     "param": "ramp_demand",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "cb3b606025db",
+        "192204924fec",
+        "230ddfaac8a6",
+        "6eeb71e440d6",
+        "79cebad1278e"
+       ],
+       "value": 900,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "50e1432e6cae",
+        "dfe9491cb231",
+        "a161372b4ebc",
+        "aa5b6f81f3ac",
+        "5de2457bd04c"
+       ],
+       "value": 750,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "39adcd61a61c",
+        "56374720a12f",
+        "6822053e1e54",
+        "d2d9c619c07f",
+        "e6721ddebeb9"
+       ],
+       "value": 825,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "c863b6f279ca",
+        "aa0a5b54f6b1",
+        "26857bdc104e",
+        "b6db6ce7dc87",
+        "e99d0e2eb872"
+       ],
+       "value": 788,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "8f8c45969a37",
+        "1fd401bcc3eb",
+        "c381a31dae9f",
+        "999513ac4970",
+        "26f74ebf780f"
+       ],
+       "value": 806,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 254,
+     "last_pass": 225,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "896e3c944088",
+        "51e443b33936",
+        "4659e0704e4b",
+        "0f6aa5f69187",
+        "61eb04f1e0a1"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "7a80b2c6e822",
+        "a56d08b00c29",
+        "b177c9de0bc6",
+        "20bc5dfb77c5",
+        "05da049a6203"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "7d14be8071c9",
+        "a4a547d84615",
+        "0e9ba335746d",
+        "29a0679bddd3",
+        "87eb4dab79a8"
+       ],
+       "value": 338,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "de325166dc1f",
+        "f2be735e0f3c",
+        "99f8e3c4260a",
+        "f391acfca4a6",
+        "e81ec4374788"
+       ],
+       "value": 282,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "6ceb47f37d45",
+        "200fa7eabea0",
+        "1a9fe3581d59",
+        "3cd0c106d771",
+        "e7332f22383d"
+       ],
+       "value": 254,
+       "verdicts": [
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": true,
+     "first_fail": 225,
+     "last_pass": 196,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "a18cc4fa1d08",
+        "afb86c7922a0",
+        "063058d8c2b0",
+        "8ba1e5f6362c",
+        "f9edcbfb0c77"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "498a9c62e32b",
+        "d7f3c185f20c",
+        "796b15404388",
+        "bee2fe6e2ac5",
+        "8cf7269f2da4"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "1da2d3700e1b",
+        "4c51fc98be8a",
+        "56e181ed16c5",
+        "89f07b42bdcb",
+        "d7141c76c8d6"
+       ],
+       "value": 112,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "b6b5a3b8d380",
+        "73a6726575da",
+        "203217f31684",
+        "107a0180766a",
+        "4cad7daed17a"
+       ],
+       "value": 168,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "6898b7c9e721",
+        "6e35a6bf8b3a",
+        "983cc4ce5740",
+        "2f14207208c4",
+        "672fd7385dfe"
+       ],
+       "value": 196,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": false,
+     "first_fail": 4200,
+     "last_pass": 3950,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "299ffd1b099d",
+        "d62867fefa2a",
+        "9333599fd202",
+        "90b406cc833a",
+        "43beb326f4fb"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "94afa60b1f4d",
+        "66d4c6ff3e3c",
+        "8501615bcabf",
+        "9959eb2dbb9e",
+        "abe3ef0c8651"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": false,
+     "first_fail": 4200,
+     "last_pass": 3950,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "620212116390",
+        "d65ed62c59ad",
+        "145ca1b692b7",
+        "d8d504165916",
+        "2af46fa18f45"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "81ca524238b4",
+        "a942224184a8",
+        "16c2f3457f58",
+        "8747b6fd4be7",
+        "722710a6e381"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      }
+     ]
+    }
+   ],
+   "budget": 225,
+   "name": "deterministic",
+   "policy": "deterministic",
+   "runs_used": 220,
+   "seed": null,
+   "simulated": 0,
+   "stop_reason": "budget of 225 runs would be exceeded in phase probe:main_demand:hi",
+   "temperature": null,
+   "wall_s": 0.1
+  },
+  {
+   "actions": [
+    {
+     "action": "probe:main_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 125,
+     "why": "chosen by LLM from the closed vocabulary"
+    },
+    {
+     "action": "probe:ramp_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 175,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    },
+    {
+     "action": "probe:incident_duration:hi",
+     "policy": "llm",
+     "runs_so_far": 200,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    }
+   ],
+   "boundaries": [
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "299ffd1b099d",
+        "d62867fefa2a",
+        "9333599fd202",
+        "90b406cc833a",
+        "43beb326f4fb"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "94afa60b1f4d",
+        "66d4c6ff3e3c",
+        "8501615bcabf",
+        "9959eb2dbb9e",
+        "abe3ef0c8651"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "22c4c180b92a",
+        "adaccb634de5",
+        "4a6721522e6d",
+        "dfe0cac3d9fb",
+        "5727f57c6b03"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4b93866bb9e2",
+        "62a2cbaf790c",
+        "e19b7749e861",
+        "f2d7eff7cf46",
+        "5f1a87bf649d"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "5735e19acc46",
+        "35a427f672d3",
+        "dee507fd2fb3",
+        "085fcd30041a",
+        "720c8fd2cd5d"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "620212116390",
+        "d65ed62c59ad",
+        "145ca1b692b7",
+        "d8d504165916",
+        "2af46fa18f45"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "81ca524238b4",
+        "a942224184a8",
+        "16c2f3457f58",
+        "8747b6fd4be7",
+        "722710a6e381"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "42156a89a688",
+        "04498198b89b",
+        "62cd4a0567bc",
+        "ae7b578fad66",
+        "0ffbe6a5278b"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "37a79becc6e2",
+        "6a6feec9dccf",
+        "84ddc8cd69d3",
+        "9e7fe8ade3c3",
+        "241e2f39565b"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4fb5d9502efe",
+        "0e90fa89f39c",
+        "cd76d11cd57c",
+        "9015246c364c",
+        "684cf981d116"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 806,
+     "last_pass": 788,
+     "param": "ramp_demand",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "cb3b606025db",
+        "192204924fec",
+        "230ddfaac8a6",
+        "6eeb71e440d6",
+        "79cebad1278e"
+       ],
+       "value": 900,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "50e1432e6cae",
+        "dfe9491cb231",
+        "a161372b4ebc",
+        "aa5b6f81f3ac",
+        "5de2457bd04c"
+       ],
+       "value": 750,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "39adcd61a61c",
+        "56374720a12f",
+        "6822053e1e54",
+        "d2d9c619c07f",
+        "e6721ddebeb9"
+       ],
+       "value": 825,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "c863b6f279ca",
+        "aa0a5b54f6b1",
+        "26857bdc104e",
+        "b6db6ce7dc87",
+        "e99d0e2eb872"
+       ],
+       "value": 788,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "8f8c45969a37",
+        "1fd401bcc3eb",
+        "c381a31dae9f",
+        "999513ac4970",
+        "26f74ebf780f"
+       ],
+       "value": 806,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": false,
+     "first_fail": 450,
+     "last_pass": 225,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "896e3c944088",
+        "51e443b33936",
+        "4659e0704e4b",
+        "0f6aa5f69187",
+        "61eb04f1e0a1"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "7a80b2c6e822",
+        "a56d08b00c29",
+        "b177c9de0bc6",
+        "20bc5dfb77c5",
+        "05da049a6203"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": false,
+     "first_fail": 225,
+     "last_pass": 0,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "a18cc4fa1d08",
+        "afb86c7922a0",
+        "063058d8c2b0",
+        "8ba1e5f6362c",
+        "f9edcbfb0c77"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "498a9c62e32b",
+        "d7f3c185f20c",
+        "796b15404388",
+        "bee2fe6e2ac5",
+        "8cf7269f2da4"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    }
+   ],
+   "budget": 225,
+   "name": "llm_t0",
+   "policy": "llm",
+   "runs_used": 220,
+   "seed": 0,
+   "simulated": 0,
+   "stop_reason": "budget of 225 runs would be exceeded in phase probe:incident_duration:hi",
+   "temperature": 0.0,
+   "wall_s": 62.0
+  },
+  {
+   "actions": [
+    {
+     "action": "probe:main_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 125,
+     "why": "chosen by LLM from the closed vocabulary"
+    },
+    {
+     "action": "probe:ramp_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 175,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    },
+    {
+     "action": "probe:incident_duration:hi",
+     "policy": "llm",
+     "runs_so_far": 200,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    }
+   ],
+   "boundaries": [
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "299ffd1b099d",
+        "d62867fefa2a",
+        "9333599fd202",
+        "90b406cc833a",
+        "43beb326f4fb"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "94afa60b1f4d",
+        "66d4c6ff3e3c",
+        "8501615bcabf",
+        "9959eb2dbb9e",
+        "abe3ef0c8651"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "22c4c180b92a",
+        "adaccb634de5",
+        "4a6721522e6d",
+        "dfe0cac3d9fb",
+        "5727f57c6b03"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4b93866bb9e2",
+        "62a2cbaf790c",
+        "e19b7749e861",
+        "f2d7eff7cf46",
+        "5f1a87bf649d"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "5735e19acc46",
+        "35a427f672d3",
+        "dee507fd2fb3",
+        "085fcd30041a",
+        "720c8fd2cd5d"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "620212116390",
+        "d65ed62c59ad",
+        "145ca1b692b7",
+        "d8d504165916",
+        "2af46fa18f45"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "81ca524238b4",
+        "a942224184a8",
+        "16c2f3457f58",
+        "8747b6fd4be7",
+        "722710a6e381"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "42156a89a688",
+        "04498198b89b",
+        "62cd4a0567bc",
+        "ae7b578fad66",
+        "0ffbe6a5278b"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "37a79becc6e2",
+        "6a6feec9dccf",
+        "84ddc8cd69d3",
+        "9e7fe8ade3c3",
+        "241e2f39565b"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4fb5d9502efe",
+        "0e90fa89f39c",
+        "cd76d11cd57c",
+        "9015246c364c",
+        "684cf981d116"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 806,
+     "last_pass": 788,
+     "param": "ramp_demand",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "cb3b606025db",
+        "192204924fec",
+        "230ddfaac8a6",
+        "6eeb71e440d6",
+        "79cebad1278e"
+       ],
+       "value": 900,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "50e1432e6cae",
+        "dfe9491cb231",
+        "a161372b4ebc",
+        "aa5b6f81f3ac",
+        "5de2457bd04c"
+       ],
+       "value": 750,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "39adcd61a61c",
+        "56374720a12f",
+        "6822053e1e54",
+        "d2d9c619c07f",
+        "e6721ddebeb9"
+       ],
+       "value": 825,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "c863b6f279ca",
+        "aa0a5b54f6b1",
+        "26857bdc104e",
+        "b6db6ce7dc87",
+        "e99d0e2eb872"
+       ],
+       "value": 788,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "8f8c45969a37",
+        "1fd401bcc3eb",
+        "c381a31dae9f",
+        "999513ac4970",
+        "26f74ebf780f"
+       ],
+       "value": 806,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": false,
+     "first_fail": 450,
+     "last_pass": 225,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "896e3c944088",
+        "51e443b33936",
+        "4659e0704e4b",
+        "0f6aa5f69187",
+        "61eb04f1e0a1"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "7a80b2c6e822",
+        "a56d08b00c29",
+        "b177c9de0bc6",
+        "20bc5dfb77c5",
+        "05da049a6203"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": false,
+     "first_fail": 225,
+     "last_pass": 0,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "a18cc4fa1d08",
+        "afb86c7922a0",
+        "063058d8c2b0",
+        "8ba1e5f6362c",
+        "f9edcbfb0c77"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "498a9c62e32b",
+        "d7f3c185f20c",
+        "796b15404388",
+        "bee2fe6e2ac5",
+        "8cf7269f2da4"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    }
+   ],
+   "budget": 225,
+   "name": "llm_t07_s1",
+   "policy": "llm",
+   "runs_used": 220,
+   "seed": 1,
+   "simulated": 0,
+   "stop_reason": "budget of 225 runs would be exceeded in phase probe:incident_duration:hi",
+   "temperature": 0.7,
+   "wall_s": 20.8
+  },
+  {
+   "actions": [
+    {
+     "action": "probe:main_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 125,
+     "why": "chosen by LLM from the closed vocabulary"
+    },
+    {
+     "action": "probe:ramp_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 175,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    },
+    {
+     "action": "probe:incident_duration:hi",
+     "policy": "llm",
+     "runs_so_far": 200,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    }
+   ],
+   "boundaries": [
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "299ffd1b099d",
+        "d62867fefa2a",
+        "9333599fd202",
+        "90b406cc833a",
+        "43beb326f4fb"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "94afa60b1f4d",
+        "66d4c6ff3e3c",
+        "8501615bcabf",
+        "9959eb2dbb9e",
+        "abe3ef0c8651"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "22c4c180b92a",
+        "adaccb634de5",
+        "4a6721522e6d",
+        "dfe0cac3d9fb",
+        "5727f57c6b03"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4b93866bb9e2",
+        "62a2cbaf790c",
+        "e19b7749e861",
+        "f2d7eff7cf46",
+        "5f1a87bf649d"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "5735e19acc46",
+        "35a427f672d3",
+        "dee507fd2fb3",
+        "085fcd30041a",
+        "720c8fd2cd5d"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "620212116390",
+        "d65ed62c59ad",
+        "145ca1b692b7",
+        "d8d504165916",
+        "2af46fa18f45"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "81ca524238b4",
+        "a942224184a8",
+        "16c2f3457f58",
+        "8747b6fd4be7",
+        "722710a6e381"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "42156a89a688",
+        "04498198b89b",
+        "62cd4a0567bc",
+        "ae7b578fad66",
+        "0ffbe6a5278b"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "37a79becc6e2",
+        "6a6feec9dccf",
+        "84ddc8cd69d3",
+        "9e7fe8ade3c3",
+        "241e2f39565b"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4fb5d9502efe",
+        "0e90fa89f39c",
+        "cd76d11cd57c",
+        "9015246c364c",
+        "684cf981d116"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 806,
+     "last_pass": 788,
+     "param": "ramp_demand",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "cb3b606025db",
+        "192204924fec",
+        "230ddfaac8a6",
+        "6eeb71e440d6",
+        "79cebad1278e"
+       ],
+       "value": 900,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "50e1432e6cae",
+        "dfe9491cb231",
+        "a161372b4ebc",
+        "aa5b6f81f3ac",
+        "5de2457bd04c"
+       ],
+       "value": 750,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "39adcd61a61c",
+        "56374720a12f",
+        "6822053e1e54",
+        "d2d9c619c07f",
+        "e6721ddebeb9"
+       ],
+       "value": 825,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "c863b6f279ca",
+        "aa0a5b54f6b1",
+        "26857bdc104e",
+        "b6db6ce7dc87",
+        "e99d0e2eb872"
+       ],
+       "value": 788,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "8f8c45969a37",
+        "1fd401bcc3eb",
+        "c381a31dae9f",
+        "999513ac4970",
+        "26f74ebf780f"
+       ],
+       "value": 806,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": false,
+     "first_fail": 450,
+     "last_pass": 225,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "896e3c944088",
+        "51e443b33936",
+        "4659e0704e4b",
+        "0f6aa5f69187",
+        "61eb04f1e0a1"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "7a80b2c6e822",
+        "a56d08b00c29",
+        "b177c9de0bc6",
+        "20bc5dfb77c5",
+        "05da049a6203"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": false,
+     "first_fail": 225,
+     "last_pass": 0,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "a18cc4fa1d08",
+        "afb86c7922a0",
+        "063058d8c2b0",
+        "8ba1e5f6362c",
+        "f9edcbfb0c77"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "498a9c62e32b",
+        "d7f3c185f20c",
+        "796b15404388",
+        "bee2fe6e2ac5",
+        "8cf7269f2da4"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    }
+   ],
+   "budget": 225,
+   "name": "llm_t07_s2",
+   "policy": "llm",
+   "runs_used": 220,
+   "seed": 2,
+   "simulated": 0,
+   "stop_reason": "budget of 225 runs would be exceeded in phase probe:incident_duration:hi",
+   "temperature": 0.7,
+   "wall_s": 20.8
+  },
+  {
+   "actions": [
+    {
+     "action": "probe:main_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 125,
+     "why": "chosen by LLM from the closed vocabulary"
+    },
+    {
+     "action": "probe:ramp_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 175,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    },
+    {
+     "action": "probe:incident_duration:hi",
+     "policy": "llm",
+     "runs_so_far": 200,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    }
+   ],
+   "boundaries": [
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "299ffd1b099d",
+        "d62867fefa2a",
+        "9333599fd202",
+        "90b406cc833a",
+        "43beb326f4fb"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "94afa60b1f4d",
+        "66d4c6ff3e3c",
+        "8501615bcabf",
+        "9959eb2dbb9e",
+        "abe3ef0c8651"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "22c4c180b92a",
+        "adaccb634de5",
+        "4a6721522e6d",
+        "dfe0cac3d9fb",
+        "5727f57c6b03"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4b93866bb9e2",
+        "62a2cbaf790c",
+        "e19b7749e861",
+        "f2d7eff7cf46",
+        "5f1a87bf649d"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "5735e19acc46",
+        "35a427f672d3",
+        "dee507fd2fb3",
+        "085fcd30041a",
+        "720c8fd2cd5d"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "620212116390",
+        "d65ed62c59ad",
+        "145ca1b692b7",
+        "d8d504165916",
+        "2af46fa18f45"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "81ca524238b4",
+        "a942224184a8",
+        "16c2f3457f58",
+        "8747b6fd4be7",
+        "722710a6e381"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "42156a89a688",
+        "04498198b89b",
+        "62cd4a0567bc",
+        "ae7b578fad66",
+        "0ffbe6a5278b"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "37a79becc6e2",
+        "6a6feec9dccf",
+        "84ddc8cd69d3",
+        "9e7fe8ade3c3",
+        "241e2f39565b"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4fb5d9502efe",
+        "0e90fa89f39c",
+        "cd76d11cd57c",
+        "9015246c364c",
+        "684cf981d116"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 806,
+     "last_pass": 788,
+     "param": "ramp_demand",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "cb3b606025db",
+        "192204924fec",
+        "230ddfaac8a6",
+        "6eeb71e440d6",
+        "79cebad1278e"
+       ],
+       "value": 900,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "50e1432e6cae",
+        "dfe9491cb231",
+        "a161372b4ebc",
+        "aa5b6f81f3ac",
+        "5de2457bd04c"
+       ],
+       "value": 750,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "39adcd61a61c",
+        "56374720a12f",
+        "6822053e1e54",
+        "d2d9c619c07f",
+        "e6721ddebeb9"
+       ],
+       "value": 825,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "c863b6f279ca",
+        "aa0a5b54f6b1",
+        "26857bdc104e",
+        "b6db6ce7dc87",
+        "e99d0e2eb872"
+       ],
+       "value": 788,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "8f8c45969a37",
+        "1fd401bcc3eb",
+        "c381a31dae9f",
+        "999513ac4970",
+        "26f74ebf780f"
+       ],
+       "value": 806,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": false,
+     "first_fail": 450,
+     "last_pass": 225,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "896e3c944088",
+        "51e443b33936",
+        "4659e0704e4b",
+        "0f6aa5f69187",
+        "61eb04f1e0a1"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "7a80b2c6e822",
+        "a56d08b00c29",
+        "b177c9de0bc6",
+        "20bc5dfb77c5",
+        "05da049a6203"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": false,
+     "first_fail": 225,
+     "last_pass": 0,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "a18cc4fa1d08",
+        "afb86c7922a0",
+        "063058d8c2b0",
+        "8ba1e5f6362c",
+        "f9edcbfb0c77"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "498a9c62e32b",
+        "d7f3c185f20c",
+        "796b15404388",
+        "bee2fe6e2ac5",
+        "8cf7269f2da4"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    }
+   ],
+   "budget": 225,
+   "name": "llm_t07_s3",
+   "policy": "llm",
+   "runs_used": 220,
+   "seed": 3,
+   "simulated": 0,
+   "stop_reason": "budget of 225 runs would be exceeded in phase probe:incident_duration:hi",
+   "temperature": 0.7,
+   "wall_s": 20.6
+  },
+  {
+   "actions": [
+    {
+     "action": "probe:main_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 125,
+     "why": "chosen by LLM from the closed vocabulary"
+    },
+    {
+     "action": "probe:ramp_demand:hi",
+     "policy": "llm",
+     "runs_so_far": 175,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    },
+    {
+     "action": "probe:incident_duration:hi",
+     "policy": "llm",
+     "runs_so_far": 200,
+     "why": "LLM reply rejected (not_allowed_now: 'probe:main_demand:lo'); deterministic fallback"
+    }
+   ],
+   "boundaries": [
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "299ffd1b099d",
+        "d62867fefa2a",
+        "9333599fd202",
+        "90b406cc833a",
+        "43beb326f4fb"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "94afa60b1f4d",
+        "66d4c6ff3e3c",
+        "8501615bcabf",
+        "9959eb2dbb9e",
+        "abe3ef0c8651"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "22c4c180b92a",
+        "adaccb634de5",
+        "4a6721522e6d",
+        "dfe0cac3d9fb",
+        "5727f57c6b03"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4b93866bb9e2",
+        "62a2cbaf790c",
+        "e19b7749e861",
+        "f2d7eff7cf46",
+        "5f1a87bf649d"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "5735e19acc46",
+        "35a427f672d3",
+        "dee507fd2fb3",
+        "085fcd30041a",
+        "720c8fd2cd5d"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": true,
+     "first_fail": 4075,
+     "last_pass": 4044,
+     "param": "main_demand",
+     "steps": [
+      {
+       "failed": false,
+       "run_ids": [
+        "620212116390",
+        "d65ed62c59ad",
+        "145ca1b692b7",
+        "d8d504165916",
+        "2af46fa18f45"
+       ],
+       "value": 3700,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "81ca524238b4",
+        "a942224184a8",
+        "16c2f3457f58",
+        "8747b6fd4be7",
+        "722710a6e381"
+       ],
+       "value": 3950,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "42156a89a688",
+        "04498198b89b",
+        "62cd4a0567bc",
+        "ae7b578fad66",
+        "0ffbe6a5278b"
+       ],
+       "value": 4075,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "37a79becc6e2",
+        "6a6feec9dccf",
+        "84ddc8cd69d3",
+        "9e7fe8ade3c3",
+        "241e2f39565b"
+       ],
+       "value": 4012,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "4fb5d9502efe",
+        "0e90fa89f39c",
+        "cd76d11cd57c",
+        "9015246c364c",
+        "684cf981d116"
+       ],
+       "value": 4044,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": true,
+     "first_fail": 806,
+     "last_pass": 788,
+     "param": "ramp_demand",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "cb3b606025db",
+        "192204924fec",
+        "230ddfaac8a6",
+        "6eeb71e440d6",
+        "79cebad1278e"
+       ],
+       "value": 900,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "50e1432e6cae",
+        "dfe9491cb231",
+        "a161372b4ebc",
+        "aa5b6f81f3ac",
+        "5de2457bd04c"
+       ],
+       "value": 750,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "39adcd61a61c",
+        "56374720a12f",
+        "6822053e1e54",
+        "d2d9c619c07f",
+        "e6721ddebeb9"
+       ],
+       "value": 825,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "c863b6f279ca",
+        "aa0a5b54f6b1",
+        "26857bdc104e",
+        "b6db6ce7dc87",
+        "e99d0e2eb872"
+       ],
+       "value": 788,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "PASS"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "8f8c45969a37",
+        "1fd401bcc3eb",
+        "c381a31dae9f",
+        "999513ac4970",
+        "26f74ebf780f"
+       ],
+       "value": 806,
+       "verdicts": [
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "fixed",
+     "converged": false,
+     "first_fail": 450,
+     "last_pass": 225,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "896e3c944088",
+        "51e443b33936",
+        "4659e0704e4b",
+        "0f6aa5f69187",
+        "61eb04f1e0a1"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": false,
+       "run_ids": [
+        "7a80b2c6e822",
+        "a56d08b00c29",
+        "b177c9de0bc6",
+        "20bc5dfb77c5",
+        "05da049a6203"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL"
+       ]
+      }
+     ]
+    },
+    {
+     "controller": "alinea",
+     "converged": false,
+     "first_fail": 225,
+     "last_pass": 0,
+     "param": "incident_duration",
+     "steps": [
+      {
+       "failed": true,
+       "run_ids": [
+        "a18cc4fa1d08",
+        "afb86c7922a0",
+        "063058d8c2b0",
+        "8ba1e5f6362c",
+        "f9edcbfb0c77"
+       ],
+       "value": 450,
+       "verdicts": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      },
+      {
+       "failed": true,
+       "run_ids": [
+        "498a9c62e32b",
+        "d7f3c185f20c",
+        "796b15404388",
+        "bee2fe6e2ac5",
+        "8cf7269f2da4"
+       ],
+       "value": 225,
+       "verdicts": [
+        "PASS",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+       ]
+      }
+     ]
+    }
+   ],
+   "budget": 225,
+   "name": "llm_t07_s4",
+   "policy": "llm",
+   "runs_used": 220,
+   "seed": 4,
+   "simulated": 0,
+   "stop_reason": "budget of 225 runs would be exceeded in phase probe:incident_duration:hi",
+   "temperature": 0.7,
+   "wall_s": 20.5
+  }
+ ],
+ "meta": {
+  "budget": 225,
+  "date": "2026-09-26",
+  "max_probes": 6,
+  "model": "qwen2.5:3b",
+  "oat_runs": 125,
+  "ollama_options": {
+   "num_gpu": 0
+  },
+  "probe_budget": 100,
+  "sumo_runs_simulated": 0,
+  "wall_time_s": 144.9
+ },
+ "per_campaign": [
+  {
+   "actions": [
+    "probe:main_demand:hi",
+    "probe:ramp_demand:hi",
+    "probe:incident_duration:hi"
+   ],
+   "agree_with_deterministic": 0,
+   "boundaries_extra_vs_deterministic": [],
+   "boundaries_found": [
+    "alinea/incident_duration",
+    "alinea/main_demand",
+    "fixed/incident_duration",
+    "fixed/main_demand",
+    "fixed/ramp_demand"
+   ],
+   "boundaries_missing_vs_deterministic": [],
+   "boundary_differences": {
+    "alinea/incident_duration": {
+     "deterministic": [
+      196,
+      225
+     ],
+     "llm": [
+      0,
+      225
+     ]
+    },
+    "alinea/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    },
+    "fixed/incident_duration": {
+     "deterministic": [
+      225,
+      254
+     ],
+     "llm": [
+      225,
+      450
+     ]
+    },
+    "fixed/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    }
+   },
+   "calls": 3,
+   "invalid": 2,
+   "latency_s_total": 61.9,
+   "name": "llm_t0",
+   "rejections": {
+    "not_allowed_now": 2
+   },
+   "runs_used": 220,
+   "same_actions_as_deterministic": false,
+   "unconverged": [
+    "alinea/incident_duration",
+    "fixed/incident_duration"
+   ],
+   "valid": 1
+  },
+  {
+   "actions": [
+    "probe:main_demand:hi",
+    "probe:ramp_demand:hi",
+    "probe:incident_duration:hi"
+   ],
+   "agree_with_deterministic": 0,
+   "boundaries_extra_vs_deterministic": [],
+   "boundaries_found": [
+    "alinea/incident_duration",
+    "alinea/main_demand",
+    "fixed/incident_duration",
+    "fixed/main_demand",
+    "fixed/ramp_demand"
+   ],
+   "boundaries_missing_vs_deterministic": [],
+   "boundary_differences": {
+    "alinea/incident_duration": {
+     "deterministic": [
+      196,
+      225
+     ],
+     "llm": [
+      0,
+      225
+     ]
+    },
+    "alinea/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    },
+    "fixed/incident_duration": {
+     "deterministic": [
+      225,
+      254
+     ],
+     "llm": [
+      225,
+      450
+     ]
+    },
+    "fixed/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    }
+   },
+   "calls": 3,
+   "invalid": 2,
+   "latency_s_total": 20.6,
+   "name": "llm_t07_s1",
+   "rejections": {
+    "not_allowed_now": 2
+   },
+   "runs_used": 220,
+   "same_actions_as_deterministic": false,
+   "unconverged": [
+    "alinea/incident_duration",
+    "fixed/incident_duration"
+   ],
+   "valid": 1
+  },
+  {
+   "actions": [
+    "probe:main_demand:hi",
+    "probe:ramp_demand:hi",
+    "probe:incident_duration:hi"
+   ],
+   "agree_with_deterministic": 0,
+   "boundaries_extra_vs_deterministic": [],
+   "boundaries_found": [
+    "alinea/incident_duration",
+    "alinea/main_demand",
+    "fixed/incident_duration",
+    "fixed/main_demand",
+    "fixed/ramp_demand"
+   ],
+   "boundaries_missing_vs_deterministic": [],
+   "boundary_differences": {
+    "alinea/incident_duration": {
+     "deterministic": [
+      196,
+      225
+     ],
+     "llm": [
+      0,
+      225
+     ]
+    },
+    "alinea/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    },
+    "fixed/incident_duration": {
+     "deterministic": [
+      225,
+      254
+     ],
+     "llm": [
+      225,
+      450
+     ]
+    },
+    "fixed/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    }
+   },
+   "calls": 3,
+   "invalid": 2,
+   "latency_s_total": 20.7,
+   "name": "llm_t07_s2",
+   "rejections": {
+    "not_allowed_now": 2
+   },
+   "runs_used": 220,
+   "same_actions_as_deterministic": false,
+   "unconverged": [
+    "alinea/incident_duration",
+    "fixed/incident_duration"
+   ],
+   "valid": 1
+  },
+  {
+   "actions": [
+    "probe:main_demand:hi",
+    "probe:ramp_demand:hi",
+    "probe:incident_duration:hi"
+   ],
+   "agree_with_deterministic": 0,
+   "boundaries_extra_vs_deterministic": [],
+   "boundaries_found": [
+    "alinea/incident_duration",
+    "alinea/main_demand",
+    "fixed/incident_duration",
+    "fixed/main_demand",
+    "fixed/ramp_demand"
+   ],
+   "boundaries_missing_vs_deterministic": [],
+   "boundary_differences": {
+    "alinea/incident_duration": {
+     "deterministic": [
+      196,
+      225
+     ],
+     "llm": [
+      0,
+      225
+     ]
+    },
+    "alinea/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    },
+    "fixed/incident_duration": {
+     "deterministic": [
+      225,
+      254
+     ],
+     "llm": [
+      225,
+      450
+     ]
+    },
+    "fixed/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    }
+   },
+   "calls": 3,
+   "invalid": 2,
+   "latency_s_total": 20.5,
+   "name": "llm_t07_s3",
+   "rejections": {
+    "not_allowed_now": 2
+   },
+   "runs_used": 220,
+   "same_actions_as_deterministic": false,
+   "unconverged": [
+    "alinea/incident_duration",
+    "fixed/incident_duration"
+   ],
+   "valid": 1
+  },
+  {
+   "actions": [
+    "probe:main_demand:hi",
+    "probe:ramp_demand:hi",
+    "probe:incident_duration:hi"
+   ],
+   "agree_with_deterministic": 0,
+   "boundaries_extra_vs_deterministic": [],
+   "boundaries_found": [
+    "alinea/incident_duration",
+    "alinea/main_demand",
+    "fixed/incident_duration",
+    "fixed/main_demand",
+    "fixed/ramp_demand"
+   ],
+   "boundaries_missing_vs_deterministic": [],
+   "boundary_differences": {
+    "alinea/incident_duration": {
+     "deterministic": [
+      196,
+      225
+     ],
+     "llm": [
+      0,
+      225
+     ]
+    },
+    "alinea/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    },
+    "fixed/incident_duration": {
+     "deterministic": [
+      225,
+      254
+     ],
+     "llm": [
+      225,
+      450
+     ]
+    },
+    "fixed/main_demand": {
+     "deterministic": [
+      3950,
+      4200
+     ],
+     "llm": [
+      4044,
+      4075
+     ]
+    }
+   },
+   "calls": 3,
+   "invalid": 2,
+   "latency_s_total": 20.4,
+   "name": "llm_t07_s4",
+   "rejections": {
+    "not_allowed_now": 2
+   },
+   "runs_used": 220,
+   "same_actions_as_deterministic": false,
+   "unconverged": [
+    "alinea/incident_duration",
+    "fixed/incident_duration"
+   ],
+   "valid": 1
+  }
+ ],
+ "totals": {
+  "agree_with_deterministic": 0,
+  "calls": 15,
+  "campaigns_same_actions": 0,
+  "campaigns_same_boundaries": 0,
+  "deterministic_actions": [
+   "probe:ramp_demand:hi",
+   "probe:incident_duration:hi",
+   "probe:main_demand:hi"
+  ],
+  "deterministic_boundaries": {
+   "alinea/incident_duration": [
+    196,
+    225
+   ],
+   "alinea/main_demand": [
+    3950,
+    4200
+   ],
+   "fixed/incident_duration": [
+    225,
+    254
+   ],
+   "fixed/main_demand": [
+    3950,
+    4200
+   ],
+   "fixed/ramp_demand": [
+    788,
+    806
+   ]
+  },
+  "deterministic_runs_used": 220,
+  "deterministic_unconverged": [
+   "alinea/main_demand",
+   "fixed/main_demand"
+  ],
+  "invalid": 10,
+  "llm_campaigns": 5,
+  "rejections": {
+   "not_allowed_now": 10
+  },
+  "valid": 5
+ }
+}

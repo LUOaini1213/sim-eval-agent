@@ -1,23 +1,38 @@
 # sim-eval-agent：基于 SUMO 的仿真评测 agent
 
-一个围绕 SUMO 微观交通仿真的**仿真评测 agent**：给定一个被测系统（匝道控制器）和一个带命名参数的场景空间，它自动规划一批场景 → 无界面跑 SUMO → 按显式通过/失败准则判定 → 把失败归因到参数（同种子配对的单因素敏感性 + 分层对比）→ 沿最有影响的参数二分逼近失效边界 → 按预算停止 → 输出带证据的报告（Markdown + JSON，每条结论都列出所依据的 run id）。
+一个围绕 SUMO 微观交通仿真的**仿真评测 agent**：给定一个被测系统（匝道控制器）和一个带命名参数的场景空间，它自动规划一批场景 → 无界面跑 SUMO → 按显式通过/失败准则判定 → 用同种子配对的单因素分析把失败归因到参数 → 从封闭动作表里选"沿哪个参数、往哪个方向"二分逼近失效边界 → 在每条边界附近用 20 个配对种子估通过率并给 Wilson 区间 → 在按边界标定的范围上做 Morris 筛选 → 按预算停止 → 输出带证据的报告（Markdown + JSON，每条结论都列出所依据的 run id）。
 
-> 来历：这是 2026-09-26 新建的个人项目，当天从零写完并在本机实跑，**不是过往实习或课程经历**。SUMO 版本 1.24.0。
+> 来历：这是 2026-09-26 新建的个人项目，当天从零写完并在本机实跑，**不是过往实习或课程经历**。SUMO 版本 1.24.0。第一版结果（v1）保留在 `results/v1/`，当前结果（v2）在 `results/`。
 
 ## 它是什么
 
-- **被测系统（SUT）**：一个高速主线 + 入口匝道合流瓶颈上的匝道信号控制器，两个变体：定时控制（fixed-time，720 veh/h 一车一绿）和 ALINEA 反馈控制（下游占有率目标 12%，K_R = 70 veh/h/%，带排队超限清空）。另有不控制（none）作为参照，只在名义场景跑。控制器是纯 Python（`simeval/controller.py`），通过 TraCI 每 30 s 改写匝道信号配时。
-- **路网**：脚本生成（`simeval/network.py` → netconvert），双车道主线、约 330 m 加速车道后车道消失、约 300 m 匝道排队区（约 40 辆小汽车）、一段可封闭右车道的"事故"路段。netconvert 输出里带时间戳的注释头被去掉，所以同一 SUMO 版本下重新生成是**逐字节一致**的（`python scripts/build_network.py --check`）。
-- **场景空间**（`simeval/scenario.py`）：主线需求、匝道需求、货车比例、事故（封一条车道）开始时刻与持续时长、驾驶员不完美度 sigma、控制器变体、随机种子。到达过程是指数分布车头时距，由 SUMO `--seed` 决定。
-- **KPI**（`simeval/kpi.py`）：全部从 SUMO 输出文件解析，不读 TraCI 状态——总延误/人均延误（timeLoss + departDelay，含路网外排队）、通过量、合流区主线流量加权地点车速、匝道车辆数峰值、匝道车辆 95 分位延误、SSM 设备记录的 TTC < 1.5 s 冲突数（每千车），以及 teleport / collision 计数作为**有效性检查**。
-- **通过/失败准则**（`simeval/criteria.py`）：人均延误 ≤ 60 s、匝道 p95 延误 ≤ 120 s、合流区车速 ≥ 75 km/h、TTC 冲突 ≤ 10 /千车；出现 teleport 或 collision 的 run 判为 INVALID（仿真本身不可信），单独计数。阈值是本项目自定的验收线，不是任何标准。每条准则给出归一化余量，run 余量取最小值，供配对比较用。
+- **被测系统（SUT）**：一个高速主线 + 入口匝道合流瓶颈上的匝道信号控制器，两个变体：定时控制（fixed-time，720 veh/h 一车一绿）和 ALINEA 反馈控制（下游占有率目标 12%，K_R = 70 veh/h/%，带排队超限清空）。另有不控制（none）作为参照，只在名义场景跑。控制器是纯 Python（`simeval/controller.py`），通过 TraCI 每 30 s 改写匝道信号配时；v2 起每个绿灯后有 2.5 s 黄灯（见下文 INVALID 诊断）。
+- **路网**：脚本生成（`simeval/network.py` → netconvert），双车道主线、约 330 m 加速车道后车道消失、约 300 m 匝道排队区、一段右车道可被"事故"占用的路段。netconvert 输出里带时间戳的注释头被去掉，所以重新生成是**逐字节一致**的（`python scripts/build_network.py --check`；Windows 与 Linux 结果见生成块）。
+- **场景空间**（`simeval/scenario.py`）：主线需求、匝道需求、货车比例、事故开始时刻与持续时长、驾驶员不完美度 sigma、控制器变体、随机种子。到达过程是指数分布车头时距，由 SUMO `--seed` 决定。
+- **事故怎么仿真**（`simeval/runner.py`，v2 默认 `stall`）：事故开始时，从右车道上游挑一辆"用普通制动（不超过它自己的 decel）就能停到事故点"的最近车辆，给它一个停车指令，停到事故结束时刻再开走。它是交通流里一辆普通的车，后车靠跟驰和换道反应，路段通行权限从头到尾不变。事故车本身不计入任何 KPI；实际开始停住的时刻从 SUMO stop 输出里读回（`incident_onset_s`）。v1 的做法（运行中用 TraCI 禁行右车道）保留为 `traci_disallow`，只用于复现诊断。
+- **KPI**（`simeval/kpi.py`）：全部从 SUMO 输出文件解析，不读 TraCI 状态——人均延误（timeLoss + departDelay，含路网外排队）、通过量、合流区主线流量加权地点车速、匝道 95 分位延误、SSM 记录的 TTC < 1.5 s 冲突数（每千车），以及 teleport / collision 计数作为**有效性检查**，另记录紧急停车次数。
+- **通过/失败准则**（`simeval/criteria.py`）：人均延误 ≤ 60 s、匝道 p95 延误 ≤ 120 s、合流区车速 ≥ 75 km/h、TTC 冲突 ≤ 10 /千车；出现 teleport 或 collision 的 run 判为 INVALID（仿真本身不可信）。阈值是本项目自定的验收线，不是任何标准。每条准则给出归一化余量，run 余量取最小值，作为连续输出。
 - **agent 循环**（`simeval/agent.py`，默认完全确定性、不调用任何 LLM）：
-  1. 筛查：拉丁超立方抽样 × 两个控制器，按参数上下半区对比失败率（分层对比）；
-  2. 归因：名义场景附近单因素移到上下限，与名义场景**同种子配对**比较余量变化，按影响排序；
-  3. 探测：策略从封闭动作表 `probe:<参数>` / `stop` 中选一个，对出现判定翻转的控制器沿该参数二分，每个点跑全部种子、按多数判定；
-  4. 停止：预算（run 数）用尽或没有可探测的参数；
-  5. 报告：`results/REPORT.md`、`results/report.json`、`results/runs.jsonl`，并检查沿该轴已评估点是否单调（二分的前提）。
-- **可选 LLM 模式**（`--policy llm`，默认关闭）：模型只能在上述封闭动作表里选一个；不在表内、或选了没有翻转/已探测过的参数，都会被拒绝并回退到确定性选择，全部记录在报告里。模型不写任何 SUMO/TraCI 调用。**本仓库的所有数字都来自确定性路径；LLM 模式没有实际跑过。**
+  1. 归因：名义场景附近单因素移到上下限，与名义场景**同种子配对**比较余量变化；
+  2. 探测：策略从封闭动作表 `probe:<参数>:<lo|hi>` / `stop` 中选一个，对该方向上判定翻转的控制器沿该参数二分，每点 5 个种子、按多数判定；
+  3. 细化：每条二分边界附近取一组等距点，每点跑 20 个配对种子，给出通过率和 Wilson 95% 区间，按下面的规则定边界；
+  4. Morris 筛选：在按边界标定的范围上做基本效应分析，报告每个参数的 μ*、μ、σ；
+  5. 停止与报告：预算或没有可探测方向时停止；`results/REPORT.md`、`results/report.json`、`results/runs.jsonl`。
+- **可选 LLM 策略**（`--policy llm`，默认关闭）：本地 Ollama 上的 qwen2.5:3b（`num_gpu=0`，只用 CPU），只能在上述封闭动作表里选一个；不在表内、格式不对、或选了当前不允许的方向，都记为无效输出并回退到确定性选择。每一次提示和回复都原样记录在 `results/llm/llm_log.jsonl`。
+
+### 边界的定义（v2）
+
+5 个种子的多数判定在边界附近会来回翻，所以 v2 把"边界"定义成**通过率穿过 50% 的位置**，并明确给出不确定性：
+
+- 每个网格点跑 20 个配对种子（所有点用同一组种子），通过率 = 通过的种子数 / 20，配 Wilson 95% 区间；
+- 区间下端 > 0.5 记为"确定通过"，上端 < 0.5 记为"确定不通过"，其余为"未定"（20 个种子时即：≥ 15 个通过为确定通过，≤ 5 个通过为确定不通过）；
+- **边界带** = 从最后一个确定通过的点到其后第一个确定不通过的点；带外每个点的通过率都在 95% 意义上落在 50% 的同一侧；
+- **点估计 x50** = 通过率的保序（单调不增）拟合穿过 0.5 的位置，线性插值；
+- 若网格两端还没到"确定"，就往那一侧加一个点（最多一次）；仍未闭合的带如实标为"未闭合"。另外检查是否有"确定不通过"的点出现在"确定通过"的点的通过一侧（单调性在区间意义上被破坏）。
+
+### Morris 的范围怎么定
+
+v1 的拉丁超立方筛查用的是全参数范围，几乎全部不通过，没有区分力。v2 的 Morris 用"标定范围"：某参数若在 5 种子二分里找到过边界，范围取名义值 ± 1.25 ×（名义值到最近边界中点的距离），并截到允许范围内——刚好越过最近的失效边界，两种结果都会出现，又不进入远处全失败的饱和区；没有找到边界的参数（单因素移到两端都不翻转判定）用全范围。输出是 run 余量（连续值），每个设计点在同一组种子上跑，基本效应在**同一种子内**计算（配对），种子间的离散单独报告为 σ_seed。
 
 ## 三条命令复现
 
@@ -29,60 +44,136 @@ python scripts/run_agent.py              # 实跑并写 results/；随后 python
 
 辅助脚本：
 
-- `scripts/verify_results.py`：从 `runs.jsonl` 重算每条结论和每个 run 的判定，与 `report.json` 比对；
-- `scripts/render_readme.py --check`：README 结果块与 `results/report.json` 不一致就失败（CI 里跑）；
-- `scripts/rerun_check.py --n 6`：按固定间隔抽取已提交的 run 重新仿真，比对 KPI 与 tripinfo 哈希（本机抽样重跑与提交结果完全一致；跨平台不保证）；
-- `scripts/mutation_check.py`：变异测试，逐个故意改坏代码、确认对应测试会失败再还原，结果写入 [MUTATION.md](MUTATION.md)（首轮有一个变异存活，暴露了一个测试缺口，已补上并记录在该文件里）；
-- `scripts/build_network.py --check`：重新生成路网并与提交的 `network/merge.net.xml` 逐字节比对；
-- `scripts/rebuild_report.py`：只改报告格式时，从 `runs.jsonl` 重新渲染报告，不重跑仿真。
+- `scripts/diagnose_invalid.py`：复现 v1 的 INVALID run（带 SUMO 警告日志），逐条归因碰撞，并在同一批事故场景上比较几种事故仿真方式，写 `results/diagnosis/`；
+- `scripts/compare_llm.py`：同一预算下跑确定性策略和 LLM 策略（qwen2.5:3b，CPU），写 `results/llm/`；
+- `scripts/verify_results.py`：从 `runs.jsonl` 重算每条结论、每个 run 的判定、细化边界和 Morris 统计，并从各自的原始记录重建诊断与 LLM 对比的汇总，和已提交的文件比对；
+- `scripts/render_readme.py --check`：README 生成块与 `results/*.json` 不一致就失败（CI 与测试里都跑）；
+- `scripts/rerun_check.py --n 6`：按固定间隔抽取已提交的 run 重新仿真，比对 KPI 与 tripinfo 哈希；
+- `scripts/linux_check.sh`：在 Linux（本项目用 WSL Ubuntu 24.04）里 clone 当前提交、pip 装 SUMO 1.24.0、跑测试、逐字节比对路网、抽样重跑，写 `results/linux_check.json`；
+- `scripts/mutation_check.py`：变异测试，逐个故意改坏代码、确认对应测试会失败再还原，结果写入 [MUTATION.md](MUTATION.md)；
+- `scripts/build_network.py --check`、`scripts/rebuild_report.py`：同 v1。
 
 ## 结果（本机实跑，脚本生成）
 
-下面整块由 `scripts/render_readme.py` 从 `results/report.json` 生成，`--check` 模式在 CI 里比对；"evidence" 列是 `results/REPORT.md` 里的结论编号，每条结论列出所依据的 run id。
+下面整块由 `scripts/render_readme.py` 从 `results/report.json`、`results/diagnosis/summary.json`、`results/llm/summary.json`、`results/linux_check.json` 生成，`--check` 模式比对；"evidence" 列是 `results/REPORT.md` 里的结论编号，每条结论列出所依据的 run id。
 
 <!-- RESULTS:BEGIN -->
-<!-- generated by scripts/render_readme.py from results/report.json; do not edit by hand -->
+<!-- generated by scripts/render_readme.py from results/*.json; do not edit by hand -->
 
-本机实跑 / measured run: SUMO 1.24.0, 298 runs (budget 400), wall time **482.2 s** with 7 worker processes (Windows-10, 8 logical CPUs), date 2026-09-26. Verdicts: PASS 171 / FAIL 118 / INVALID 9. Stop reason: max_probes=3 reached.
+本机实跑 / measured run: SUMO 1.24.0, 908 runs (budget 1300), wall time **2533.5 s** with 7 worker processes (Windows-10, 8 logical CPUs, shared with another job), date 2026-09-26; by phase: morris 406.1 s, oat 380.7 s, probe 484.7 s, refine 1261.5 s. Incident method `stall`, meter amber 2.5 s. Verdicts: PASS 495 / FAIL 413 / INVALID 0. Stop reason: max_probes=3 reached.
 
 **名义场景 / nominal scenario** (mean over seeds [1, 2, 3, 4, 5]):
 
 | controller | mean delay (s) | ramp p95 delay (s) | merge speed (km/h) | TTC<1.5 s per 1000 veh | throughput (veh) | verdicts | evidence |
 |---|---|---|---|---|---|---|---|
-| fixed | 15.3 | 48.9 | 97.3 | 0.00 | 1695.8 | PASS/PASS/PASS/PASS/PASS | C1 |
-| alinea | 13.6 | 25.7 | 96.7 | 0.00 | 1695.8 | PASS/PASS/PASS/PASS/PASS | C2 |
+| fixed | 14.8 | 46.9 | 97.2 | 0.00 | 1695.8 | PASS/PASS/PASS/PASS/PASS | C1 |
+| alinea | 13.7 | 25.6 | 96.7 | 0.00 | 1695.8 | PASS/PASS/PASS/PASS/PASS | C2 |
 | none | 13.5 | 25.5 | 96.8 | 0.00 | 1695.8 | PASS/PASS/PASS/PASS/PASS | C3 |
 
-**找到的失效边界 / boundaries found** (bisection, other parameters nominal, majority of seeds; ramp/main demand in veh/h, incident duration in s):
+**5 种子二分边界 / bisection boundaries** (other parameters nominal, majority of seeds [1, 2, 3, 4, 5]; ramp/main demand in veh/h, incident duration in s):
 
 | controller | parameter | last PASS | seeds there | first not-PASS | seeds there | criteria violated | monotone on axis | evidence |
 |---|---|---|---|---|---|---|---|---|
 | fixed | ramp_demand | 788 | PPFFP | 806 | FPFFF | ramp_p95_delay_s | yes | C6 |
-| fixed | incident_duration | 254 | PPPFP | 282 | PFFFP | mean_delay_s | yes | C7 |
-| alinea | incident_duration | 282 | PPFFP | 310 | PFFFP | mean_delay_s | yes | C8 |
-| fixed | main_demand | 4106 | PPFFP | 4138 | PPFFF | mean_delay_s | yes | C9 |
+| fixed | incident_duration | 225 | PPFPF | 254 | PFFPF | ramp_p95_delay_s, ttc_per_1000veh | yes | C7 |
+| alinea | incident_duration | 196 | PPFPF | 225 | PPFFF | ramp_p95_delay_s, ttc_per_1000veh | yes | C8 |
+| fixed | main_demand | 4044 | PPFFP | 4075 | PPFFF | mean_delay_s | yes | C9 |
 | alinea | main_demand | 4044 | PPFFP | 4075 | PPFFF | mean_delay_s | yes | C10 |
+
+**20 种子通过率边界 / pass rate over 20 paired seeds** (Wilson 95%; band = last confidently-PASS value .. first confidently-not-PASS value; x50 = 50% crossing of the isotonic fit):
+
+| controller | parameter | 5-seed bisection | pass rate at grid values (passes/20) | Wilson band | x50 | band closed | monotone within CI | evidence |
+|---|---|---|---|---|---|---|---|---|
+| fixed | ramp_demand | 788 .. 806 | 697: 19, 747: 13, 797: 7, 847: 0, 897: 0 | 697 .. 847 | 772.0 | yes | yes | C11 |
+| fixed | incident_duration | 225 .. 254 | 120: 18, 180: 14, 240: 6, 300: 3, 360: 0 | 120 .. 300 | 210.0 | yes | yes | C12 |
+| alinea | incident_duration | 196 .. 225 | 90: 20, 150: 18, 210: 8, 270: 4, 330: 1 | 150 .. 270 | 198.0 | yes | yes | C13 |
+| fixed | main_demand | 4044 .. 4075 | 3860: 19, 3960: 14, 4060: 11, 4160: 7, 4200: 7 | 3860 .. - | 4085.0 | no | yes | C14 |
+| alinea | main_demand | 4044 .. 4075 | 3860: 18, 3960: 15, 4060: 12, 4160: 6, 4200: 7 | 3960 .. - | 4096.4 | no | yes | C15 |
+
+x50 outside the 5-seed bisection interval: 4 of 5 boundaries (C11, C12, C14, C15).
 
 **最有影响的参数 / most influential parameter** (paired-seed one-at-a-time):
 
 | controller | parameter | moved to | mean delta of run margin | per-seed range | evidence |
 |---|---|---|---|---|---|
-| fixed | ramp_demand | hi=1200 | -5.3051 | -5.619 .. -4.8627 | C4 |
-| alinea | incident_duration | hi=900 | -2.3056 | -2.3958 .. -2.1959 | C5 |
+| fixed | ramp_demand | hi=1200 | -5.2563 | -5.5804 .. -4.8591 | C4 |
+| alinea | incident_duration | hi=900 | -4.2648 | -5.2067 .. -3.4112 | C5 |
 
-Screening, fixed (C11): 22 of 24 Latin-hypercube runs over the full ranges are not-PASS; largest lower/upper-half contrast in not-PASS rate 0.167, shared by incident_start, main_demand, ramp_demand, sigma.
+**Morris 筛选 / Morris screening** (output = run margin; r=6 trajectories x 6 + 1 points, 4 levels, paired seeds [1, 2]; effects per unit of the calibrated range; sigma_seed = mean spread of an effect across seeds):
 
-Screening, alinea (C12): 22 of 24 Latin-hypercube runs over the full ranges are not-PASS; largest lower/upper-half contrast in not-PASS rate 0.167, shared by incident_duration, incident_start, sigma.
+| parameter | calibrated range | how the range was chosen |
+|---|---|---|
+| incident_duration | 0 .. 263 | nominal +- 1.25 x distance to nearest boundary (210.5) |
+| incident_start | 300 .. 1200 | full range (no verdict flip in one-at-a-time) |
+| main_demand | 2400 .. 4200 | nominal +- 1.25 x distance to nearest boundary (859.5) |
+| ramp_demand | 354 .. 846 | nominal +- 1.25 x distance to nearest boundary (197.0) |
+| sigma | 0.0000 .. 0.9000 | full range (no verdict flip in one-at-a-time) |
+| truck_share | 0.0000 .. 0.2500 | full range (no verdict flip in one-at-a-time) |
 
-One-at-a-time, fixed, ramp_demand=1200: seeds FFFFF (REPORT.md, OAT table).
+controller `fixed` (C16; 84 runs, 45 not-PASS, 0 INVALID):
 
-One-at-a-time, alinea, ramp_demand=1200: seeds PPPPP (REPORT.md, OAT table).
+| rank | parameter | mu* | mu | sigma | sigma_seed |
+|---|---|---|---|---|---|
+| 1 | main_demand | 1.586 | -1.586 | 1.073 | 0.369 |
+| 2 | sigma | 1.489 | -1.317 | 1.659 | 0.347 |
+| 3 | ramp_demand | 1.047 | -0.702 | 1.088 | 0.483 |
+| 4 | incident_duration | 0.549 | -0.549 | 0.572 | 0.043 |
+| 5 | truck_share | 0.465 | -0.465 | 0.331 | 0.034 |
+| 6 | incident_start | 0.210 | -0.168 | 0.292 | 0.147 |
 
-Failure modes (C13), runs violating each criterion out of 298: `mean_delay_s` 102, `merge_speed_kmh` 14, `ramp_p95_delay_s` 35, `ttc_per_1000veh` 15.
+controller `alinea` (C17; 84 runs, 37 not-PASS, 0 INVALID):
 
-Validity (C14): 9 of 298 runs INVALID (8 of them with a lane closure; by phase: oat 1, screen 8); teleports 0, collisions 9 (lanes: incident_0 x1, main_mid_0 x7, ramp_in_0 x1).
+| rank | parameter | mu* | mu | sigma | sigma_seed |
+|---|---|---|---|---|---|
+| 1 | main_demand | 2.036 | -2.036 | 1.752 | 0.866 |
+| 2 | sigma | 1.230 | -0.977 | 1.492 | 0.320 |
+| 3 | incident_duration | 1.051 | -1.051 | 0.799 | 0.240 |
+| 4 | truck_share | 0.978 | -0.824 | 1.390 | 0.489 |
+| 5 | incident_start | 0.829 | -0.752 | 1.432 | 0.545 |
+| 6 | ramp_demand | 0.773 | -0.587 | 1.117 | 0.463 |
+
+Failure modes (C18), runs violating each criterion out of 908: `mean_delay_s` 226, `merge_speed_kmh` 44, `ramp_p95_delay_s` 244, `ttc_per_1000veh` 184.
+
+Validity (C19): 0 of 908 runs INVALID (0 of them with an incident; by phase: none); teleports 0, collisions 0 (lanes: none).
 
 Seeds column: one letter per seed in order, P = PASS, F = FAIL, I = INVALID.
+
+**v1 INVALID 诊断 / diagnosis of the v1 INVALID runs** (`results/diagnosis/`, 190 runs, wall 1022.2 s): the v1 simulation re-run with SUMO warnings logged reproduces 9 of 9 INVALID runs exactly (35 of 35 re-run v1 runs identical overall). Cause of each collision = the victim's emergency stop just before it: `no_connection:at_closure` x8, `red_light` x1. Re-run with the fixed simulation: 0 of 9 still INVALID.
+
+| v1 run | controller | incident start, duration (s) | collision lane | victim's emergency stop | at closure instant | fixed verdict |
+|---|---|---|---|---|---|---|
+| `b80f7ca0ae7e` | fixed | 506, 131 | incident_0 | no_connection at 506.0 s, decel -29.60 m/s2 | yes | FAIL |
+| `6d30a934cf4b` | fixed | 806, 206 | main_mid_0 | no_connection at 806.0 s, decel -29.99 m/s2 | yes | PASS |
+| `024edca07011` | alinea | 806, 206 | main_mid_0 | no_connection at 806.0 s, decel -31.88 m/s2 | yes | PASS |
+| `1ca079456f75` | alinea | 919, 19 | main_mid_0 | no_connection at 919.0 s, decel -31.25 m/s2 | yes | PASS |
+| `bce74dccebda` | fixed | 956, 656 | main_mid_0 | no_connection at 956.0 s, decel -29.33 m/s2 | yes | FAIL |
+| `673627902069` | alinea | 731, 319 | main_mid_0 | no_connection at 731.0 s, decel -28.11 m/s2 | yes | FAIL |
+| `ecf9261e853c` | alinea | 469, 469 | main_mid_0 | no_connection at 469.0 s, decel -34.29 m/s2 | yes | PASS |
+| `dfc3dc5c5a68` | alinea | 1106, 506 | main_mid_0 | no_connection at 1106.0 s, decel -27.99 m/s2 | yes | FAIL |
+| `ab75afb1c2c1` | fixed | 600, 0 | ramp_in_0 | red_light at 1137.0 s, decel -19.36 m/s2 | no | PASS |
+
+Incident methods on the same 30 v1 incident scenarios (first 30 v1 runs with an incident; meter without amber except `default`):
+
+| config | method, amber (s) | runs with collision | collisions | teleports | emergency stops: no connection | emergency stops: red light | incident onset delay median / max (s) | mean delay avg (s) | wall (s) |
+|---|---|---|---|---|---|---|---|---|---|
+| blocker | blocker, 0.0 | 0/30 | 0 | 0 | 0 | 62 | 9.5 / 143.0 | 159.76 | 202.4 |
+| blocker_insert | blocker_insert, 0.0 | 0/30 | 0 | 0 | 0 | 60 | 34.2 / 389.0 | 142.48 | 167.9 |
+| default | stall, 2.5 | 0/30 | 0 | 0 | 0 | 0 | 7.0 / 11.5 | 162.60 | 222.5 |
+| legacy | traci_disallow, 0.0 | 4/30 | 4 | 0 | 37 | 57 | - | 141.96 | 104.6 |
+| stall | stall, 0.0 | 0/30 | 0 | 0 | 0 | 60 | 7.0 / 13.5 | 163.66 | 219.4 |
+| vss_disallow | vss_disallow, 0.0 | 0/30 | 0 | 0 | 19 | 61 | - | 151.00 | 105.0 |
+
+**LLM 策略对比 / LLM policy vs deterministic** (`results/llm/`; qwen2.5:3b via Ollama on CPU (num_gpu 0); same budget for every campaign: 125 OAT runs + 100 probe runs; wall 144.9 s, 0 new SUMO runs): 15 LLM calls in 5 campaigns, 5 valid / 10 invalid (not_allowed_now 10); the reply named the deterministic choice in 0 of 15 calls; 0 of 5 campaigns took the same action sequence and 0 of 5 found the same boundaries as the deterministic policy.
+
+Deterministic: `probe:ramp_demand:hi` -> `probe:incident_duration:hi` -> `probe:main_demand:hi`, 220 runs, boundaries alinea/incident_duration 196..225; alinea/main_demand 3950..4200 (cut by budget); fixed/incident_duration 225..254; fixed/main_demand 3950..4200 (cut by budget); fixed/ramp_demand 788..806.
+
+| campaign | temperature, seed | valid / calls | rejections | actions (after fallback) | runs used | boundaries missing / extra vs deterministic | differing boundaries (deterministic vs LLM campaign; * = cut by budget) |
+|---|---|---|---|---|---|---|---|
+| llm_t0 | 0.0, 0 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
+| llm_t07_s1 | 0.7, 1 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
+| llm_t07_s2 | 0.7, 2 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
+| llm_t07_s3 | 0.7, 3 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
+| llm_t07_s4 | 0.7, 4 | 1/3 | not_allowed_now 2 | main_demand:hi -> ramp_demand:hi -> incident_duration:hi | 220 | - / - | alinea/incident_duration: [196, 225] vs [0, 225]*; alinea/main_demand: [3950, 4200]* vs [4044, 4075]; fixed/incident_duration: [225, 254] vs [225, 450]*; fixed/main_demand: [3950, 4200]* vs [4044, 4075] |
 
 <!-- RESULTS:END -->
 
@@ -90,30 +181,29 @@ Seeds column: one letter per seed in order, P = PASS, F = FAIL, I = INVALID.
 
 上面每个数字都来自生成块，这里只说读法，不重复数字：
 
-- **名义场景**三行对比的是同一组 5 个种子（配对），所以三种控制方式之间的差别不是种子造成的。定时控制的 720 veh/h 是按名义匝道需求 600 veh/h 设定的，名义场景下它和 ALINEA、不控制是否拉开差距，直接看 C1–C3。
-- **边界表**的"seeds there"列逐种子给出判定：边界是"5 个种子的多数判定"意义上的，边界两侧往往各有少数种子判定相反，这就是这个边界的真实分辨率，比二分宽度更能说明不确定性。两个控制器在同一参数上的边界若只差一两个二分宽度，不应解读为哪个控制器更好。
-- **定时控制沿匝道需求**的失效由匝道 p95 延误触发（排队外溢到路网外），而 ALINEA 带排队超限清空，所以同一单因素移动下两者表现不同——见生成块里两条 "One-at-a-time ... ramp_demand" 行。
-- **筛查**在全参数范围上几乎全部不通过，分层对比的最大差值由多个参数并列、对应的只是 12 个样本里一两个 run 的差别：在这个参数范围下筛查没有区分力。agent 的探测方向由名义点附近的配对单因素分析决定，不依赖筛查。
-- **INVALID**：碰撞按车道计数。大部分出现在带封道（事故）的筛查场景、位于封闭车道上游或封闭车道上；另有一例是货车比例上限时、定时控制下匝道停车线前的追尾。前者我怀疑与 TraCI 动态禁行车道的实现方式有关，**未进一步验证**；本项目把它们当作"这次仿真不可信"报告出来，而不是安全结论。
+- **v1 的 INVALID 是怎么来的（已验证，不是猜测）**：用 v1 的仿真方式带 SUMO 警告日志重跑，v1 的 INVALID run 逐字节复现（tripinfo 哈希与全部 KPI 相同），每次碰撞都能在日志里找到被撞车辆碰撞前几秒的"紧急停车"及原因。带事故的那几例，原因都是"没有通往下一条边的连接"，而且都发生在封道的**同一个仿真时刻**：运行中用 TraCI `setDisallowed` 禁行右车道，瞬间让已经在制动距离以内、正要驶入该车道的车辆失去了去路，SUMO 让它们以远超物理极限的减速度原地停车，后车来不及反应就撞上了。另一例不带事故：匝道信号从绿直接跳红、没有黄灯（SUMO 本身就给出"Missing yellow phase"警告），一辆车在红灯前被迫做了同样不可能的急停，后面的货车追尾。所以 v1 README 里"怀疑与 TraCI 禁行车道有关"的猜测只对了一半，另一半原因在信号配时上。
+- **怎么修的**：事故改成"让一辆能正常刹停的车停在事故点"（`stall`），全程不改车道通行权限；匝道信号每个绿灯后加 2.5 s 黄灯（取值理由写在 `controller.py`，测试里也检查了）。同一批 v1 事故场景上还比较了 SUMO 文档建议的"封道前先限速"（`vss_disallow`）和两种专用事故车（`blocker`、`blocker_insert`）：限速能减少但不能消除"无连接"急停；专用事故车没有碰撞，但要等 SUMO 找到安全空档才能出现，实际开始时刻会被推迟很多（见方法对比表里的 onset 列），`stall` 的推迟最小也最稳定。v1 的 INVALID 场景用修好的仿真重跑后都不再 INVALID；v2 主运行里也没有 INVALID。
+- **事故边界和 v1 不能直接比**：事故的仿真方式变了，v1 的事故时长边界不再成立；v2 在事故边界处违反的准则也变成了匝道 p95 延误和 TTC 冲突。注意 TTC 冲突现在包括车辆接近停着的事故车的冲突，这是把事故当成一辆真实停着的车的直接后果，本项目没有把它们单独剔除。
+- **5 个种子的二分给出的是虚假的精度**：二分区间只有一个容差宽，但 20 个种子的通过率从"确定通过"降到"确定不通过"要跨过好几个网格点。生成块里统计了有几条边界的 x50 落在 5 种子二分区间**之外**——也就是说"某值通过、隔一个容差就不通过"式的二分结论，本身就在种子噪声之内。现在报告的是边界带和 x50，带宽就是这组设置下的真实分辨率。
+- **主线需求的边界带没有闭合**：在允许范围的上端，通过率仍没有确定低于 50%，所以只能说边界在带的下端以上、x50 附近开始变差，不能给出"确定不通过"的主线需求值；这不是 bug，是参数范围的上限不够高。
+- **Morris 现在有区分力**：标定范围上通过和不通过的 run 都有相当比例（见表头的 not-PASS 计数），μ* 排序在两个控制器之间也不同。值得注意的是 sigma（驾驶员不完美度）在单因素分析里两端都不翻转判定，Morris 里却排得很靠前，而且 σ 大于或接近 μ*——它的影响主要出现在与其他参数（尤其是高需求）的组合里，名义点附近的单因素分析看不到。σ_seed 相对 σ 不小的参数，排名对种子是敏感的：两个配对种子、六条轨迹只够做筛选，不够做定量结论。
+- **LLM 策略**：qwen2.5:3b 在 CPU 上每次调用几秒，回复格式都对（都是合法 JSON、都在动作表里），但只有每轮第一次选择是当时允许的动作；之后它反复提议一个单因素里并不翻转判定的方向，被拒绝后回退到确定性选择。温度和随机种子对它的选择没有任何影响，五轮完全一样。它第一步选的参数不是效应最大的那个，所以在同样的预算下，LLM 路径完整找到了主线需求边界、事故时长边界被预算截断；确定性路径正好相反。两者在共同完整找到的边界上结果相同（同一批缓存 run）。结论：在这个任务上 LLM 没有带来确定性规则之外的信息，确定性路径保留为默认。
 
-## 这不是什么
+## 这不是什么 / 局限
 
-- **不是自动驾驶车辆级仿真评测**。被测对象是一个路侧匝道信号控制器，车辆是 SUMO 的 Krauss 跟驰 + LC2013 换道模型，不是 ADS 的感知/规划/控制栈，没有传感器、没有闭环车辆动力学。"一段式闭环"在这里指的是：控制器通过 TraCI 读检测器、改信号、再影响交通流的闭环，而不是端到端驾驶模型。
-- **不是真实路段标定**。路网、需求、车型参数都是合成的，没有用任何实测数据标定；数值结论只对这个合成场景成立，不能外推到真实匝道。
-- **SSM 的 TTC 冲突只是安全替代指标**，不是事故率。它只统计主线与匝道停车线下游路段（停车线前排队的 TTC 属于正常信号行为，被过滤掉）。
-- **控制器是教科书级的简单版本**：定时控制不随需求变化；ALINEA 参数没有针对该路网寻优。本项目评测的是"评测流程"，不是在证明某个控制器好。
-- **边界是单轴的**：二分只沿一个参数、其他参数固定在名义值，结论是"名义场景附近沿该轴"的边界，不是多维失效区域的完整刻画；多维情况只由筛查阶段的分层对比粗略反映。
-- **不是 LLM agent**：默认决策逻辑是规则化的；LLM 模式只是一个受限接口，未实跑。
-
-## 诚实的局限
-
-- 5 个种子的多数判定对接近边界的点仍然有噪声；报告里给出每个点每个种子的判定，二分宽度就是分辨率。
-- 单调性只在已评估点上检查，没有被证明。
-- 事故用 TraCI 在运行中禁行右车道来模拟，这种做法本身会引入碰撞/急刹伪影（见上面 INVALID 的说明），更好的做法（例如停驶车辆或可变限速）没有实现。
-- 筛查只用了 1 个种子，且参数范围里事故时长上限很大，导致筛查样本几乎全部失败。
-- CI 工作流（`.github/workflows/ci.yml`）用 pip 装 `eclipse-sumo==1.24.0` 跑测试和一次小型冒烟评测；仓库尚未推送，工作流**还没有在 GitHub 上跑过**。Linux 上 netconvert 是否与本机 Windows 逐字节一致也尚未验证。
-- 单次仿真 2100 s（1800 s 需求 + 300 s 清空），步长 0.5 s。
+- **不是自动驾驶车辆级仿真评测**。被测对象是一个路侧匝道信号控制器，车辆是 SUMO 的 Krauss 跟驰 + LC2013 换道模型，不是 ADS 的感知/规划/控制栈。"闭环"在这里指控制器通过 TraCI 读检测器、改信号、再影响交通流的闭环。
+- **不是真实路段标定**。路网、需求、车型参数都是合成的，没有用任何实测数据标定；数值结论只对这个合成场景成立。
+- **不是 LLM agent**。默认决策逻辑是规则化的；LLM 只在一个封闭动作表里做选择，而且实测它没有比规则做得更好。
+- **SSM 的 TTC 冲突只是安全替代指标**，不是事故率；v2 起它包括接近停着的事故车的冲突（见上）。
+- **控制器是教科书级的简单版本**；黄灯是 v2 为了消除仿真伪影加的，改变了被测系统本身，所以 v1 与 v2 的定时控制结果不是同一个 SUT。
+- **事故模型是"一辆车停下"**：它有几秒的实际开始延迟（从 SUMO stop 输出读回并记录），且被选中的车取决于当时车流；它不模拟事故后的围观减速、救援车辆等。
+- **边界是单轴的**：细化和二分都只沿一个参数、其他参数固定在名义值；多维情况只由 Morris 的 σ 粗略反映。
+- **种子数仍然有限**：20 个种子时"确定通过/不通过"的门槛是 ≥15 / ≤5 个通过，边界带因此较宽；Morris 只有两个配对种子、六条轨迹，排名是筛选级别的证据。
+- **算力**：本机 8 个逻辑 CPU 同时在跑另一个任务，墙钟时间偏长，且不同阶段的时间不可直接比较。v2 新增的 SUMO 计算：诊断、主运行、LLM 对比的墙钟时间都在生成块里；另外在写诊断脚本前做过探索性试跑（结果未提交，不计入任何结论）。
+- CI 工作流（`.github/workflows/ci.yml`）还没有在 GitHub 上跑过（仓库未推送）；Linux 结果来自本机 WSL，见生成块。
 
 ## English summary
 
-`sim-eval-agent` is a small, deterministic simulation-evaluation agent around SUMO 1.24.0. The system under test is a ramp-metering controller (fixed-time and ALINEA) on a script-generated, byte-reproducible freeway merge. The agent samples a named scenario space, runs SUMO headless in parallel, judges each run against explicit pass/fail criteria (with teleports/collisions as validity checks), attributes failures with paired-seed one-at-a-time sensitivity and stratified screening, bisects the pass/fail boundary along the most influential parameter, stops on a run budget, and writes a report in which every claim lists the run ids it rests on. Numbers above come from one real run on the author's machine and are regenerated/checked by `scripts/render_readme.py --check`. It is not a vehicle-level ADS evaluation, the network and demand are synthetic, the controllers are textbook versions, and SSM TTC is only a safety surrogate. An optional LLM policy may only pick from a closed action vocabulary; it was not run for any number reported here. Created on 2026-09-26 as a new personal project.
+`sim-eval-agent` is a small, deterministic simulation-evaluation agent around SUMO 1.24.0. The system under test is a ramp-metering controller (fixed-time and ALINEA) on a script-generated, byte-reproducible freeway merge. The agent runs paired-seed one-at-a-time attribution, picks `probe:<param>:<lo|hi>` from a closed action list, bisects with 5 seeds, then re-estimates every boundary as a pass rate over 20 paired seeds with Wilson 95% intervals (band = last confidently-PASS value to first confidently-not-PASS value; x50 = 50% crossing of an isotonic fit), and runs a Morris elementary-effects screening over ranges calibrated from the boundaries. Every claim lists the run ids it rests on; `scripts/verify_results.py` recomputes claims, refinement, Morris and the diagnosis/LLM summaries from raw records, and `scripts/render_readme.py --check` keeps the numbers above in sync.
+
+Round 2 findings (numbers in the generated block): the v1 INVALID runs were reproduced exactly and traced through SUMO's warning log — the lane-closure ones to TraCI `setDisallowed` forcing physically impossible stops at the closure instant ("no connection to the next edge"), the remaining one to a meter with no amber phase. Incidents are now a vehicle told to stop with ordinary braking, and the meter has a 2.5 s amber; the v2 run has no INVALID runs. 20-seed refinement shows the 5-seed bisection intervals were narrower than the seed noise (the block counts how many x50 estimates fall outside them). qwen2.5:3b on CPU produced well-formed replies but mostly proposed directions that were not allowed; with the deterministic fallback it probed in a different order and was otherwise no better; the deterministic policy remains the default. Not a vehicle-level ADS evaluation; synthetic network and demand; SSM TTC is a surrogate. Created on 2026-09-26 as a new personal project.

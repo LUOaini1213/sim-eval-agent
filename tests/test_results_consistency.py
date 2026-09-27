@@ -54,3 +54,21 @@ def test_readme_check_fails_on_drift(tmp_path):
     out = subprocess.run([sys.executable, str(ROOT / "scripts" / "render_readme.py"), "--check", "--readme", str(p)],
                          capture_output=True, text=True)
     assert out.returncode == 1
+
+
+@pytest.mark.skipif(not (RESULTS / "diagnosis" / "summary.json").exists(), reason="no diagnosis results")
+def test_experiment_summaries_verify_and_tampering_is_caught(tmp_path):
+    from simeval.report import verify_experiments
+
+    assert verify_experiments(RESULTS) == []
+    d = tmp_path / "r"
+    shutil.copytree(RESULTS, d)
+    s = json.loads((d / "diagnosis" / "summary.json").read_text(encoding="utf-8"))
+    s["comparison"]["legacy"]["collisions"] -= 1
+    (d / "diagnosis" / "summary.json").write_text(json.dumps(s), encoding="utf-8")
+    assert any("diagnosis" in p for p in verify_experiments(d))
+    if (d / "llm" / "summary.json").exists():
+        s = json.loads((d / "llm" / "summary.json").read_text(encoding="utf-8"))
+        s["totals"]["valid"] += 1
+        (d / "llm" / "summary.json").write_text(json.dumps(s), encoding="utf-8")
+        assert any("llm" in p for p in verify_experiments(d))
