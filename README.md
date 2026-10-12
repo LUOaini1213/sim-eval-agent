@@ -202,7 +202,7 @@ Deterministic: `probe:ramp_demand:hi` -> `probe:incident_duration:hi` -> `probe:
 - **边界是单轴的**：细化和二分都只沿一个参数、其他参数固定在名义值；多维情况只由 Morris 的 σ 粗略反映。
 - **种子数仍然有限**：20 个种子时"确定通过/不通过"的门槛是 ≥15 / ≤5 个通过，边界带因此较宽；Morris 只有两个配对种子、六条轨迹，排名是筛选级别的证据。
 - **算力**：本机 8 个逻辑 CPU 同时在跑另一个任务，墙钟时间偏长，且不同阶段的时间不可直接比较。v2 新增的 SUMO 计算：诊断、主运行、LLM 对比的墙钟时间都在生成块里；另外在写诊断脚本前做过探索性试跑（结果未提交，不计入任何结论）。
-- CI 工作流（`.github/workflows/ci.yml`）还没有在 GitHub 上跑过（仓库未推送）；Linux 结果来自本机 WSL，见生成块。
+- GitHub CI 已在源提交 [`7527972`](https://github.com/LUOaini1213/sim-eval-agent/commit/75279726fba90f147469ee3548d5ce71e9965728) 上通过：[2026-09-27 的 push run](https://github.com/LUOaini1213/sim-eval-agent/actions/runs/36305701788)。这是既有 CI 记录；生成块中的 Linux 复现仍是本机 WSL、源提交 `352a838` 的另一份历史证据，两者不混为新实验。
 
 ## English summary
 
