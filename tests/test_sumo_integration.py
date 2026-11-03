@@ -46,10 +46,10 @@ def test_v1_invalid_run_reproduces_with_legacy_closure_and_is_clean_with_the_fix
     legacy = _run_one((s.canonical(), net, str(tmp_path / "l"), False, {**LEGACY_OPTIONS.as_dict(), "log_warnings": True}))
     # the mechanism: disallowing the lane forces impossible stops at the closure instant
     assert 806.0 in legacy["log"]["emergency_stop_times"]["no_connection"]
-    if sys.platform == "win32":  # v1 was produced on Windows; there the collision itself reproduces
-        assert legacy["kpis"]["collision_lanes"] == ["main_mid_0"]
-        assert legacy["log"]["collisions"][0]["cause"] == "no_connection"
-        assert legacy["log"]["collisions"][0]["victim_stop_time"] == 806.0
+    # v1 was produced on Windows; the collision itself also reproduces on Linux (CI, 2026-11-03)
+    assert legacy["kpis"]["collision_lanes"] == ["main_mid_0"]
+    assert legacy["log"]["collisions"][0]["cause"] == "no_connection"
+    assert legacy["log"]["collisions"][0]["victim_stop_time"] == 806.0
     fixed = _run_one((s.canonical(), net, str(tmp_path / "f"), False, {**DEFAULT_OPTIONS.as_dict(), "log_warnings": True}))
     assert fixed["kpis"]["collisions"] == 0 and fixed["kpis"]["teleports"] == 0
     assert fixed["log"]["emergency_stops_by_reason"].get("no_connection", 0) == 0

@@ -41,8 +41,7 @@ jobs:
       - name: Re-simulate a sample of committed v2 runs (KPIs + tripinfo hash must match)
         run: python scripts/rerun_check.py --n 3
 
-      - name: Re-simulate the v1 INVALID runs with the v1 options (informational on Linux)
-        continue-on-error: true
+      - name: Re-simulate the v1 INVALID runs with the v1 options
         run: python scripts/rerun_check.py --v1-invalid
 
       - name: Smoke run of the agent against SUMO

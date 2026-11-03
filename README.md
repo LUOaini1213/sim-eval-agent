@@ -70,7 +70,7 @@ python scripts/run_agent.py              # 实跑并写 results/；随后 python
 
 CI（`.github/workflows/ci.yml`，状态见顶部徽章）：
 
-- Ubuntu + pip 装的 SUMO 1.24.0：路网逐字节检查、全部测试、`verify_results.py`、`render_readme.py --check`、`rerun_check.py --n 3`（抽 3 个已提交的 v2 run 重新仿真，KPI 或 tripinfo 哈希不同就失败）、冒烟运行；
+- Ubuntu + pip 装的 SUMO 1.24.0：路网逐字节检查、全部测试、`verify_results.py`、`render_readme.py --check`、`rerun_check.py --n 3`（抽 3 个已提交的 v2 run 重新仿真，KPI 或 tripinfo 哈希不同就失败）、`rerun_check.py --v1-invalid`（用 v1 的仿真方式重跑 v1 的全部 INVALID run，同样要求一致）、冒烟运行；
 - Windows + pip 装的 SUMO 1.24.0：`rerun_check.py --n 3` 和 `rerun_check.py --v1-invalid`；
 - Ubuntu 和 Windows 上**不装 SUMO**：全部测试（SUMO 集成测试跳过）、`verify_results.py`、`render_readme.py --check`。
 
@@ -204,7 +204,7 @@ Deterministic: `probe:ramp_demand:hi` -> `probe:incident_duration:hi` -> `probe:
 
 上面每个数字都来自生成块，这里只说读法，不重复数字：
 
-- **v1 的 INVALID 是怎么来的（已验证，不是猜测）**：用 v1 的仿真方式带 SUMO 警告日志重跑，v1 的 INVALID run 逐字节复现（tripinfo 哈希与全部 KPI 相同；在 Windows 上，即 v1 产生的平台，`rerun_check.py --v1-invalid` 可单独重复这一比对），每次碰撞都能在日志里找到被撞车辆碰撞前几秒的"紧急停车"及原因。带事故的那几例，原因都是"没有通往下一条边的连接"，而且都发生在封道的**同一个仿真时刻**：运行中用 TraCI `setDisallowed` 禁行右车道，瞬间让已经在制动距离以内、正要驶入该车道的车辆失去了去路，SUMO 让它们以远超物理极限的减速度原地停车，后车来不及反应就撞上了。另一例不带事故：匝道信号从绿直接跳红、没有黄灯（SUMO 本身就给出"Missing yellow phase"警告），一辆车在红灯前被迫做了同样不可能的急停，后面的货车追尾。所以 v1 README 里"怀疑与 TraCI 禁行车道有关"的猜测只对了一半，另一半原因在信号配时上。
+- **v1 的 INVALID 是怎么来的（已验证，不是猜测）**：用 v1 的仿真方式带 SUMO 警告日志重跑，v1 的 INVALID run 逐字节复现（tripinfo 哈希与全部 KPI 相同；`rerun_check.py --v1-invalid` 单独重复这一比对，CI 在 Ubuntu 和 Windows 上都跑它），每次碰撞都能在日志里找到被撞车辆碰撞前几秒的"紧急停车"及原因。带事故的那几例，原因都是"没有通往下一条边的连接"，而且都发生在封道的**同一个仿真时刻**：运行中用 TraCI `setDisallowed` 禁行右车道，瞬间让已经在制动距离以内、正要驶入该车道的车辆失去了去路，SUMO 让它们以远超物理极限的减速度原地停车，后车来不及反应就撞上了。另一例不带事故：匝道信号从绿直接跳红、没有黄灯（SUMO 本身就给出"Missing yellow phase"警告），一辆车在红灯前被迫做了同样不可能的急停，后面的货车追尾。所以 v1 README 里"怀疑与 TraCI 禁行车道有关"的猜测只对了一半，另一半原因在信号配时上。
 - **怎么修的**：事故改成"让一辆能正常刹停的车停在事故点"（`stall`），全程不改车道通行权限；匝道信号每个绿灯后加 2.5 s 黄灯（取值理由写在 `controller.py`，测试里也检查了）。同一批 v1 事故场景上还比较了 SUMO 文档建议的"封道前先限速"（`vss_disallow`）和两种专用事故车（`blocker`、`blocker_insert`）：限速能减少但不能消除"无连接"急停；专用事故车没有碰撞，但要等 SUMO 找到安全空档才能出现，实际开始时刻会被推迟很多（见方法对比表里的 onset 列），`stall` 的推迟最小也最稳定。v1 的 INVALID 场景用修好的仿真重跑后都不再 INVALID；v2 主运行里也没有 INVALID。
 - **事故边界和 v1 不能直接比**：事故的仿真方式变了，v1 的事故时长边界不再成立；v2 在事故边界处违反的准则也变成了匝道 p95 延误和 TTC 冲突。注意 TTC 冲突现在包括车辆接近停着的事故车的冲突，这是把事故当成一辆真实停着的车的直接后果，本项目没有把它们单独剔除。
 - **5 个种子的二分给出的是虚假的精度**：二分区间只有一个容差宽，但 20 个种子的通过率从"确定通过"降到"确定不通过"要跨过好几个网格点。生成块里统计了有几条边界的 x50 落在 5 种子二分区间**之外**——也就是说"某值通过、隔一个容差就不通过"式的二分结论，本身就在种子噪声之内。现在报告的是边界带和 x50，带宽就是这组设置下的真实分辨率。
@@ -223,10 +223,10 @@ Deterministic: `probe:ramp_demand:hi` -> `probe:incident_duration:hi` -> `probe:
 - **边界是单轴的**：细化和二分都只沿一个参数、其他参数固定在名义值；多维情况只由 Morris 的 σ 粗略反映。
 - **种子数仍然有限**：20 个种子时"确定通过/不通过"的门槛是 ≥15 / ≤5 个通过，边界带因此较宽；Morris 只有两个配对种子、六条轨迹，排名是筛选级别的证据。
 - **算力**：本机 8 个逻辑 CPU 同时在跑另一个任务，墙钟时间偏长，且不同阶段的时间不可直接比较。v2 新增的 SUMO 计算：诊断、主运行、LLM 对比的墙钟时间都在生成块里；另外在写诊断脚本前做过探索性试跑（结果未提交，不计入任何结论）。
-- **跨平台复现的范围**：v2 的抽样重跑在 Linux 上也逐字节一致（生成块里的 WSL 复核，以及 CI 的 `rerun_check.py --n 3`）；v1 INVALID 的逐字节复现以 Windows 为准，Linux 上的集成测试只检查封道时刻的紧急停车，不检查碰撞本身。
+- **跨平台复现只抽样检查**：结果在 Windows 上产生；CI 在 Ubuntu 和 Windows 上重跑 3 个 v2 run 和 9 个 v1 INVALID run，要求逐字节一致，其余 run 没有在其他平台上重跑过。
 
 ## English summary
 
 `sim-eval-agent` is a small, deterministic simulation-evaluation agent around SUMO 1.24.0. The system under test is a ramp-metering controller (fixed-time and ALINEA) on a script-generated, byte-reproducible freeway merge. The agent runs paired-seed one-at-a-time attribution, picks `probe:<param>:<lo|hi>` from a closed action list, bisects with 5 seeds, then re-estimates every boundary as a pass rate over 20 paired seeds with Wilson 95% intervals (band = last confidently-PASS value to first confidently-not-PASS value; x50 = 50% crossing of an isotonic fit), and runs a Morris elementary-effects screening over ranges calibrated from the boundaries. Every claim lists the run ids it rests on; `scripts/verify_results.py` recomputes claims, refinement, Morris and the diagnosis/LLM summaries from raw records, and `scripts/render_readme.py --check` keeps the numbers above in sync.
 
-Round 2 findings (numbers in the generated block): the v1 INVALID runs were reproduced exactly (on Windows, where v1 was produced) and traced through SUMO's warning log — the lane-closure ones to TraCI `setDisallowed` forcing physically impossible stops at the closure instant ("no connection to the next edge"), the remaining one to a meter with no amber phase. Incidents are now a vehicle told to stop with ordinary braking, and the meter has a 2.5 s amber; the v2 run has no INVALID runs. 20-seed refinement shows the 5-seed bisection intervals were narrower than the seed noise (the block counts how many x50 estimates fall outside them). qwen2.5:3b on CPU produced well-formed replies but mostly proposed directions that were not allowed; with the deterministic fallback it probed in a different order and was otherwise no better; the deterministic policy remains the default. Not a vehicle-level ADS evaluation; synthetic network and demand; SSM TTC is a surrogate. Created on 2026-09-26 as a new personal project.
+Round 2 findings (numbers in the generated block): the v1 INVALID runs were reproduced exactly (CI re-checks this on Ubuntu and Windows) and traced through SUMO's warning log — the lane-closure ones to TraCI `setDisallowed` forcing physically impossible stops at the closure instant ("no connection to the next edge"), the remaining one to a meter with no amber phase. Incidents are now a vehicle told to stop with ordinary braking, and the meter has a 2.5 s amber; the v2 run has no INVALID runs. 20-seed refinement shows the 5-seed bisection intervals were narrower than the seed noise (the block counts how many x50 estimates fall outside them). qwen2.5:3b on CPU produced well-formed replies but mostly proposed directions that were not allowed; with the deterministic fallback it probed in a different order and was otherwise no better; the deterministic policy remains the default. Not a vehicle-level ADS evaluation; synthetic network and demand; SSM TTC is a surrogate. Created on 2026-09-26 as a new personal project.
