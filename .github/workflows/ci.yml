@@ -38,6 +38,13 @@ jobs:
           python scripts/verify_results.py
           python scripts/render_readme.py --check
 
+      - name: Re-simulate a sample of committed v2 runs (KPIs + tripinfo hash must match)
+        run: python scripts/rerun_check.py --n 3
+
+      - name: Re-simulate the v1 INVALID runs with the v1 options (informational on Linux)
+        continue-on-error: true
+        run: python scripts/rerun_check.py --v1-invalid
+
       - name: Smoke run of the agent against SUMO
         run: |
           python scripts/run_agent.py --smoke --out smoke_results --jobs 2
@@ -48,3 +55,66 @@ jobs:
         with:
           name: smoke-results
           path: smoke_results/
+
+  windows-sumo:
+    # v1 and the v2 campaign were produced on Windows; re-simulate committed runs there too.
+    runs-on: windows-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install SUMO 1.24.0 and test deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Point SUMO_HOME at the pip-installed SUMO
+        run: |
+          echo "SUMO_HOME=$(python -c 'import sumo; print(sumo.SUMO_HOME)')" >> "$GITHUB_ENV"
+
+      - name: Re-simulate a sample of committed v2 runs
+        run: python scripts/rerun_check.py --n 3
+
+      - name: Re-simulate the v1 INVALID runs with the v1 options
+        run: python scripts/rerun_check.py --v1-invalid
+
+  no-sumo:
+    # A clone without SUMO: pure-Python tests pass, SUMO tests skip, committed results verify.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pytest only (no SUMO)
+        run: |
+          python -m pip install --upgrade pip
+          pip install "pytest>=7"
+
+      - name: SUMO is really absent
+        run: python -c "from simeval import sumo_env; assert not sumo_env.available()"
+
+      - name: Tests (SUMO integration tests skip)
+        run: python -m pytest -q -rs
+
+      - name: Committed results are consistent and README numbers match them
+        run: |
+          python scripts/verify_results.py
+          python scripts/render_readme.py --check

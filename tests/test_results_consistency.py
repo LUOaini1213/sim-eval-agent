@@ -56,6 +56,32 @@ def test_readme_check_fails_on_drift(tmp_path):
     assert out.returncode == 1
 
 
+def test_readme_check_fails_on_tldr_drift(tmp_path):
+    """The TL;DR under the title is generated too: a hand-edited number there fails --check."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    i, j = readme.index("<!-- TLDR:BEGIN -->"), readme.index("<!-- TLDR:END -->")
+    runs = str(json.loads((RESULTS / "report.json").read_text(encoding="utf-8"))["runs_executed"])
+    assert f"{runs} SUMO runs" in readme[i:j]
+    p = tmp_path / "README.md"
+    p.write_text(readme[:i] + readme[i:j].replace(f"{runs} SUMO runs", f"{int(runs) + 1} SUMO runs") + readme[j:],
+                 encoding="utf-8")
+    out = subprocess.run([sys.executable, str(ROOT / "scripts" / "render_readme.py"), "--check", "--readme", str(p)],
+                         capture_output=True, text=True)
+    assert out.returncode == 1 and "TL;DR" in out.stdout
+
+
+def test_diagnosis_sentence_names_the_platform_when_recorded():
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import render_readme
+
+    d = json.loads((RESULTS / "diagnosis" / "summary.json").read_text(encoding="utf-8"))
+    without = " ".join(render_readme.render_diagnosis(d, "Windows-10"))
+    assert "platform of this re-run not recorded" in without and "made on Windows-10" in without
+    d["meta"].update(platform="Linux-6.8", git_commit="0123456789abcdef", git_dirty=False)
+    with_ = " ".join(render_readme.render_diagnosis(d, "Windows-10"))
+    assert "re-run on Linux-6.8, code commit `0123456`" in with_
+
+
 @pytest.mark.skipif(not (RESULTS / "diagnosis" / "summary.json").exists(), reason="no diagnosis results")
 def test_experiment_summaries_verify_and_tampering_is_caught(tmp_path):
     from simeval.report import verify_experiments

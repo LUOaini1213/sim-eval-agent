@@ -4,7 +4,7 @@
 # Clones the committed HEAD into a scratch dir, installs SUMO 1.24.0 from pip into a venv
 # (reused if present), runs the test suite, the byte-level network check and a sample
 # re-simulation of committed runs, and writes a JSON summary to OUT.json.
-set -u
+set -u -o pipefail  # pipefail: "cmd | tail" must report cmd's exit status, not tail's
 REPO=$(cd "$1" && pwd)
 OUT=$2
 VENV=${VENV:-$HOME/sim-eval-venv}

@@ -21,6 +21,7 @@ from simeval.agent import Agent, AgentConfig
 from simeval.evaluator import ReplayEvaluator, SumoEvaluator
 from simeval.llm_compare import summarize_campaigns
 from simeval.policy import DeterministicPolicy, LLMPolicy, ollama_chat
+from simeval.provenance import provenance
 from simeval.report import load_runs
 from simeval.runner import SimOptions
 
@@ -83,7 +84,7 @@ def main() -> int:
     summary["meta"] = {"model": a.model, "ollama_options": {"num_gpu": 0}, "date": dt.date.today().isoformat(),
                        "budget": budget, "oat_runs": oat_runs, "probe_budget": a.probe_budget,
                        "max_probes": a.max_probes, "wall_time_s": round(time.perf_counter() - t_all, 1),
-                       "sumo_runs_simulated": len(extra)}
+                       "sumo_runs_simulated": len(extra), **provenance(ROOT)}
     (out / "summary.json").write_text(json.dumps({"campaigns": campaigns, **summary}, indent=1, sort_keys=True) + "\n",
                                       encoding="utf-8", newline="\n")
     print(json.dumps(summary["totals"], indent=1))
