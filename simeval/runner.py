@@ -17,7 +17,7 @@ from pathlib import Path
 
 from . import controller as ctl
 from .scenario import BLOCKER_POS, INCIDENT_METHODS, SIM_END, Scenario, write_inputs
-from .sumo_env import binary
+from .sumo_env import command_name
 
 STEP_LENGTH = 0.5
 SSM_RECORD_THRESHOLD = 3.0  # s; SSM logs conflicts below this; kpi.py counts those below 1.5
@@ -54,7 +54,7 @@ def sumo_cmd(s: Scenario, opts: SimOptions = DEFAULT_OPTIONS) -> list[str]:
     is SUMO's working directory: some SUMO file readers cannot open non-ASCII absolute paths
     on Windows, and this repo may live under one. The net file is copied in for that reason."""
     return [
-        binary("sumo"),
+        command_name("sumo"),
         "--net-file", "merge.net.xml",
         "--route-files", "routes.rou.xml,incident.rou.xml",
         "--additional-files", "detectors.add.xml",

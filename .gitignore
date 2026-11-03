@@ -4,3 +4,4 @@ __pycache__/
 work/
 smoke_results/
 *.egg-info/
+.venv/

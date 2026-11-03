@@ -46,11 +46,33 @@ def test_v1_invalid_run_reproduces_with_legacy_closure_and_is_clean_with_the_fix
     legacy = _run_one((s.canonical(), net, str(tmp_path / "l"), False, {**LEGACY_OPTIONS.as_dict(), "log_warnings": True}))
     # the mechanism: disallowing the lane forces impossible stops at the closure instant
     assert 806.0 in legacy["log"]["emergency_stop_times"]["no_connection"]
-    if sys.platform == "win32":  # v1 was produced on Windows; there the collision itself reproduces
-        assert legacy["kpis"]["collision_lanes"] == ["main_mid_0"]
-        assert legacy["log"]["collisions"][0]["cause"] == "no_connection"
-        assert legacy["log"]["collisions"][0]["victim_stop_time"] == 806.0
+    # v1 was produced on Windows; the collision itself also reproduces on Linux (CI, 2026-11-03)
+    assert legacy["kpis"]["collision_lanes"] == ["main_mid_0"]
+    assert legacy["log"]["collisions"][0]["cause"] == "no_connection"
+    assert legacy["log"]["collisions"][0]["victim_stop_time"] == 806.0
     fixed = _run_one((s.canonical(), net, str(tmp_path / "f"), False, {**DEFAULT_OPTIONS.as_dict(), "log_warnings": True}))
     assert fixed["kpis"]["collisions"] == 0 and fixed["kpis"]["teleports"] == 0
     assert fixed["log"]["emergency_stops_by_reason"].get("no_connection", 0) == 0
     assert 806 <= fixed["kpis"]["incident_onset_s"] <= 806 + 60
+
+
+def test_rerun_check_passes_on_a_committed_run_and_fails_on_a_tampered_one(tmp_path):
+    """scripts/rerun_check.py (run in CI) re-simulates committed runs; a changed KPI must fail it."""
+    import json
+    import shutil
+    import subprocess
+
+    lines = (ROOT / "results" / "runs.jsonl").read_text(encoding="utf-8").splitlines()
+    for name, line in (("same", lines[0]), ("tampered", None)):
+        d = tmp_path / name
+        d.mkdir()
+        shutil.copy(ROOT / "results" / "report.json", d / "report.json")
+        if line is None:
+            r = json.loads(lines[0])
+            r["kpis"]["mean_delay_s"] += 0.5
+            line = json.dumps(r, sort_keys=True)
+        (d / "runs.jsonl").write_text(line + "\n", encoding="utf-8")
+        out = subprocess.run([sys.executable, str(ROOT / "scripts" / "rerun_check.py"), "--n", "1", "--dir", str(d)],
+                             capture_output=True, text=True)
+        assert out.returncode == (0 if name == "same" else 1), out.stdout + out.stderr
+        assert ("1/1 identical" if name == "same" else "0/1 identical") in out.stdout
