@@ -53,7 +53,7 @@ Python 3.11（CI 用的版本；WSL 复核用的是 3.12）。
 
 ```bash
 pip install -r requirements.txt          # 含 eclipse-sumo==1.24.0；已装 SUMO 1.24.0 并设好 SUMO_HOME 可跳过该行
-python -m pytest -q                      # 单元 + 集成测试（无 SUMO 时 3 个集成测试自动跳过，其余照常通过）
+python -m pytest -q                      # 单元 + 集成测试（无 SUMO 时 tests/test_sumo_integration.py 的集成测试自动跳过，其余照常通过）
 python scripts/run_agent.py              # 实跑并写 results/；随后 python scripts/render_readme.py 刷新下表
 ```
 
