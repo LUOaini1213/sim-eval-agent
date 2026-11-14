@@ -38,3 +38,27 @@ def test_linux_check_set_line_propagates_a_failing_command_through_tail():
     probe = set_line + '\nX=$({ echo DIFFERENT; false; } 2>&1 | tail -n 1); echo "rc=$? out=$X"\n'
     out = subprocess.run([_bash(), "-s"], input=probe, capture_output=True, text=True, timeout=60)
     assert out.stdout.strip() == "rc=1 out=DIFFERENT", out.stdout + out.stderr
+
+
+def test_rerun_check_fails_when_no_runs_are_selected(tmp_path):
+    """CI gates on rerun_check.py's exit code; an empty selection must not pass as "0/0 identical"."""
+    import sys
+
+    shutil.copy(ROOT / "results" / "report.json", tmp_path / "report.json")
+    (tmp_path / "runs.jsonl").write_text("", encoding="utf-8")
+    out = subprocess.run([sys.executable, str(ROOT / "scripts" / "rerun_check.py"), "--n", "3", "--dir", str(tmp_path)],
+                         capture_output=True, text=True, timeout=120)
+    assert out.returncode == 1 and "no runs selected" in out.stdout, out.stdout + out.stderr
+
+
+def test_v1_invalid_selection_is_the_diagnosed_set():
+    """--v1-invalid re-simulates exactly the v1 INVALID runs that results/diagnosis/ attributes."""
+    import json
+    import sys
+
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import rerun_check
+
+    diag = json.loads((ROOT / "results" / "diagnosis" / "summary.json").read_text(encoding="utf-8"))
+    assert sorted(r["id"] for r in rerun_check.v1_invalid_runs()) == sorted(diag["invalid_ids"])
+    assert len(diag["invalid_ids"]) > 0

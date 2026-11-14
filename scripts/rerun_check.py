@@ -7,7 +7,8 @@ Exact equality is expected on the same SUMO version and platform; other platform
 (the script prints which KPIs changed). The default mode uses the simulation options stored in
 report.json; ``--v1-invalid`` uses the v1 simulation (``LEGACY_OPTIONS``: TraCI lane closure,
 meter without amber), which is what ``scripts/diagnose_invalid.py`` re-runs, and the same
-comparison as the diagnosis (``simeval.diagnosis.same_run``). Exit 1 on any mismatch. The
+comparison as the diagnosis (``simeval.diagnosis.same_run``). Exit 1 on any mismatch, and when no runs are selected (an empty
+sample would otherwise pass without re-simulating anything). The
 platform is printed first, so a log says where the comparison was made.
 """
 import argparse
@@ -24,6 +25,11 @@ from simeval.report import load_runs
 ROOT = _path.ROOT
 
 
+def v1_invalid_runs() -> list[dict]:
+    """The INVALID records of results/v1 (the runs ``--v1-invalid`` re-simulates)."""
+    return [r for r in load_runs(ROOT / "results" / "v1" / "runs.jsonl") if r["eval"]["verdict"] == "INVALID"]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=6)
@@ -34,8 +40,7 @@ def main() -> int:
     if a.v1_invalid:
         from simeval.runner import LEGACY_OPTIONS
 
-        runs = load_runs(ROOT / "results" / "v1" / "runs.jsonl")
-        sample = [r for r in runs if r["eval"]["verdict"] == "INVALID"]
+        sample = v1_invalid_runs()
         opts = {**LEGACY_OPTIONS.as_dict(), "log_warnings": False}
     else:
         runs = load_runs(f"{a.dir}/runs.jsonl")
@@ -44,6 +49,9 @@ def main() -> int:
         step = max(1, len(runs) // a.n)
         sample = runs[::step][: a.n]
     print(f"platform: {platform.platform(terse=True)}")
+    if not sample:  # an empty selection would otherwise print "0/0 identical" and pass
+        print("no runs selected; nothing was re-simulated")
+        return 1
     bad = 0
     with tempfile.TemporaryDirectory() as tmp:
         for r in sample:

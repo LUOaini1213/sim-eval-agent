@@ -223,7 +223,7 @@ Deterministic: `probe:ramp_demand:hi` -> `probe:incident_duration:hi` -> `probe:
 - **边界是单轴的**：细化和二分都只沿一个参数、其他参数固定在名义值；多维情况只由 Morris 的 σ 粗略反映。
 - **种子数仍然有限**：20 个种子时"确定通过/不通过"的门槛是 ≥15 / ≤5 个通过，边界带因此较宽；Morris 只有两个配对种子、六条轨迹，排名是筛选级别的证据。
 - **算力**：本机 8 个逻辑 CPU 同时在跑另一个任务，墙钟时间偏长，且不同阶段的时间不可直接比较。v2 新增的 SUMO 计算：诊断、主运行、LLM 对比的墙钟时间都在生成块里；另外在写诊断脚本前做过探索性试跑（结果未提交，不计入任何结论）。
-- **跨平台复现只抽样检查**：结果在 Windows 上产生；CI 在 Ubuntu 和 Windows 上重跑 3 个 v2 run 和 9 个 v1 INVALID run，要求逐字节一致，其余 run 没有在其他平台上重跑过。
+- **跨平台复现只抽样检查**：结果在 Windows 上产生；CI 在 Ubuntu 和 Windows 上重跑 3 个 v2 run 和 9 个 v1 INVALID run，09-27 的 WSL 复核在 Linux 上重跑过 6 个 v2 run（含 CI 抽的这 3 个，见生成块），都要求逐字节一致；其余 run 没有在其他平台上重跑过。
 
 ## English summary
 
