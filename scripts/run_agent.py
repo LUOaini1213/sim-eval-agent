@@ -15,6 +15,7 @@ from simeval.agent import Agent, AgentConfig
 from simeval.evaluator import SumoEvaluator
 from simeval.network import sha256
 from simeval.policy import DeterministicPolicy, LLMPolicy, ollama_chat
+from simeval.provenance import provenance
 from simeval.report import write_all
 from simeval.runner import DEFAULT_OPTIONS, SimOptions
 from simeval.sumo_env import sumo_version
@@ -72,6 +73,7 @@ def main() -> int:
         "cpu_count": os.cpu_count(),
         "sim_wall_s_sum": round(sum(r["wall_s"] for r in result["runs"]), 1),
         "sim_options": opts.as_dict(),
+        **{k: v for k, v in provenance(ROOT).items() if k.startswith("git_")},
     }
     if a.policy == "llm":
         meta["llm_model"] = a.llm_model

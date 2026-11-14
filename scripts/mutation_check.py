@@ -47,7 +47,7 @@ MUTATIONS = [
      "LLM policy accepts vocabulary items it is not allowed to pick", "tests/test_policy.py"),
     ("M14", "simeval/report.py", 'if fresh != rep["claims"]:', "if False:",
      "verify() stops comparing claims with runs.jsonl", "tests/test_results_consistency.py"),
-    ("M15", "scripts/render_readme.py", "        if current != block:", "        if False:",
+    ("M15", "scripts/render_readme.py", "        if drift:", "        if False:",
      "README --check never fails", "tests/test_results_consistency.py"),
     # ---- added in round 2 (INVALID fix, 20-seed refinement, Morris, LLM comparison)
     ("M16", "simeval/stats.py", "    den = 1 + z * z / n", "    den = 1",
@@ -88,6 +88,15 @@ MUTATIONS = [
     ("M30", "simeval/llm_compare.py", '"agree_with_deterministic": sum(e["parsed"] == e["deterministic_choice"] for e in cl),',
      '"agree_with_deterministic": sum(e["used"] == e["deterministic_choice"] for e in cl),',
      "agreement counts the deterministic fallback as the LLM agreeing", "tests/test_llm_compare.py"),
+    # ---- added on 2026-11-03 (review fixes)
+    ("M31", "simeval/sumo_env.py", "    except FileNotFoundError:\n        return name", "    except FileNotFoundError:\n        raise",
+     "building a SUMO command line needs SUMO installed again", "tests/test_tooling.py"),
+    ("M32", "scripts/linux_check.sh", "set -u -o pipefail", "set -u",
+     "linux_check.sh records tail's exit status for the network check", "tests/test_tooling.py"),
+    ("M33", "scripts/render_readme.py", "        if changed:", "        if changed and begin == BEGIN:",
+     "README --check ignores the TL;DR block", "tests/test_results_consistency.py"),
+    ("M34", "scripts/rerun_check.py", "    return 1 if bad else 0", "    return 0",
+     "rerun_check.py never fails on a re-simulated mismatch", "tests/test_sumo_integration.py"),
 ]
 
 
@@ -102,6 +111,8 @@ HISTORY = """
 - 2026-09-26, round 2: M13's pattern was rewritten with the new policy code; M16-M30 cover the code added
   for the INVALID fix, the 20-seed refinement, Morris screening and the LLM comparison. Run on 2026-09-27
   against commit 352a838: 30/30 caught on the first pass (no test had to be added).
+- 2026-11-03, review fixes: M15's pattern was rewritten for the two-block `render_readme.py`; M31-M34 cover
+  the SUMO-free command line, `pipefail` in `linux_check.sh`, the generated TL;DR and `rerun_check.py`.
 """
 
 

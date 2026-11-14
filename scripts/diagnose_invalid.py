@@ -22,6 +22,7 @@ from simeval.diagnosis import CONFIGS, build_summary
 from simeval.evaluator import SumoEvaluator
 from simeval.report import load_runs
 from simeval.scenario import Scenario
+from simeval.provenance import provenance
 from simeval.sumo_env import sumo_version
 
 ROOT = _path.ROOT
@@ -57,7 +58,8 @@ def main() -> int:
     summary = build_summary(records, v1, compare_ids, invalid_ids)
     summary["meta"] = {"sumo_version": sumo_version(), "date": dt.date.today().isoformat(), "jobs": a.jobs,
                        "wall_time_s": round(time.perf_counter() - t_all, 1), "wall_s_by_config": walls,
-                       "runs": len(records), "configs": {k: list(v) for k, v in CONFIGS.items()}}
+                       "runs": len(records), "configs": {k: list(v) for k, v in CONFIGS.items()},
+                       **provenance(ROOT)}
     from pathlib import Path
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)

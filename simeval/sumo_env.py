@@ -32,6 +32,17 @@ def binary(name: str) -> str:
     raise FileNotFoundError(f"SUMO binary '{name}' not found (set SUMO_HOME or pip install eclipse-sumo)")
 
 
+def command_name(name: str) -> str:
+    """Path of a SUMO binary if one is found, else the bare name.
+
+    Building a command line must not need SUMO installed (unit tests build them on machines
+    without SUMO); launching it still does, and then fails with the OS's "not found" error."""
+    try:
+        return binary(name)
+    except FileNotFoundError:
+        return name
+
+
 @lru_cache(maxsize=1)
 def sumo_version() -> str:
     out = subprocess.run([binary("sumo"), "--version"], capture_output=True, text=True, check=True).stdout
